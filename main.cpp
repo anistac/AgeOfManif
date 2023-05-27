@@ -1,26 +1,12 @@
-#include "classes/window.hpp"
+#include "window.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
 
-sf::Font font; // Déclaration de la variable font
-
-
-struct Region {
-        std::string region;
-        std::pair<int, int> position;
-    };
-
-    std::vector<Region> regions;
-
-
-void draw(sf::RenderWindow& window, sf::Sprite& sprite, std::vector<sf::RectangleShape>& buttons, std::vector<sf::Text>& buttonTexts, std::vector<Region>& regions)
+void draw(sf::RenderWindow& window, sf::Sprite& sprite, std::vector<sf::RectangleShape>& buttons, std::vector<sf::Text>& buttonTexts, std::vector<sf::Text>& regionTexts)
 {
     window.clear(sf::Color::White);
     window.draw(sprite);
-
-// Créer une police (chargement d'un fichier de police TrueType)
-	
     for (const auto& button : buttons)
     {
         window.draw(button);
@@ -31,31 +17,15 @@ void draw(sf::RenderWindow& window, sf::Sprite& sprite, std::vector<sf::Rectangl
         window.draw(buttonText);
     }
     
-    
-    for (auto it = regions.begin(); it != regions.end(); ++it)
+    for (const auto& regionText : regionTexts)
     {
-         sf::Text temp;
-        temp.setFont(font);
-        temp.setString(it->region);
-        temp.setCharacterSize(20);
-        temp.setFillColor(sf::Color::Black);
-        temp.setPosition(it->position.first, it->position.second);
-        window.draw(temp);
+        window.draw(regionText);
     }
-    
-   
     window.display();
 }
 
 
-int main()
-{
-    // Créer une police (chargement d'un fichier de police TrueType)
-	if (!font.loadFromFile("../assets/arial.ttf"))
-	{
-		// erreur : impossible de charger la police
-		return -1;
-	}
+int main() {
 
     // Charger l'image de fond à partir d'un fichier
     sf::Image backgroundImage;
@@ -64,10 +34,15 @@ int main()
         // Erreur : Impossible de charger l'image de fond
         return 1;
     }
+    
+
+    // Créer une nouvelle image avec la même taille que l'image de fond
+    sf::Image newImage;
+    newImage.create(backgroundImage.getSize().x, backgroundImage.getSize().y, sf::Color::Transparent);
 
     // Créer une texture à partir de la nouvelle image
     sf::Texture texture;
-    texture.loadFromImage(backgroundImage);
+    texture.loadFromImage(newImage);
 
     // Créer un sprite pour afficher la texture
     sf::Sprite sprite(texture);
@@ -76,8 +51,17 @@ int main()
     sprite.setPosition(0, 0);
 
     // Afficher le sprite dans une fenêtre
-    sf::RenderWindow window(sf::VideoMode(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height), "Age of Manifs");
+    sf::RenderWindow window(sf::VideoMode(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height), "Edge of Manifs");
+    
     //___________________________________________________________________________________________________
+    
+    // Créer une police (chargement d'un fichier de police TrueType)
+	sf::Font font;
+	if (!font.loadFromFile("arial.ttf"))
+	{
+		// erreur : impossible de charger la police
+		return -1;
+	}
     
     // Créer un texte
 	sf::Text text;
@@ -89,42 +73,115 @@ int main()
 	
 	// Créer les textes : titre des régions
 
-    // Créer une police (chargement d'un fichier de police TrueType)
-	sf::Font font;
-	if (!font.loadFromFile("../assets/arial.ttf"))
-	{
-		// erreur : impossible de charger la police
-		return -1;
-	}
-
-    // Ajouter des éléments à la structure regions
-    regions.push_back({"Ile De France", {400, 210}});
-    regions.push_back({"Vendee", {220, 320}});
-    regions.push_back({"Normandie", {260, 200}});
-    regions.push_back({"Bretagne", {100, 270}});
-    regions.push_back({"Grand Est", {600, 210}});
-    regions.push_back({"Grand Nord", {430, 90}});
-    regions.push_back({"Bourgogne", {550, 350}});
-    regions.push_back({"Val-de-Loire", {350, 330}});
-    regions.push_back({"Aquitaine", {300, 500}});
-    regions.push_back({"Rhone-Alpes", {500, 520}});
-    regions.push_back({"Region Paca", {630, 650}});
-    regions.push_back({"Occitanie",{400, 650}});
     
-    std::vector<sf::Text> regionTexts;
-    for (auto it = regions.begin(); it != regions.end(); ++it) {
-        sf::Text texte;
-        texte.setFont(font);
-        texte.setString(it->region);
-        texte.setCharacterSize(20);
-        texte.setFillColor(sf::Color::Black);
-        texte.setPosition(it->position.first, it->position.second);
-        regionTexts.push_back(texte);
-    }
+    std::vector<std::string> nomsDesRegions = {
+        "Ile De France",
+        "Vendee",
+        "Normandie",
+        "Bretagne",
+        "Grand Est",
+        "Grand Nord",
+        "Bourgogne",
+        "Val-de-Loire",
+        "Aquitaine",
+        "Rhone-Alpes",
+        "Region Paca",
+        "Val-de-Loire"
+    };
+    
+
+    /*
+	sf::Text texteIledeFrance;
+    texteIledeFrance.setFont(font);
+    texteIledeFrance.setString("Ile De France");
+    texteIledeFrance.setCharacterSize(20);
+    texteIledeFrance.setFillColor(sf::Color::Black);
+    texteIledeFrance.setPosition(400, 210);
+    
+	
+	sf::Text texteVendee;
+    texteVendee.setFont(font);
+    texteVendee.setString("Vendee");
+    texteVendee.setCharacterSize(20);
+    texteVendee.setFillColor(sf::Color::Black);
+    texteVendee.setPosition(220, 320);
+    
+        sf::Text texteNormandie;
+    texteNormandie.setFont(font);
+    texteNormandie.setString("Normandie");
+    texteNormandie.setCharacterSize(20);
+    texteNormandie.setFillColor(sf::Color::Black);
+    texteNormandie.setPosition(260, 200);
+    
+    sf::Text texteBretagne;
+    texteBretagne.setFont(font);
+    texteBretagne.setString("Bretagne");
+    texteBretagne.setCharacterSize(20);
+    texteBretagne.setFillColor(sf::Color::Black);
+    texteBretagne.setPosition(100, 270);
+    
+    sf::Text texteGrandEst;
+    texteGrandEst.setFont(font);
+    texteGrandEst.setString("Grand Est");
+    texteGrandEst.setCharacterSize(20);
+    texteGrandEst.setFillColor(sf::Color::Black);
+    texteGrandEst.setPosition(600, 210);
+    
+    sf::Text texteGrandNord;
+    texteGrandNord.setFont(font);
+    texteGrandNord.setString("Grand Nord");
+    texteGrandNord.setCharacterSize(20);
+    texteGrandNord.setFillColor(sf::Color::Black);
+    texteGrandNord.setPosition(430, 90);
+    
+    sf::Text texteBourgogne;
+    texteBourgogne.setFont(font);
+    texteBourgogne.setString("Bourgogne");
+    texteBourgogne.setCharacterSize(20);
+    texteBourgogne.setFillColor(sf::Color::Black);
+    texteBourgogne.setPosition(550, 350);
+    
+    sf::Text texteValdeLoir;
+    texteValdeLoir.setFont(font);
+    texteValdeLoir.setString("Val-de-Loire");
+    texteValdeLoir.setCharacterSize(20);
+    texteValdeLoir.setFillColor(sf::Color::Black);
+    texteValdeLoir.setPosition(350, 330);
+    
+    sf::Text texteAquitaine;
+    texteAquitaine.setFont(font);
+    texteAquitaine.setString("Aquitaine");
+    texteAquitaine.setCharacterSize(20);
+    texteAquitaine.setFillColor(sf::Color::Black);
+    texteAquitaine.setPosition(300, 500);
+    
+    sf::Text texteRhoneAlpes;
+    texteRhoneAlpes.setFont(font);
+    texteRhoneAlpes.setString("Rhone-Alpes");
+    texteRhoneAlpes.setCharacterSize(20);
+    texteRhoneAlpes.setFillColor(sf::Color::Black);
+    texteRhoneAlpes.setPosition(500, 520);
+    
+    sf::Text textePaca;
+    textePaca.setFont(font);
+    textePaca.setString("Region Paca");
+    textePaca.setCharacterSize(20);
+    textePaca.setFillColor(sf::Color::Black);
+    textePaca.setPosition(630, 650);
+    
+    sf::Text texteOcciatanie;
+    texteOcciatanie.setFont(font);
+    texteOcciatanie.setString("Occitanie");
+    texteOcciatanie.setCharacterSize(20);
+    texteOcciatanie.setFillColor(sf::Color::Black);
+    texteOcciatanie.setPosition(400, 650);
+
+    */
+    
     
 	// Créer un boutton
     sf::RectangleShape button(sf::Vector2f(150, 30));
-    button.setFillColor(sf::Color::Black);
+    button.setFillColor(sf::Color::Blue);
     button.setPosition(30, 30);
     
     sf::Text buttonText;
@@ -265,6 +322,15 @@ int main()
     buttonText11.setCharacterSize(20);
     buttonText11.setFillColor(sf::Color::White);
     buttonText11.setPosition(button11.getPosition().x + (button11.getSize().x - buttonText11.getGlobalBounds().width) / 2, button11.getPosition().y + (button11.getSize().y - buttonText11.getGlobalBounds().height) / 2);
+    
+   for (const auto& nom : nomsDesRegions) {
+        sf::Text texte;
+        texte.setFont(font);
+        texte.setString(nomRegion);
+        texte.setCharacterSize(20);
+        texte.setFillColor(sf::Color::Blue);
+        regionTexts.push_back(texte);
+    }
 
 	// Recapituler ensemble pour faciliter la lecture du code 
 	
@@ -296,18 +362,19 @@ int main()
 	buttonTexts.push_back(buttonText10);
 	buttonTexts.push_back(buttonText11);
 
-	// regionTexts.push_back(texteIledeFrance);
-	// regionTexts.push_back(texteVendee);
-	// regionTexts.push_back(texteBretagne);
-	// regionTexts.push_back(texteNormandie);
-	// regionTexts.push_back(texteGrandEst);
-	// regionTexts.push_back(texteGrandNord);
-	// regionTexts.push_back(texteBourgogne);
-	// regionTexts.push_back(texteValdeLoir);
-	// regionTexts.push_back(texteAquitaine);
-	// regionTexts.push_back(texteRhoneAlpes);
-	// regionTexts.push_back(textePaca);
-	// regionTexts.push_back(texteOcciatanie);
+	std::vector<sf::Text> regionTexts;
+	regionTexts.push_back(texteIledeFrance);
+	regionTexts.push_back(texteVendee);
+	regionTexts.push_back(texteBretagne);
+	regionTexts.push_back(texteNormandie);
+	regionTexts.push_back(texteGrandEst);
+	regionTexts.push_back(texteGrandNord);
+	regionTexts.push_back(texteBourgogne);
+	regionTexts.push_back(texteValdeLoir);
+	regionTexts.push_back(texteAquitaine);
+	regionTexts.push_back(texteRhoneAlpes);
+	regionTexts.push_back(textePaca);
+	regionTexts.push_back(texteOcciatanie);
 
 
    
@@ -365,15 +432,15 @@ int main()
 		                subWindow.display();
                     }
                 }
-            }
-        }            
+                        }
+        }        
         
-        draw(window, sprite, buttons, buttonTexts, regions);
+       draw(window, sprite, buttons, buttonTexts, regionTexts);
+        
 
         // Mettre à jour la fenêtre
         window.display();
     }
-    
-    return 0;
 
+    return 0;
 }

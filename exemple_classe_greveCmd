@@ -1,0 +1,37 @@
+
+
+
+
+class GreveCommand {
+	constructeur(){
+	
+	
+	}
+	
+	execute(mabufestant){
+		manifestant.greve();
+		
+		
+		/*
+		region.opinion += 10;
+		tour+=1;
+		coup -=1;
+		
+		return region.opinion;
+		*/
+		
+		
+	}
+	
+	undo(currentValue){
+		manifestant.undo();
+		
+		/*
+		region.opinion -= 10;
+		tour-=1;
+		coup +=1;
+		
+		return reion.opinion;
+		
+	}
+}
