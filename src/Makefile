@@ -129,6 +129,78 @@ ex/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/build
 .PHONY : ex/fast
 
+Game.o: Game.cpp.o
+.PHONY : Game.o
+
+# target to build an object file
+Game.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/Game.cpp.o
+.PHONY : Game.cpp.o
+
+Game.i: Game.cpp.i
+.PHONY : Game.i
+
+# target to preprocess a source file
+Game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/Game.cpp.i
+.PHONY : Game.cpp.i
+
+Game.s: Game.cpp.s
+.PHONY : Game.s
+
+# target to generate assembly for a file
+Game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/Game.cpp.s
+.PHONY : Game.cpp.s
+
+classes/Grid.o: classes/Grid.cpp.o
+.PHONY : classes/Grid.o
+
+# target to build an object file
+classes/Grid.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Grid.cpp.o
+.PHONY : classes/Grid.cpp.o
+
+classes/Grid.i: classes/Grid.cpp.i
+.PHONY : classes/Grid.i
+
+# target to preprocess a source file
+classes/Grid.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Grid.cpp.i
+.PHONY : classes/Grid.cpp.i
+
+classes/Grid.s: classes/Grid.cpp.s
+.PHONY : classes/Grid.s
+
+# target to generate assembly for a file
+classes/Grid.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Grid.cpp.s
+.PHONY : classes/Grid.cpp.s
+
+classes/Hex.o: classes/Hex.cpp.o
+.PHONY : classes/Hex.o
+
+# target to build an object file
+classes/Hex.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Hex.cpp.o
+.PHONY : classes/Hex.cpp.o
+
+classes/Hex.i: classes/Hex.cpp.i
+.PHONY : classes/Hex.i
+
+# target to preprocess a source file
+classes/Hex.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Hex.cpp.i
+.PHONY : classes/Hex.cpp.i
+
+classes/Hex.s: classes/Hex.cpp.s
+.PHONY : classes/Hex.s
+
+# target to generate assembly for a file
+classes/Hex.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Hex.cpp.s
+.PHONY : classes/Hex.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -162,6 +234,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ex"
+	@echo "... Game.o"
+	@echo "... Game.i"
+	@echo "... Game.s"
+	@echo "... classes/Grid.o"
+	@echo "... classes/Grid.i"
+	@echo "... classes/Grid.s"
+	@echo "... classes/Hex.o"
+	@echo "... classes/Hex.i"
+	@echo "... classes/Hex.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
