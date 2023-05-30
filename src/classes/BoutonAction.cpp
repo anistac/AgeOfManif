@@ -1,8 +1,8 @@
-#include "BoutonAction.hpp"
 #include <iostream>
-
-BoutonAction::BoutonAction(const std::string& texte, const sf::Font& police, const sf::Vector2f& position, const sf::Vector2f& taille /*,Command*/)
-    : m_estSurvole(false), m_aEteClique(false)
+#include "BoutonAction.hpp"
+#include "Command.hpp"
+BoutonAction::BoutonAction(const std::string& texte, const sf::Font& police, const sf::Vector2f& position, const sf::Vector2f& taille, Invoker& invoker, std::shared_ptr<Command> cmd)
+    : m_estSurvole(false), m_aEteClique(false), cmd(cmd)
 {
     m_rectangle.setSize(taille);
     m_rectangle.setFillColor(sf::Color::Blue);
@@ -23,21 +23,34 @@ void BoutonAction::dessiner(sf::RenderWindow& window)
     window.draw(m_texte);
 }
 
-bool BoutonAction::estSurvole(const sf::Vector2i& positionSouris)
+bool BoutonAction::estSurvole(const sf::Vector2f& positionSouris)
 {
     sf::FloatRect boutonBounds = m_rectangle.getGlobalBounds();
-    m_estSurvole = boutonBounds.contains(static_cast<float>(positionSouris.x), static_cast<float>(positionSouris.y));
-    return m_estSurvole;
+    m_estSurvole = boutonBounds.contains((positionSouris.x), (positionSouris.y));
+    if (m_estSurvole)
+    {   
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 
-bool BoutonAction::aEteClique() const
-{
-    return m_aEteClique;
+bool BoutonAction::aEteClique(const sf::Vector2f& positionSouris)
+{   
+    
+    sf::FloatRect boutonBounds = m_rectangle.getGlobalBounds();
+    m_aEteClique = boutonBounds.contains((positionSouris.x), (positionSouris.y));
+    if(m_aEteClique) {
+        std::cout << "qlf" << std::endl;
+        return Invoker::executeCommand(cmd);
+
+    }
+    else {
+        m_aEteClique = false;
+        return false;
+    }
 }
 
-
-void BoutonAction::executerAction(/*Command*/)
-{
-    //invoker::executeCommand()  
-}

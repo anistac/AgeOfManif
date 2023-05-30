@@ -177,6 +177,60 @@ classes/InfoGame.cpp.s:
 	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/InfoGame.cpp.s
 .PHONY : classes/InfoGame.cpp.s
 
+classes/Invoker.o: classes/Invoker.cpp.o
+
+.PHONY : classes/Invoker.o
+
+# target to build an object file
+classes/Invoker.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Invoker.cpp.o
+.PHONY : classes/Invoker.cpp.o
+
+classes/Invoker.i: classes/Invoker.cpp.i
+
+.PHONY : classes/Invoker.i
+
+# target to preprocess a source file
+classes/Invoker.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Invoker.cpp.i
+.PHONY : classes/Invoker.cpp.i
+
+classes/Invoker.s: classes/Invoker.cpp.s
+
+.PHONY : classes/Invoker.s
+
+# target to generate assembly for a file
+classes/Invoker.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Invoker.cpp.s
+.PHONY : classes/Invoker.cpp.s
+
+classes/Manifester.o: classes/Manifester.cpp.o
+
+.PHONY : classes/Manifester.o
+
+# target to build an object file
+classes/Manifester.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Manifester.cpp.o
+.PHONY : classes/Manifester.cpp.o
+
+classes/Manifester.i: classes/Manifester.cpp.i
+
+.PHONY : classes/Manifester.i
+
+# target to preprocess a source file
+classes/Manifester.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Manifester.cpp.i
+.PHONY : classes/Manifester.cpp.i
+
+classes/Manifester.s: classes/Manifester.cpp.s
+
+.PHONY : classes/Manifester.s
+
+# target to generate assembly for a file
+classes/Manifester.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Manifester.cpp.s
+.PHONY : classes/Manifester.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -219,6 +273,12 @@ help:
 	@echo "... classes/InfoGame.o"
 	@echo "... classes/InfoGame.i"
 	@echo "... classes/InfoGame.s"
+	@echo "... classes/Invoker.o"
+	@echo "... classes/Invoker.i"
+	@echo "... classes/Invoker.s"
+	@echo "... classes/Manifester.o"
+	@echo "... classes/Manifester.i"
+	@echo "... classes/Manifester.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
