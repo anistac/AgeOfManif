@@ -123,6 +123,60 @@ ex/fast:
 	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/build
 .PHONY : ex/fast
 
+classes/BoutonAction.o: classes/BoutonAction.cpp.o
+
+.PHONY : classes/BoutonAction.o
+
+# target to build an object file
+classes/BoutonAction.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BoutonAction.cpp.o
+.PHONY : classes/BoutonAction.cpp.o
+
+classes/BoutonAction.i: classes/BoutonAction.cpp.i
+
+.PHONY : classes/BoutonAction.i
+
+# target to preprocess a source file
+classes/BoutonAction.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BoutonAction.cpp.i
+.PHONY : classes/BoutonAction.cpp.i
+
+classes/BoutonAction.s: classes/BoutonAction.cpp.s
+
+.PHONY : classes/BoutonAction.s
+
+# target to generate assembly for a file
+classes/BoutonAction.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BoutonAction.cpp.s
+.PHONY : classes/BoutonAction.cpp.s
+
+classes/InfoGame.o: classes/InfoGame.cpp.o
+
+.PHONY : classes/InfoGame.o
+
+# target to build an object file
+classes/InfoGame.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/InfoGame.cpp.o
+.PHONY : classes/InfoGame.cpp.o
+
+classes/InfoGame.i: classes/InfoGame.cpp.i
+
+.PHONY : classes/InfoGame.i
+
+# target to preprocess a source file
+classes/InfoGame.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/InfoGame.cpp.i
+.PHONY : classes/InfoGame.cpp.i
+
+classes/InfoGame.s: classes/InfoGame.cpp.s
+
+.PHONY : classes/InfoGame.s
+
+# target to generate assembly for a file
+classes/InfoGame.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/InfoGame.cpp.s
+.PHONY : classes/InfoGame.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +213,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... ex"
+	@echo "... classes/BoutonAction.o"
+	@echo "... classes/BoutonAction.i"
+	@echo "... classes/BoutonAction.s"
+	@echo "... classes/InfoGame.o"
+	@echo "... classes/InfoGame.i"
+	@echo "... classes/InfoGame.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
