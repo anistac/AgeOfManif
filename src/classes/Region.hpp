@@ -8,14 +8,19 @@
 #include <string>
 #include <vector>
 #include <SFML/Graphics/Texture.hpp>
-
+#include "Win.hpp"
 class Batiment;
 class Troupe;
 
 class Region : public Win {
 public:
-  Region(): _reg_name("dummy region") {};
-  void renderRegion();
+  Region(): _reg_name("dummy region") {
+    
+  };
+  Region(sf::RenderWindow &win) {
+    _win = &win;
+  }
+  void makeTick() override;
   int getTileSize() const {
     return _tileSize;
   }

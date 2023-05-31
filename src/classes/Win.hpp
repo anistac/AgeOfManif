@@ -8,9 +8,11 @@
 class Win {
 public:
     virtual void makeTick() = 0;
-
+    void setWindow(sf::RenderWindow &win) {
+        _win = &win;
+    }
 protected:
-    sf::RenderWindow window;
+    sf::RenderWindow* _win;
 };
 
 #endif  // WINDOW_HPP

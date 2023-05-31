@@ -7,6 +7,9 @@
 
 class Menu : public Win{ // Remplacer "Win" par "Window"
 public:
+    Menu(sf::RenderWindow &win) {
+        _win = &win;
+    };
     void makeTick() override; // Retirer le qualificatif "virtual" et corriger l'annotation "override"
 
 private:

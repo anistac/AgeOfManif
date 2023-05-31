@@ -123,7 +123,33 @@ ex/fast:
 	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/build
 .PHONY : ex/fast
 
-<<<<<<< HEAD
+Game.o: Game.cpp.o
+
+.PHONY : Game.o
+
+# target to build an object file
+Game.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/Game.cpp.o
+.PHONY : Game.cpp.o
+
+Game.i: Game.cpp.i
+
+.PHONY : Game.i
+
+# target to preprocess a source file
+Game.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/Game.cpp.i
+.PHONY : Game.cpp.i
+
+Game.s: Game.cpp.s
+
+.PHONY : Game.s
+
+# target to generate assembly for a file
+Game.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/Game.cpp.s
+.PHONY : Game.cpp.s
+
 classes/BoutonAction.o: classes/BoutonAction.cpp.o
 
 .PHONY : classes/BoutonAction.o
@@ -150,6 +176,60 @@ classes/BoutonAction.s: classes/BoutonAction.cpp.s
 classes/BoutonAction.cpp.s:
 	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BoutonAction.cpp.s
 .PHONY : classes/BoutonAction.cpp.s
+
+classes/Grid.o: classes/Grid.cpp.o
+
+.PHONY : classes/Grid.o
+
+# target to build an object file
+classes/Grid.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Grid.cpp.o
+.PHONY : classes/Grid.cpp.o
+
+classes/Grid.i: classes/Grid.cpp.i
+
+.PHONY : classes/Grid.i
+
+# target to preprocess a source file
+classes/Grid.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Grid.cpp.i
+.PHONY : classes/Grid.cpp.i
+
+classes/Grid.s: classes/Grid.cpp.s
+
+.PHONY : classes/Grid.s
+
+# target to generate assembly for a file
+classes/Grid.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Grid.cpp.s
+.PHONY : classes/Grid.cpp.s
+
+classes/Hex.o: classes/Hex.cpp.o
+
+.PHONY : classes/Hex.o
+
+# target to build an object file
+classes/Hex.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Hex.cpp.o
+.PHONY : classes/Hex.cpp.o
+
+classes/Hex.i: classes/Hex.cpp.i
+
+.PHONY : classes/Hex.i
+
+# target to preprocess a source file
+classes/Hex.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Hex.cpp.i
+.PHONY : classes/Hex.cpp.i
+
+classes/Hex.s: classes/Hex.cpp.s
+
+.PHONY : classes/Hex.s
+
+# target to generate assembly for a file
+classes/Hex.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Hex.cpp.s
+.PHONY : classes/Hex.cpp.s
 
 classes/InfoGame.o: classes/InfoGame.cpp.o
 
@@ -258,79 +338,33 @@ classes/Menu.s: classes/Menu.cpp.s
 classes/Menu.cpp.s:
 	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Menu.cpp.s
 .PHONY : classes/Menu.cpp.s
-=======
-Game.o: Game.cpp.o
-.PHONY : Game.o
+
+classes/Region.o: classes/Region.cpp.o
+
+.PHONY : classes/Region.o
 
 # target to build an object file
-Game.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/Game.cpp.o
-.PHONY : Game.cpp.o
+classes/Region.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Region.cpp.o
+.PHONY : classes/Region.cpp.o
 
-Game.i: Game.cpp.i
-.PHONY : Game.i
+classes/Region.i: classes/Region.cpp.i
 
-# target to preprocess a source file
-Game.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/Game.cpp.i
-.PHONY : Game.cpp.i
-
-Game.s: Game.cpp.s
-.PHONY : Game.s
-
-# target to generate assembly for a file
-Game.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/Game.cpp.s
-.PHONY : Game.cpp.s
-
-classes/Grid.o: classes/Grid.cpp.o
-.PHONY : classes/Grid.o
-
-# target to build an object file
-classes/Grid.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Grid.cpp.o
-.PHONY : classes/Grid.cpp.o
-
-classes/Grid.i: classes/Grid.cpp.i
-.PHONY : classes/Grid.i
+.PHONY : classes/Region.i
 
 # target to preprocess a source file
-classes/Grid.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Grid.cpp.i
-.PHONY : classes/Grid.cpp.i
+classes/Region.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Region.cpp.i
+.PHONY : classes/Region.cpp.i
 
-classes/Grid.s: classes/Grid.cpp.s
-.PHONY : classes/Grid.s
+classes/Region.s: classes/Region.cpp.s
 
-# target to generate assembly for a file
-classes/Grid.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Grid.cpp.s
-.PHONY : classes/Grid.cpp.s
-
-classes/Hex.o: classes/Hex.cpp.o
-.PHONY : classes/Hex.o
-
-# target to build an object file
-classes/Hex.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Hex.cpp.o
-.PHONY : classes/Hex.cpp.o
-
-classes/Hex.i: classes/Hex.cpp.i
-.PHONY : classes/Hex.i
-
-# target to preprocess a source file
-classes/Hex.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Hex.cpp.i
-.PHONY : classes/Hex.cpp.i
-
-classes/Hex.s: classes/Hex.cpp.s
-.PHONY : classes/Hex.s
+.PHONY : classes/Region.s
 
 # target to generate assembly for a file
-classes/Hex.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Hex.cpp.s
-.PHONY : classes/Hex.cpp.s
->>>>>>> master
+classes/Region.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Region.cpp.s
+.PHONY : classes/Region.cpp.s
 
 main.o: main.cpp.o
 
@@ -368,10 +402,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... ex"
-<<<<<<< HEAD
+	@echo "... Game.o"
+	@echo "... Game.i"
+	@echo "... Game.s"
 	@echo "... classes/BoutonAction.o"
 	@echo "... classes/BoutonAction.i"
 	@echo "... classes/BoutonAction.s"
+	@echo "... classes/Grid.o"
+	@echo "... classes/Grid.i"
+	@echo "... classes/Grid.s"
+	@echo "... classes/Hex.o"
+	@echo "... classes/Hex.i"
+	@echo "... classes/Hex.s"
 	@echo "... classes/InfoGame.o"
 	@echo "... classes/InfoGame.i"
 	@echo "... classes/InfoGame.s"
@@ -384,17 +426,9 @@ help:
 	@echo "... classes/Menu.o"
 	@echo "... classes/Menu.i"
 	@echo "... classes/Menu.s"
-=======
-	@echo "... Game.o"
-	@echo "... Game.i"
-	@echo "... Game.s"
-	@echo "... classes/Grid.o"
-	@echo "... classes/Grid.i"
-	@echo "... classes/Grid.s"
-	@echo "... classes/Hex.o"
-	@echo "... classes/Hex.i"
-	@echo "... classes/Hex.s"
->>>>>>> master
+	@echo "... classes/Region.o"
+	@echo "... classes/Region.i"
+	@echo "... classes/Region.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

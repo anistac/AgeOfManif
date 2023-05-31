@@ -2,10 +2,8 @@
 #include "classes/InfoGame.hpp"
 #include "classes/Manifester.hpp"
 #include <SFML/Graphics.hpp>
-<<<<<<< HEAD
 #include "Game.hpp"
 using namespace std;
-=======
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -43,7 +41,7 @@ void draw(sf::RenderWindow& window, sf::Sprite& sprite, std::vector<sf::Rectangl
         window.draw(temp);
     }
     window.display();
->>>>>>> master
+
 }
 
 int main()
