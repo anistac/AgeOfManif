@@ -1,18 +1,27 @@
 // Hex.hpp
 #pragma once
+#include "Interactable.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/ConvexShape.hpp>
 #include <cmath>
 #include <cstddef>
 
-typedef struct HexCoords{
-  int q, r, s;
-  HexCoords(int q, int r) : q(q), r(r), s(-q-r) {}
-} HexCoords;
+typedef struct HexHash {
+  std::size_t operator()(const HexCoords& coords) const {
+    return std::hash<int>()(coords.q) ^ std::hash<int>()(coords.r);
+  }
+} HexHash;
 
-class Hex : public sf::Shape {
+typedef struct HexEq {
+  bool operator()(const HexCoords& hex1, const HexCoords hex2) const {
+    return (hex1.q == hex2.q && hex1.r == hex2.r);
+  }
+} HexEq;
+
+
+class Hex : public Interactable, public sf::Shape {
 public:
-    Hex();
+    explicit Hex();
     explicit Hex(HexCoords coords, float size, sf::Color fillColor, sf::Color outlineColor, int outlineThickness);
 
     sf::Color getFillColor() const {
@@ -32,35 +41,27 @@ public:
 
     virtual sf::Vector2f getPoint(std::size_t index) const;
     
-    sf::Vector2f screenToAxial(const sf::Vector2f& screen);
-    sf::Vector2f axialToScreen(const HexCoords& axial);
-
+    static HexCoords screenToAxial(const sf::Vector2f& screen, const int& size);
+    static sf::Vector2f axialToScreen(const HexCoords& axial, const int& size);
+    bool operator==(const Hex& hex) const {
+      return (this->_positionHex.q == hex._positionHex.q && this->_positionHex.r == hex._positionHex.r);
+    }
     HexCoords getCoords() const {
-        return _coords;
+      return _positionHex;
+    }
+
+    virtual void updatePosition() {
+      this->setPosition(axialToScreen(_positionHex, _size));
     }
     
     //utilisé comme fonction de hashage pour les unordered_set 
-    struct HexHash {
-      std::size_t operator()(const Hex& hex) const {
-          return std::hash<int>()(hex.getCoords().q) ^ std::hash<int>()(hex.getCoords().r);
-      }
-    };
-
-    struct HexEq {
-      bool operator()(const Hex& hex1, const Hex hex2) const {
-        return (hex1.getCoords().q == hex2.getCoords().q && hex1.getCoords().r == hex2.getCoords().r);
-    }
-
-
-    };
 private:
     static const float sq;
     sf::Color _fillColor;
     sf::Color _outlineColor;
     int _outlineThickness;
     sf::Vector2f _center;
-    HexCoords _coords;
     int _size;
 
 };
-
+ 

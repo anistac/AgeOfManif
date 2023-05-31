@@ -1,27 +1,30 @@
 #ifndef REGION_HPP
 #define REGION_HPP
+//
+// #include "Batiment.hpp"
+// #include "Troupe.hpp"
 
-//#include "Batiment.hpp"
-//#include "Troupe.hpp"
-#include "Batiment.hpp"
-#include "Troupe.hpp"
-
+#include <memory>
 #include <string>
 #include <vector>
 #include <SFML/Graphics/Texture.hpp>
-//class Batiment;
-//class Troupe;
 
-class Region {
+class Batiment;
+class Troupe;
+
+class Region : public Win {
 public:
-  Region();
+  Region(): _reg_name("dummy region") {};
   void renderRegion();
-
+  int getTileSize() const {
+    return _tileSize;
+  }
 private:
-  std::string name;
-  std::vector<Batiment>  Batiments;
-  std::vector<Troupe> Troupes;
-  float opinion;
+  std::string _reg_name;
+  std::vector<std::shared_ptr<Batiment>>  _Batiments;
+  std::vector<std::shared_ptr<Troupe>> _Troupes;
+  float _opinion;
+  int _tileSize = 70;
   sf::Texture tileSetTexture;
 };
 

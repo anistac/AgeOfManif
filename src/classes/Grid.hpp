@@ -3,7 +3,7 @@
 
 #include "Hex.hpp"
 #include <SFML/Graphics.hpp>
-#include <unordered_set>
+#include <unordered_map>
 
 
 
@@ -15,14 +15,27 @@ public:
   
   void renderGrid(sf::RenderWindow& window);
   void setSize(sf::Vector2f size);
-  Hex getHexFromPixel(sf::Vector2f pixel);
+  Hex& getHexFromPixel(sf::Vector2f pixel);
+  
 
   sf::Vector2i getSize();
+  int getTileSize() const {
+    return _tileSize;
+  }
+  void setHoveredHex(Hex& hex) {
+    _hoveredHex = hex;
+  }
+  void setSelectedHex(Hex& hex);
+
+
+  void clearGrid();
 private:
   sf::Vector2i _size;
   int _tileSize;
   static const Hex def_hex;
-  std::unordered_set<Hex, Hex::HexHash, Hex::HexEq> _hexes;
+  Hex _hoveredHex;
+  std::vector<Hex> _selectedHexes;
+  std::unordered_map<HexCoords, Hex, HexHash, HexEq> _hexes;
 };
 
 #endif // !GRID_HPP

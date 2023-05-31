@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include "classes/Grid.hpp"
 #include "classes/Hex.hpp"
+#include "classes/Manifestant.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
@@ -11,59 +12,46 @@
 #include <cmath>
 #include <iostream>
 
-// sf::ConvexShape createHex(float size) {
-//   sf::ConvexShape hex(6);
-//   for(int i=0; i < 6; i++) {
-//     float a = 2.0f * M_PI / 6.0F * (i+ 0.5f);
-//     hex.setPoint(i, sf::Vector2f(size * std::cos(a), size * std::sin(a)));
-//   }
-//   return hex;
-// }
-//
 void Game::run() {
   unsigned int windowWidth = 800;
   unsigned int windowHeight = 600;
   unsigned int visibleWidth = 400;
   unsigned int visibleHeight = 300;
-  unsigned int gridWidth = 80;
-  unsigned int gridHeight = 80;
   
   
-  sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight),
-                          "Zoomable Map");
+  sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Zoomable Map");
   sf::View view(sf::FloatRect(0, 0, visibleWidth, visibleHeight));
   window.setView(view);
 
-  // Load tileset and fog textures
   sf::Texture WorldTexture;
   if (!WorldTexture.loadFromFile("../assets/Map1.png")) {
-    // Handle the error
-    std::cout << "wtf ??" << std::endl;
+    std::cout << "Impossible de charger la map" << std::endl;
   }
-  std::cout << "texture loaded" << std::endl;
+
   sf::Sprite WorldSprite(WorldTexture);
   sf::Vector2u mapSize(WorldTexture.getSize());
+ 
   unsigned int mapWidth = mapSize.x;
   unsigned int mapHeight = mapSize.y;
+  
   std::cout << "map size: " << mapWidth << " x " << mapHeight << std::endl;
+  
   Grid grid(sf::Vector2i(50,50), 70);
   std::cout << "grid created" << std::endl;
-  // Initialize the fog of war array
+  
   enum FogState { Unexplored, Explored, Visible };
   std::vector<std::vector<FogState>> fogOfWar(
       mapHeight, std::vector<FogState>(mapWidth, Unexplored));
-  std::cout << "created fog" << std::endl;
-  // for (int y = (int)hexHeight / 2; y < mapHeight; y += hexHeight) {
-  //   for (int x = (int)hexWidth / 2; x < mapWidth; x += hexWidth) {
-  //     fogOfWar[y][x] = Visible;
-  //   }
-  // }
-  std::cout << "debug: fog defined" << std::endl;
 
+  Manifestant manifestant;
+  manifestant.setHexPosition(HexCoords(2,-2));
+  manifestant.updatePosition();
+ 
   // Main game loop
   while (window.isOpen()) {
     sf::Event event;
-    
+    grid.clearGrid();
+    window.clear();
     while(window.pollEvent(event)) {
       if (event.type == sf::Event::Closed) {
         window.close();
@@ -84,16 +72,27 @@ void Game::run() {
         } else if (event.key.code == sf::Keyboard::Right) {
           view.move(moveSpeed, 0);
         }
+      } else if(event.type == sf::Event::MouseMoved) {
+        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        sf::Vector2f worldPos = window.mapPixelToCoords(mousePos);  
+        HexCoords hexCoords = Hex::screenToAxial(worldPos, grid.getTileSize());
+        Hex &hex = grid.getHexFromPixel(worldPos);
+        grid.setHoveredHex(hex);
+      } else if(event.type == sf::Event::MouseButtonPressed) {
+        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        sf::Vector2f worldPos = window.mapPixelToCoords(mousePos);
+        HexCoords hexCoords = Hex::screenToAxial(worldPos, grid.getTileSize());
+        Hex &hex = grid.getHexFromPixel(worldPos);
+        grid.setSelectedHex(hex);
       }
     }
-    
+    window.clear();
     window.setView(view);
 
     // Update the game
-
-    window.clear();
     window.draw(WorldSprite);
     grid.renderGrid(window);
+    window.draw(manifestant);
     window.display();
   }
 }
