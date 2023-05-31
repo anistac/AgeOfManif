@@ -4,7 +4,7 @@
 //#include "Region.hpp"
 
 #include <string>
-class Region;
+ class Region;
 
 class Batiment {
 public:

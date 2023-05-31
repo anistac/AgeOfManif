@@ -1,0 +1,54 @@
+{
+	"header" : {
+		"app":"RPG Map 2",
+		"appVersion":16.2,
+		"appAuthor":"Sebastien Benard",
+		"fileType":"Skin preset",
+		"fileVersion":10,
+		"url":"https://deepnight.net/tools/rpg-map/"
+	},
+	"base":{
+		"bg":6118521,
+		"appBg":1974055,
+		"shadows":429299139,
+		"stairs":-2000891435,
+		"walls":12238809,
+		"dirt":10396606,
+		"doors":10263243,
+		"windows":1699069,
+		"fences":14409983,
+		"furn":14391426,
+		"wallOutline":9146539,
+		"colorless":false
+	},
+	"plant1":6270751,
+	"plant2":6270751,
+	"water":8106955,
+	"specialWater1":16733696,
+	"specialWater2":9478433,
+	"teint":null,
+	"grid":{
+		"id":6,
+		"p":[
+			
+		]
+	},
+	"gridColor":0,
+	"gridIntensity":0.1,
+	"gridDepth":{
+		"id":0,
+		"p":[
+			
+		]
+	},
+	"fogColor":2433347,
+	"fogIntensity":0,
+	"seed":618559,
+	"printerFriendly":false,
+	"bubbleSkin":{
+		"id":0,
+		"p":[
+			
+		]
+	}
+}
