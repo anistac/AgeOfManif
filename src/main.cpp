@@ -75,7 +75,7 @@ int main()
     // Créer un texte
 	sf::Text text;
 	text.setFont(font); // définir la police
-	text.setString("Bonjour, monde !"); // définir le texte à afficher
+	//text.setString("Bonjour, monde !"); // définir le texte à afficher
 	text.setCharacterSize(24); // définir la taille des caractères (en points)
 	text.setFillColor(sf::Color::White); // définir la couleur de remplissage
 	text.setPosition(100, 100); // définir la position du texte dans la fenêtre
@@ -147,7 +147,7 @@ int main()
         
     }
     // Créer le rectangle blanc
-    sf::RectangleShape menuBackground(sf::Vector2f(400, 200));
+    sf::RectangleShape menuBackground(sf::Vector2f(450, 200));
     menuBackground.setPosition(400,600);
 
     // Créer le texte "Actions :"
@@ -156,11 +156,7 @@ int main()
     titleText.setFillColor(sf::Color::Black);
 
     Invoker invoker;
-    //std::shared_ptr<Command> manifesterCommand = std::make_unique<Manifester>();
-    //BoutonAction bouton("Texte", police, position, taille, invoker, std::move(manifesterCommand));
-
     Manifester *manifesterCommand = new Manifester;
-    // std::shared_ptr<Manifester> pManifesterCmd = std::make_unique<Manifester> (manifesterCommand); 
     std::shared_ptr<Command> cmd(manifesterCommand);
     BoutonAction bouton1("Action 1", font, sf::Vector2f(610, 675), sf::Vector2f(50, 50), invoker, cmd);
     //BoutonAction bouton2("Action 2", font, sf::Vector2f(670, 675), sf::Vector2f(50, 50));
@@ -174,7 +170,8 @@ int main()
     int opinion = 65;
     int argent = 15600;
 
-   int buttonPressed;
+    bool showMain = true;
+    int buttonPressed;
     while (window.isOpen())
     {
         // Gérer les événements
@@ -187,9 +184,29 @@ int main()
                 window.close();
             }
 
-            // Si l'utilisateur clique sur le bouton gauche de la souris
-            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+            else if (event.type == sf::Event::KeyPressed)
             {
+                if (event.key.code == sf::Keyboard::R)
+                {
+                    showMain = true; // Repasse sur le showMain
+                }
+            }
+
+            // Si l'utilisateur clique sur le bouton gauche de la souris
+            else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+            {   
+                // Mettre à jour la position de la souris
+                sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+
+                // Vérifier si le bouton a été survolé ou cliqué
+                if(event.type == sf::Event::MouseMoved)  {
+                    bouton1.estSurvole(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
+                }
+                if(event.type == sf::Event::MouseButtonPressed) {
+                    sf::Vector2i mp = sf::Mouse::getPosition(window);
+                    bouton1.aEteClique(sf::Vector2f(mp.x, mp.y));
+                }
+
                 for (int i = 0; i < buttons.size(); ++i) {
                     const auto& button = buttons[i];
                     if (sf::Mouse::getPosition(window).x >= button.getPosition().x &&
@@ -198,62 +215,39 @@ int main()
                         sf::Mouse::getPosition(window).y <= button.getPosition().y + button.getSize().y)
                     {
                         buttonPressed = i;
-                        sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-                        
-                            
-                        // Créer une nouvelle fenêtre
-                        sf::RenderWindow subWindow(sf::VideoMode(800, 800), regionNames[buttonPressed]);
-
-                        // Boucle de la sous-fenêtre
-                        while (subWindow.isOpen())
-                        {
-                            // Gérer les événements de la sous-fenêtre
-                            sf::Event subEvent;
-                            while (subWindow.pollEvent(subEvent))
-                            {
-                                // Fermer la sous-fenêtre si l'utilisateur clique sur la croix en haut à droite
-                                if (subEvent.type == sf::Event::Closed)
-                                {
-                                    subWindow.close();
-                                }
-                                
-                                // Mettre à jour la position de la souris
-                                sf::Vector2i mousePosition = sf::Mouse::getPosition(subWindow);
-
-                                if(subEvent.type == sf::Event::MouseMoved)  {
-                                    bouton1.estSurvole(sf::Vector2f(subEvent.mouseMove.x, subEvent.mouseMove.y));
-                                    
-                                }
-                                if(subEvent.type == sf::Event::MouseButtonPressed) {
-                                    sf::Vector2i mp = sf::Mouse::getPosition(subWindow);
-                                    bouton1.aEteClique(sf::Vector2f(mp.x, mp.y));
-                                }
-                            }
-                            // Effacer le contenu de la sous-fenêtre
-                            subWindow.clear();
-                                
-                            // Dessiner le texte
-                            barGame.dessiner(subWindow, opinion, argent);
-                            subWindow.draw(text);
-                            subWindow.draw(menuBackground);
-                            subWindow.draw(titleText);
-                                
-                            // Dessiner les boutons d'action
-                            bouton1.dessiner(subWindow);
-                            //bouton2.dessiner(subWindow);
-                            //bouton3.dessiner(subWindow);
-
-                            // Afficher le contenu de la sous-fenêtre
-                            subWindow.display();
-                        }
+                        showMain = false;
+                        text.setString(regionNames[buttonPressed]); // définir le texte à afficher
                     }
-                }
+                }   
             }
-        }            
-        
-        draw(window, sprite, buttons, buttonTexts, regions);
+        }         
 
-        // Mettre à jour la fenêtre
+        if (showMain)
+        {
+            if (buttonPressed >= 0 && buttonPressed < buttons.size())
+            {
+                buttonPressed = -1;
+                window.clear();
+                draw(window, sprite, buttons, buttonTexts, regions);
+            }
+            else
+            {
+                window.clear(sf::Color::White);
+                draw(window, sprite, buttons, buttonTexts, regions);
+            }
+        }
+        else
+        {
+            window.clear(sf::Color::Black);
+
+            // Dessiner le mode showRegion ici
+            barGame.dessiner(window, opinion, argent);
+            window.draw(text);
+            window.draw(menuBackground);
+            window.draw(titleText);
+            bouton1.dessiner(window);
+        }
+
         window.display();
     }
     

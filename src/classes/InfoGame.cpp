@@ -3,8 +3,9 @@
 
 InfoGame::InfoGame(const sf::Font& police)
 {
-    m_rectangle.setSize(sf::Vector2f(800, 40));
+    m_rectangle.setSize(sf::Vector2f(900, 40));
     m_rectangle.setPosition(0, 0);
+    m_rectangle.setFillColor(sf::Color::White);
 
     texte.setString("Opinion :         %  Argent :             M*");
     texte.setFont(police);

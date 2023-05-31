@@ -231,6 +231,33 @@ classes/Manifester.cpp.s:
 	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Manifester.cpp.s
 .PHONY : classes/Manifester.cpp.s
 
+classes/Menu.o: classes/Menu.cpp.o
+
+.PHONY : classes/Menu.o
+
+# target to build an object file
+classes/Menu.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Menu.cpp.o
+.PHONY : classes/Menu.cpp.o
+
+classes/Menu.i: classes/Menu.cpp.i
+
+.PHONY : classes/Menu.i
+
+# target to preprocess a source file
+classes/Menu.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Menu.cpp.i
+.PHONY : classes/Menu.cpp.i
+
+classes/Menu.s: classes/Menu.cpp.s
+
+.PHONY : classes/Menu.s
+
+# target to generate assembly for a file
+classes/Menu.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/Menu.cpp.s
+.PHONY : classes/Menu.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -279,6 +306,9 @@ help:
 	@echo "... classes/Manifester.o"
 	@echo "... classes/Manifester.i"
 	@echo "... classes/Manifester.s"
+	@echo "... classes/Menu.o"
+	@echo "... classes/Menu.i"
+	@echo "... classes/Menu.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
