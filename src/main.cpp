@@ -13,11 +13,12 @@ int Win::selectedWin = 0;
 int main()
 {
     
-
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "Age of Manifs");
+    sf::RenderWindow window(sf::VideoMode(820, 800), "Age of Manifs");
     //___________________________________________________________________________________________________
     
     Menu menu(window);
+    Region region(window, "Ile de France");
+    menu.checkFont();
 
     
     while (window.isOpen())
@@ -31,35 +32,29 @@ int main()
             {
                 window.close();
             }
-// SWITCH
+        
             switch(Win::selectedWin) {
                 case 0:
-                    menu.handleEvent();
+                    menu.handleEvent(event);
                     break;
                 case 1:
                     break;
             }
-            if (event.type == sf::Event::KeyPressed)
-            {
-                if (event.key.code == sf::Keyboard::R)
-                {
-                    //showMain = true; // Repasse sur le showMain
-                }
-            }
-
-            
-        }         
-
+        }    
+        window.clear(sf::Color::White);
         switch (Win::selectedWin)
         {
         case 0:
             menu.makeTick();
+        case 1:
+            region.makeTick();
             break;
         
         default:
             break;
         }
+    window.display();
     }
-    
+
     return 0;
 }
