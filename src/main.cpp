@@ -9,7 +9,7 @@ using namespace std;
 #include <memory>
 
 #include "classes/Menu.hpp"
-int Win::selectedWin = 0;
+int Win::selectedWin = 1;
 int main()
 {
     
