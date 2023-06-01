@@ -2,6 +2,7 @@
 #define WINDOW_HPP
 
 #include <SFML/Graphics.hpp> // Include SFML header for sf::RenderWindow
+#include <SFML/Window/Event.hpp>
 #include <memory>
 #include <string>
 
@@ -11,7 +12,7 @@ public:
     void setWindow(sf::RenderWindow &win) {
         _win = &win;
     }
-    virtual void handleEvent() = 0;
+    virtual void handleEvent(sf::Event event) = 0;
     // static void setSelectedWin(int i) {
     //     _selectedWin = i;
     // }

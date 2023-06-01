@@ -41,10 +41,11 @@ class Manifestant : public Troupe, public sf::RectangleShape {
   void updatePosition() {
     this->setPosition(Hex::axialToScreen(_positionHex, _region.getTileSize()));
   } 
-  private:
+private:
   std::string _customName;
   sf::Color _color;
   int _size;
 };
+
 
 #endif  // !MANIFESTANT_HPP

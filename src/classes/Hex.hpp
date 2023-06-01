@@ -1,4 +1,4 @@
-// Hex.hpp
+// Hex.hp
 #pragma once
 #include "Interactable.hpp"
 #include <SFML/Graphics.hpp>
@@ -64,4 +64,4 @@ private:
     int _size;
 
 };
- 
+

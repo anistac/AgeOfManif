@@ -9,7 +9,7 @@
 
 class Grid {
 public:
-  Grid();
+  Grid() = default;
   Grid(sf::Vector2i size, int tileSize);
   ~Grid() = default;
   

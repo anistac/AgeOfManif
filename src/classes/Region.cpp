@@ -1,7 +1,96 @@
 #include "Region.hpp"
+#include "Grid.hpp"
+#include "Manifestant.hpp"
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/View.hpp>
+#include <SFML/Window/Event.hpp>
 #include <iostream>
+#include <memory>
+
+Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name) {
+    _win = &win;
+ unsigned int visibleWidth = 400;
+  unsigned int visibleHeight = 300;
+  sf::View v = sf::View(sf::FloatRect(0, 0, visibleWidth, visibleHeight));
+  
+  _win->setView(v);
+
+  // sf::Texture WorldTexture;
+  if (!WorldTexture.loadFromFile("../assets/Map1.png")) {
+    std::cout << "Impossible de charger la map" << std::endl;
+  }
+
+  WorldSprite.setTexture(WorldTexture);
+  sf::Vector2u mapSize(WorldTexture.getSize());
+  unsigned int mapWidth = mapSize.x;
+  unsigned int mapHeight = mapSize.y;
+  
+  std::cout << "map size: " << mapWidth << " x " << mapHeight << std::endl;
+  
+  grid = Grid(sf::Vector2i(50,50), 70);
+  std::cout << "grid created" << std::endl;
+  
+  // enum FogState { Unexplored, Explored, Visible };
+  // std::vector<std::vector<FogState>> fogOfWar(
+  //     mapHeight, std::vector<FogState>(mapWidth, Unexplored));
+  //
+  // Manifestant *manifestant = new Manifestant();
+  // manifestant->setHexPosition(HexCoords(2,-2));
+  // manifestant->updatePosition();
+  // _Troupes.push_back(manifestant);
+}
+
+void Region::handleEvent(sf::Event event) {
+  // sf::Event event;
+  grid.clearGrid();
+  _win->pollEvent(event);
+  sf::View view = _win->getView();
+  if (event.type == sf::Event::MouseWheelScrolled) {
+    if (event.mouseWheelScroll.delta > 0) {
+      std::cout << "zoom in" << std::endl;
+      view.zoom(0.9f);  // Zoom in
+    } else {
+      view.zoom(1.1f);  // Zoom out
+    }
+  } else if (event.type == sf::Event::KeyPressed) {
+      float moveSpeed = 100.0f;
+      if (event.key.code == sf::Keyboard::Up) {
+        view.move(0, -moveSpeed);
+      } else if (event.key.code == sf::Keyboard::Down) {
+        view.move(0, moveSpeed);
+      } else if (event.key.code == sf::Keyboard::Left) {
+        view.move(-moveSpeed, 0);
+      } else if (event.key.code == sf::Keyboard::Right) {
+        view.move(moveSpeed, 0);
+      }
+  } else if(event.type == sf::Event::MouseMoved) {
+      sf::Vector2i mousePos = sf::Mouse::getPosition(*_win);
+      sf::Vector2f worldPos = _win->mapPixelToCoords(mousePos);  
+      HexCoords hexCoords = Hex::screenToAxial(worldPos, grid.getTileSize());
+      Hex &hex = grid.getHexFromPixel(worldPos);
+      grid.setHoveredHex(hex);
+  } else if(event.type == sf::Event::MouseButtonPressed) {
+      sf::Vector2i mousePos = sf::Mouse::getPosition(*_win);
+      sf::Vector2f worldPos = _win->mapPixelToCoords(mousePos);
+      HexCoords hexCoords = Hex::screenToAxial(worldPos, grid.getTileSize());
+      Hex &hex = grid.getHexFromPixel(worldPos);
+      grid.setSelectedHex(hex);
+  }
+  _win->setView(view);
+}
 
 void Region::makeTick() {
+  // _win->setView(view);
+
+    // Update the game
+  // std::cout << "rendering map" << std::endl;
+  _win->draw(WorldSprite);
+  grid.renderGrid(*_win);
+  // for(auto *troupe : _Troupes) {
+  //   // _win->draw(*troupe);
+  // }
+  // _win->display();
+}
     /*
 
     // Créer le rectangle blanc
@@ -46,14 +135,14 @@ void Region::makeTick() {
         else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
             {   
                 // Mettre à jour la position de la souris
-                sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+                sf::Vector2i mousePosition = sf::Mouse::getPosition(_win->;
 
                 // Vérifier si le bouton a été survolé ou cliqué
                 if(event.type == sf::Event::MouseMoved)  {
                     bouton1.estSurvole(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
                 }
                 if(event.type == sf::Event::MouseButtonPressed) {
-                    sf::Vector2i mp = sf::Mouse::getPosition(window);
+                    sf::Vector2i mp = sf::Mouse::getPosition(_win->;
                     bouton1.aEteClique(sf::Vector2f(mp.x, mp.y));
                 }
             }
@@ -61,20 +150,15 @@ void Region::makeTick() {
     
     if (showMain)
     {
-        window.clear(sf::Color::Black);
+        _win->clear(sf::Color::Black);
 
         // Dessiner le mode showRegion ici
-        barGame.dessiner(window, opinion, argent);
-        window.draw(text);
-        window.draw(menuBackground);
-        window.draw(titleText);
-        bouton1.dessiner(window);
+        barGame.dessiner(_win-> opinion, argent);
+        _win->draw(text);
+        _win->draw(menuBackground);
+        _win->draw(titleText);
+        bouton1.dessiner(_win->;
     }
     
     */
-}
 
-
-void Region::handleEvent() {
-    
-}
