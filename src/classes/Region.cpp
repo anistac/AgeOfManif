@@ -13,7 +13,6 @@ Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name
   unsigned int visibleHeight = 300;
   sf::View v = sf::View(sf::FloatRect(0, 0, visibleWidth, visibleHeight));
   
-  _win->setView(v);
 
   // sf::Texture WorldTexture;
   if (!WorldTexture.loadFromFile("../assets/Map1.png")) {

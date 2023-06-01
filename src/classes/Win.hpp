@@ -20,7 +20,7 @@ public:
     //     return _selectedWin;
     // }
 
-    static int selectedWin;
+    static inline int selectedWin;
 protected:
     sf::RenderWindow* _win;
 };

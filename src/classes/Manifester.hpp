@@ -3,13 +3,14 @@
 
 #include "Command.hpp"
 #include "Grid.hpp"
-#include "CommandRegistery.hpp"
+#include "CommandRegistry.hpp"
 #include "Manifestant.hpp"
+
 class Manifester : public Command {
 public:
     ~Manifester() = default;
     Manifester() {
-        CommandRegistry::addCmd<Manifestant, Grid>(this);
+        CommandRegistry::addCmd<Manifestant, Hex>(this);
     };
     bool execute() override;
 };

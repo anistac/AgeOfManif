@@ -38,7 +38,7 @@ void Menu::handleEvent(sf::Event event) {
                     sf::Mouse::getPosition(*_win).y <= button.getPosition().y + button.getSize().y)
                 {
                     buttonPressed = i;
-                    Menu::selectedWin = 0; // Repasse sur le showMain
+                    Menu::selectedWin = i; // Repasse sur le showMain
                     std::cout << i << std::endl;
                 }
             }   
@@ -47,7 +47,7 @@ void Menu::handleEvent(sf::Event event) {
 }
 
 Menu::Menu(sf::RenderWindow &win){
-    _win = win;
+    _win = &win;
     // Charger l'image de fond à partir d'un fichier
     backgroundImage.loadFromFile("../assets/carteDeFrance.png");
     if(!backgroundImage.loadFromFile("../assets/carteDeFrance.png")) {
