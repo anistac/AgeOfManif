@@ -13,12 +13,6 @@ public:
         _win = &win;
     }
     virtual void handleEvent(sf::Event event) = 0;
-    // static void setSelectedWin(int i) {
-    //     _selectedWin = i;
-    // }
-    // static int getSelectedWin() {
-    //     return _selectedWin;
-    // }
 
     static inline int selectedWin;
 protected:

@@ -38,7 +38,7 @@ void Menu::handleEvent(sf::Event event) {
                     sf::Mouse::getPosition(*_win).y <= button.getPosition().y + button.getSize().y)
                 {
                     buttonPressed = i;
-                    Menu::selectedWin = i; // Repasse sur le showMain
+                    Menu::selectedWin = 1; // Repasse sur le showMain
                     std::cout << i << std::endl;
                 }
             }   

@@ -41,6 +41,7 @@ Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name
 
 void Region::handleEvent(sf::Event event) {
   // sf::Event event;
+  std::cout << "region event" << std::endl;
   grid.clearGrid();
   _win->pollEvent(event);
   sf::View view = _win->getView();
