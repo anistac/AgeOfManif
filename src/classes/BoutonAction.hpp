@@ -18,6 +18,7 @@ public:
     void dessiner(sf::RenderWindow& window);
     bool estSurvole(const sf::Vector2f& positionSouris);
     bool aEteClique(const sf::Vector2f& positionSouris);
+    bool affichable;
 
 private:
     std::variant<ActionBouton1, ActionBouton2> m_action;

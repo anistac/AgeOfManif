@@ -1,49 +1,26 @@
 #include "InfoGame.hpp"
 #include <iostream>
+#include "FontManager.hpp"
 
-InfoGame::InfoGame(const sf::Font& police)
-{
-    m_rectangle.setSize(sf::Vector2f(900, 40));
-    m_rectangle.setPosition(0, 0);
-    m_rectangle.setFillColor(sf::Color::White);
-
-    texte.setString("Opinion :         %  Argent :             M*");
-    texte.setFont(police);
-    texte.setCharacterSize(20);
-    texte.setFillColor(sf::Color::Black);
-    sf::FloatRect texteBounds = texte.getLocalBounds();
-    texte.setOrigin(texteBounds.left, texteBounds.top);
-    texte.setPosition(5, 10);
+void InfoGame::updateInfo(float _opinion, int _argent) {
+    _rectangleBg.setSize(sf::Vector2f(900, 40));
+    _rectangleBg.setPosition(0, 0);
+    _rectangleBg.setFillColor(sf::Color::White);
+    std::string txt = "Opinion: " + std::to_string(_opinion) + " Argent : " + std::to_string(_argent);
+    _text.setString(txt);
+    _text.setFont(FontManager::getInstance().getFont());
+    _text.setCharacterSize(20);
+    _text.setFillColor(sf::Color::Black);
+    sf::FloatRect texteBounds = _text.getLocalBounds();
+    _text.setOrigin(texteBounds.left, texteBounds.top);
+    _text.setPosition(5, 10);
+    
 }
 
-void InfoGame::dessiner(sf::RenderWindow& window, int opinion, int argent)
-{
-    window.draw(m_rectangle);
-    window.draw(texte);
-
-    sf::Font font;
-    // Chargez la police de caractères appropriée
-    if (!font.loadFromFile("../assets/arial.ttf"))
-    {
-        // Gestion de l'erreur si la police ne peut pas être chargée
-        std::cerr << "Erreur lors du chargement de la police de caractères." << std::endl;
-        return;
-    }
-    
-    sf::Text opi;
-    opi.setFont(font);
-    opi.setCharacterSize(20);
-    opi.setFillColor(sf::Color::Black);
-    opi.setPosition(100, 6);
-    opi.setString(std::to_string(opinion));
-    
-    sf::Text arg;
-    arg.setFont(font);
-    arg.setCharacterSize(20);
-    arg.setFillColor(sf::Color::Black);
-    arg.setPosition(250, 6);
-    arg.setString(std::to_string(argent));
-    
-    window.draw(opi);
-    window.draw(arg);
+void InfoGame::draw(sf::RenderTarget& window, sf::RenderStates states) const {
+    sf::View currView = window.getView();
+    window.setView(window.getDefaultView());
+    window.draw(_rectangleBg, states);
+    window.draw(_text, states);
+    window.setView(currView);
 }

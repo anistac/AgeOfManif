@@ -2,14 +2,17 @@
 #define INFOGAME_HPP
 #include <SFML/Graphics.hpp>
 
-class InfoGame {
+class InfoGame : public sf::Drawable {
 public:
-    InfoGame(const sf::Font& police);
-    void dessiner(sf::RenderWindow& window, int opinion, int argent);
+    InfoGame() = default;
+    void updateInfo(float opinion, int argent);
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
 private:
-    sf::RectangleShape m_rectangle;
-    sf::Text texte;    
+    int _opinion;
+    int _argent;
+    sf::RectangleShape _rectangleBg;
+    sf::Text _text;
 };
 
 #endif // INFOGAME_HPP

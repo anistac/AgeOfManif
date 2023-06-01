@@ -14,7 +14,6 @@ struct RegionAffichage {
 class Menu : public Win{ // Remplacer "Win" par "Window"
 public:
     Menu(sf::RenderWindow &win);
-    int checkFont ();
     void makeTick() override; // Retirer le qualificatif "virtual" et corriger l'annotation "override"
     void handleEvent(sf::Event event) override;
     

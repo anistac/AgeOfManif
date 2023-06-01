@@ -19,7 +19,6 @@ int main() {
   //___________________________________________________________________________________________________
   Menu menu(window);
   Region region(window, "Ile de France");
-  menu.checkFont();
   std::cout <<"selected win: " << Win::selectedWin << std::endl;  
   
   Manifester manifester;

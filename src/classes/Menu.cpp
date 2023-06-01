@@ -2,47 +2,31 @@
 #include "Menu.hpp"
 #include "Win.hpp"
 #include <SFML/Graphics.hpp>
+#include "FontManager.hpp"
 
-sf::Font font; // Déclaration de la variable font
-
-int Menu::checkFont (){
-    font.loadFromFile("../assets/arial.ttf");
-    // Créer une police (chargement d'un fichier de police TrueType)
-	if (!font.loadFromFile("../assets/arial.ttf"))
-	{
-		// erreur : impossible de charger la police
-		return -1;
-	}
-    return 0;
-}
 
 
 void Menu::handleEvent(sf::Event event) {
-
     int buttonPressed;
-    // Gérer les événements
+    // Si l'utilisateur clique sur le bouton gauche de la souris
+    if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+    {   
+        // Mettre à jour la position de la souris
+        sf::Vector2i mousePosition = sf::Mouse::getPosition(*_win);
 
-
-        // Si l'utilisateur clique sur le bouton gauche de la souris
-        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
-        {   
-            // Mettre à jour la position de la souris
-            sf::Vector2i mousePosition = sf::Mouse::getPosition(*_win);
-            std::cout << "click" << std::endl;
-
-            for (int i = 0; i < buttons.size(); ++i) {
-                const auto& button = buttons[i];
-                if (sf::Mouse::getPosition(*_win).x >= button.getPosition().x &&
-                    sf::Mouse::getPosition(*_win).x <= button.getPosition().x + button.getSize().x &&
-                    sf::Mouse::getPosition(*_win).y >= button.getPosition().y &&
-                    sf::Mouse::getPosition(*_win).y <= button.getPosition().y + button.getSize().y)
-                {
-                    buttonPressed = i;
-                    Menu::selectedWin = 1; // Repasse sur le showMain
-                    std::cout << i << std::endl;
-                }
-            }   
-        }
+        for (int i = 0; i < buttons.size(); ++i) {
+            const auto& button = buttons[i];
+            if (sf::Mouse::getPosition(*_win).x >= button.getPosition().x &&
+                sf::Mouse::getPosition(*_win).x <= button.getPosition().x + button.getSize().x &&
+                sf::Mouse::getPosition(*_win).y >= button.getPosition().y &&
+                sf::Mouse::getPosition(*_win).y <= button.getPosition().y + button.getSize().y)
+            {
+                buttonPressed = i;
+                Menu::selectedWin = i; // Repasse sur le showMain
+                std::cout << i << std::endl;
+            }
+        }   
+    }
     
 }
 
@@ -75,7 +59,7 @@ Menu::Menu(sf::RenderWindow &win){
     std::vector<sf::Text> regionTexts;
     for (auto it = regions.begin(); it != regions.end(); ++it) {
         sf::Text texte;
-        texte.setFont(font);
+        texte.setFont(FontManager::getInstance().getFont());
         texte.setString(it->region);
         texte.setCharacterSize(20);
         texte.setFillColor(sf::Color::White);
@@ -98,7 +82,7 @@ Menu::Menu(sf::RenderWindow &win){
         button.setPosition(buttonX, buttonY);
 
         sf::Text buttonText;
-        buttonText.setFont(font);
+        buttonText.setFont(FontManager::getInstance().getFont());
         buttonText.setString(regionName);
         buttonText.setCharacterSize(20);
         buttonText.setFillColor(sf::Color::White);
@@ -117,11 +101,8 @@ Menu::Menu(sf::RenderWindow &win){
 }
 
 void Menu::makeTick(){
-
     _win->draw(_sprite);
-
-    for (const auto& button : buttons)
-    {
+    for (const auto& button : buttons) {
         _win->draw(button);
     }
     
@@ -133,7 +114,7 @@ void Menu::makeTick(){
     for (auto it = regions.begin(); it != regions.end(); ++it)
     {
         sf::Text temp;
-        temp.setFont(font);
+        temp.setFont(FontManager::getInstance().getFont());
         temp.setString(it->region);
         temp.setCharacterSize(20);
         temp.setFillColor(sf::Color::Black);

@@ -11,6 +11,10 @@
 #include <SFML/Graphics/Texture.hpp>
 #include "Grid.hpp"
 #include "Win.hpp"
+#include "BoutonAction.hpp"
+#include "InfoGame.hpp"
+
+
 class Batiment;
 class Troupe;
 
@@ -28,10 +32,12 @@ public:
   }
 
 private:
+  InfoGame _barGame;
   std::string _reg_name;
   std::vector<std::shared_ptr<Batiment>>  _Batiments;
   std::vector<Troupe*> _Troupes;
   float _opinion;
+ 	int _argent = 15600;
   int _tileSize = 70;
   sf::Texture WorldTexture;
   sf::Sprite WorldSprite;
