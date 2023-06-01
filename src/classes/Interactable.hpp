@@ -7,7 +7,6 @@
 
 class Interactable {
  public:
-  Interactable(){};
   virtual ~Interactable(){};
   virtual void updatePosition() = 0;
   void setHexPosition(HexCoords position) {
