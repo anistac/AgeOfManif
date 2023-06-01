@@ -21,9 +21,11 @@ public:
     _win = &win;
   }
   void makeTick() override;
+  void handleEvent() override;
   int getTileSize() const {
     return _tileSize;
   }
+
 private:
   std::string _reg_name;
   std::vector<std::shared_ptr<Batiment>>  _Batiments;
@@ -31,6 +33,7 @@ private:
   float _opinion;
   int _tileSize = 70;
   sf::Texture tileSetTexture;
+
 };
 
 #endif // !REGION_HPP

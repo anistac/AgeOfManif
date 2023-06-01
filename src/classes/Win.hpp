@@ -11,6 +11,15 @@ public:
     void setWindow(sf::RenderWindow &win) {
         _win = &win;
     }
+    virtual void handleEvent() = 0;
+    // static void setSelectedWin(int i) {
+    //     _selectedWin = i;
+    // }
+    // static int getSelectedWin() {
+    //     return _selectedWin;
+    // }
+
+    static int selectedWin;
 protected:
     sf::RenderWindow* _win;
 };
