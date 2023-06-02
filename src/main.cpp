@@ -1,11 +1,12 @@
+#include "classes/ActionManager.hpp"
 #include "classes/BoutonAction.hpp"
 #include "classes/Hex.hpp"
 #include "classes/InfoGame.hpp"
 #include "classes/Manifestant.hpp"
 #include "classes/Manifester.hpp"
-#include "classes/CommandRegistry.hpp"
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
+#include "classes/Win.hpp"
 using namespace std;
 #include <iostream>
 #include <vector>
@@ -21,7 +22,6 @@ int main() {
   Region region(window, "Ile de France");
   std::cout <<"selected win: " << Win::selectedWin << std::endl;  
   
-  Manifester manifester;
 
 
   while (window.isOpen()) {
@@ -32,6 +32,9 @@ int main() {
       // Fermer la fenêtre si l'utilisateur clique sur la croix en haut à droite
       if (event.type == sf::Event::Closed) {
         window.close();
+      }
+      if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::R) {
+        Win::selectedWin = 0; 
       }
       switch(Win::selectedWin) {
         case 0:

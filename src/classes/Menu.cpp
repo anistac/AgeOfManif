@@ -1,3 +1,4 @@
+#include <SFML/Graphics/View.hpp>
 #include <iostream>
 #include "Menu.hpp"
 #include "Win.hpp"
@@ -101,6 +102,8 @@ Menu::Menu(sf::RenderWindow &win){
 }
 
 void Menu::makeTick(){
+  sf::View currentView = _win->getView();
+    _win->setView(_win->getDefaultView());
     _win->draw(_sprite);
     for (const auto& button : buttons) {
         _win->draw(button);

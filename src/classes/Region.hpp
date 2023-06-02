@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <SFML/Graphics/Texture.hpp>
+#include "ActionManager.hpp"
 #include "Grid.hpp"
 #include "Win.hpp"
 #include "BoutonAction.hpp"
@@ -20,16 +21,15 @@ class Troupe;
 
 class Region : public Win {
 public:
-  Region(): _reg_name("dummy region") {
-    
-  };
+  Region() {};
   Region(sf::RenderWindow &win, std::string reg_name);
-  
+  ~Region() = default;
   void makeTick() override;
-  void handleEvent(sf::Event event);
+  void handleEvent(sf::Event event) override;
   int getTileSize() const {
     return _tileSize;
   }
+  Grid &getGrid() { return _grid; }
 
 private:
   InfoGame _barGame;
@@ -41,10 +41,10 @@ private:
   int _tileSize = 70;
   sf::Texture WorldTexture;
   sf::Sprite WorldSprite;
-  
+  ActionManager _actionManager; 
   // VIEW
   // sf::View view;
-  Grid grid;
+  Grid _grid;
 };
 
 #endif // !REGION_HPP

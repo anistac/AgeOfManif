@@ -54,7 +54,32 @@ public:
       this->setPosition(axialToScreen(_positionHex, _size));
     }
     
-    //utilisé comme fonction de hashage pour les unordered_set 
+    void addEntity(Interactable &entity) {
+      _interactables.push_back(&entity);
+    }
+
+    void removeEntity(Interactable &entity) {
+      _interactables.erase(std::remove(_interactables.begin(), _interactables.end(), &entity), _interactables.end());
+    }
+
+    std::vector<Interactable*> getEntities() const {
+      return _interactables;
+    }
+
+    void toggleSelectedEntity() {
+      if(_interactables.size() > 0) {
+        _selectedEntity = (_selectedEntity + 1) % _interactables.size();
+      }
+    }
+
+    Interactable* getSelectedEntity() const {
+      if(_interactables.size() > 0) {
+        return _interactables[_selectedEntity];
+      } else {
+        return nullptr;
+      }
+    }
+
 private:
     static const float sq;
     sf::Color _fillColor;
@@ -62,6 +87,7 @@ private:
     int _outlineThickness;
     sf::Vector2f _center;
     int _size;
-
+    std::vector<Interactable*> _interactables;
+    int _selectedEntity = 0;
 };
 

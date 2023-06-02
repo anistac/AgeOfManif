@@ -29,14 +29,17 @@ Hex& Grid::getHexFromPixel(sf::Vector2f pixel) {
 
 void Grid::setSelectedHex(Hex &hex) {
    if(std::find(_selectedHexes.begin(), _selectedHexes.end(), hex) != _selectedHexes.end()) {
-    std::cout << "already clicked" << std::endl;
-    _selectedHexes.erase(std::remove(_selectedHexes.begin(), _selectedHexes.end(), hex), _selectedHexes.end());
+    hex.toggleSelectedEntity();
   } else if(_selectedHexes.size() == 2) {
     _selectedHexes.erase(_selectedHexes.begin());
     _selectedHexes.push_back(hex);
   } else {
     _selectedHexes.push_back(hex);
   }
+}
+
+void Grid::removeSelectedHex(Hex &hex) {
+    _selectedHexes.erase(std::remove(_selectedHexes.begin(), _selectedHexes.end(), hex), _selectedHexes.end());
 }
 
 

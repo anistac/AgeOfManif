@@ -13,6 +13,9 @@ class Interactable {
     _positionHex = position;
     updatePosition();
   }
+  HexCoords getHexCoords() {
+    return _positionHex;
+  }
  protected:
   // sf::Texture _texture;
   // sf::Vector2f _positionWorld;

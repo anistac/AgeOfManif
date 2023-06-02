@@ -1,7 +1,8 @@
 #include <iostream>
 #include "BoutonAction.hpp"
 #include "Command.hpp"
-BoutonAction::BoutonAction(const std::string& texte, const sf::Font& police, const sf::Vector2f& position, const sf::Vector2f& taille, Invoker& invoker, std::shared_ptr<Command> cmd)
+#include "FontManager.hpp"
+BoutonAction::BoutonAction(const std::string& texte, const sf::Vector2f& position, const sf::Vector2f& taille, Invoker& invoker, std::shared_ptr<Command> cmd)
     : m_estSurvole(false), m_aEteClique(false), cmd(cmd)
 {
     m_rectangle.setSize(taille);
@@ -9,7 +10,7 @@ BoutonAction::BoutonAction(const std::string& texte, const sf::Font& police, con
     m_rectangle.setPosition(position);
 
     m_texte.setString(texte);
-    m_texte.setFont(police);
+    m_texte.setFont(FontManager::getInstance().getFont());
     m_texte.setCharacterSize(20);
     m_texte.setFillColor(sf::Color::White);
     sf::FloatRect texteBounds = m_texte.getLocalBounds();
@@ -45,7 +46,7 @@ bool BoutonAction::aEteClique(const sf::Vector2f& positionSouris)
     m_aEteClique = boutonBounds.contains((positionSouris.x), (positionSouris.y));
     if(m_aEteClique) {
         std::cout << "qlf" << std::endl;
-        return Invoker::executeCommand(cmd);
+        // return Invoker::executeCommand(cmd);
 
     }
     else {

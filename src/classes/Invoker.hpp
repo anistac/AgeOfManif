@@ -12,7 +12,7 @@ private:
 
 public:
     static void addCommand(std::shared_ptr<Command> command);
-    static bool executeCommand(std::shared_ptr<Command> command);
+    static bool executeCommand(std::shared_ptr<Command> command, Interactable *init1, Interactable *init2);
 };
 
 #endif // INVOKER_HPP
