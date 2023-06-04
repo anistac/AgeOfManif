@@ -6,7 +6,7 @@
 
 #include "Interactable.hpp"
 #include "Troupe.hpp"
-class Manifestant : public Troupe, public sf::RectangleShape {
+class Manifestant : public Troupe {
  public:
   Manifestant() = default;
   //{
@@ -30,23 +30,22 @@ class Manifestant : public Troupe, public sf::RectangleShape {
     _moral = 100;
     _region = reg;
     _positionHex = coords;
-    this->setPosition(Hex::axialToScreen(_positionHex, _region.getTileSize()));
-    this->setFillColor(_color);
-    this->setSize(sf::Vector2f(10, _size));
+    _shape.setPosition(Hex::axialToScreen(_positionHex, _region.getTileSize()));
+    _shape.setFillColor(_color);
+    _shape.setSize(sf::Vector2f(10, _size));
     Grid grid = reg.getGrid();
-    Hex hex = grid.getHexFromCoords(coords);
-    hex.addEntity(*this);
-    this->update();
+    Hex *hex = grid.getHexFromCoords(coords);
+    hex->addEntity((Troupe*) this);
     
   };
   
   ~Manifestant() {};
   void updatePosition() override{
-    this->setPosition(Hex::axialToScreen(_positionHex, _region.getTileSize()));
+    _shape.setPosition(Hex::axialToScreen(_positionHex, _region.getTileSize()));
   } 
 
   void draw(sf::RenderTarget& target, sf::RenderStates states) const override{
-    target.draw(*this, states);
+    target.draw(_shape, states);
   }
 
 private:
@@ -54,6 +53,7 @@ private:
   sf::Color _color;
   int _size;
   Region _region;
+  sf::RectangleShape _shape;
 };
 
 

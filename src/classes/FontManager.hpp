@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <memory>
-
+#include <iostream>
 class FontManager {
 public:
     static FontManager& getInstance() {
