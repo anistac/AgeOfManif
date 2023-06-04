@@ -17,5 +17,6 @@ public:
 private:
     inline static std::vector<std::shared_ptr<Command>> commands;
     inline static Region* _reg;
+    int _remainingActions = 3;
 };
 #endif // INVOKER_HPP

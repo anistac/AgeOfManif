@@ -18,9 +18,13 @@
 #define BTN_MARGIN 10
 
 void ActionManager::update() {
+  _selectedEntities[0] = nullptr;
+  _selectedEntities[1] = nullptr;
+  _actions.clear();
   std::vector<std::shared_ptr<Command>> cmds;
   Grid &grid = _reg->getGrid();
   std::vector<Hex *> selectedHexes = grid.getSelectedHexes();
+  
   // aucun Hex selectionné
 
   if (selectedHexes.size() == 0) {
@@ -56,12 +60,12 @@ void ActionManager::update() {
   }
 
   int i = 0;
-  const int offsetX = _reg->getWinSize().x - BAR_WIDTH; 
+  const int offsetX = _reg->getWinSize().x - BAR_WIDTH;
   const int offsetY = _reg->getWinSize().y - BAR_HEIGHT;
   _actions.clear();
   for (const auto &cmd : cmds) {
     Action action(_selectedEntities[0], _selectedEntities[1], cmd);
-    
+
     int line =
         std::floor((cmds.size() * (BTN_SIZE + 2 * BTN_MARGIN) / BAR_WIDTH));
     BoutonAction bouton(
@@ -75,13 +79,14 @@ void ActionManager::update() {
 }
 
 bool ActionManager::isInActionManagerBounds(sf::Vector2i mousePos) {
-  const int offsetX = _reg->getWinSize().x - BAR_WIDTH; 
+  const int offsetX = _reg->getWinSize().x - BAR_WIDTH;
   const int offsetY = _reg->getWinSize().y - BAR_HEIGHT;
   return mousePos.x > offsetX && mousePos.x < offsetX + BAR_WIDTH &&
          mousePos.y > offsetY && mousePos.y < offsetY + BAR_HEIGHT;
 }
 
-void ActionManager::draw(sf::RenderTarget& target, sf::RenderStates states) const{
+void ActionManager::draw(sf::RenderTarget &target,
+                         sf::RenderStates states) const {
   sf::RectangleShape background;
   background.setSize(sf::Vector2f(BAR_WIDTH, BAR_HEIGHT));
   background.setFillColor(sf::Color::White);
@@ -97,5 +102,3 @@ void ActionManager::draw(sf::RenderTarget& target, sf::RenderStates states) cons
   }
   target.setView(currView);
 }
-
-
