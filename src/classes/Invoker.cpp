@@ -26,10 +26,16 @@ bool Invoker::executeCommand(Action action) {
     // }
   _reg->getGrid().unselectAll();
   if(action.cmd->execute(action.initiator1, action.initiator2)) {
+    Invoker::_reg->setBusy(action.initiator1, Invoker::getCurrentCamp());
+    if(action.initiator2 != nullptr)
+      Invoker::_reg->setBusy(action.initiator2, Invoker::getCurrentCamp());
+    action.initiator1->setCurrAction(action.cmd.get());
     _remainingActions--;
     if(_remainingActions == 0) {
       _remainingActions = 3;
+      _reg->setAllFree(Invoker::getCurrentCamp());
       currentTurn++;
+
       std::cout << "Turn " << currentTurn << std::endl;
       return true;
     } 

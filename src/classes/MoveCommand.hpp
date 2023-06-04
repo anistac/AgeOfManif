@@ -9,6 +9,8 @@ public:
     ~MoveCommand() = default;
     MoveCommand() {
         _name = "Move";
+        _camp = -1;
+        _cout = 0;
     };
     bool execute(Interactable *init1, Interactable *init2) override;
 };

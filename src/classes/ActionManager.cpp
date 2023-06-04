@@ -20,11 +20,11 @@
 void ActionManager::update() {
   _actions.clear();
   _selectedEntities[0] = nullptr;
-  _selectedEntities[1] = nullptr; 
+  _selectedEntities[1] = nullptr;
   std::vector<std::shared_ptr<Command>> cmds;
   Grid &grid = _reg->getGrid();
   std::vector<Hex *> selectedHexes = grid.getSelectedHexes();
-  
+
   // aucun Hex selectionné
 
   if (selectedHexes.size() == 0) {
@@ -32,12 +32,20 @@ void ActionManager::update() {
   }
   // un seul Hex sélectionné
   if (selectedHexes.size() == 1) {
-    // aucune entité sur l'Hex sélectionné
+    // aucune entité sur l'Hex sélectionné, tout va bien
     if (selectedHexes[0]->getEntities().size() == 0) {
       cmds = CommandRegistry::findAvailableCmds(selectedHexes[0]);
+      for(auto cmd : cmds) {
+        if(cmd->getcamp() != Invoker::getCurrentCamp()){
+          cmds.erase(std::remove(cmds.begin(), cmds.end(), cmd), cmds.end());
+        }
+      }
       _selectedEntities[0] = selectedHexes[0];
       _selectedEntities[1] = nullptr;
-    } else {
+    } else { // une entité, on doit vérifier le camp.
+      if (selectedHexes[0]->getSelectedEntity()->getCamp() !=
+          Invoker::getCurrentCamp())
+        return;
       cmds = CommandRegistry::findAvailableCmds(
           selectedHexes[0]->getSelectedEntity());
       _selectedEntities[0] = selectedHexes[0]->getSelectedEntity();
@@ -54,6 +62,9 @@ void ActionManager::update() {
                              ? selectedHexes[1]
                              : selectedHexes[1]->getSelectedEntity();
 
+    if (int1->getCamp() != Invoker::getCurrentCamp() ||
+        int2->getCamp() != Invoker::getCurrentCamp())
+      return;
     cmds = CommandRegistry::findAvailableCmds(int1, int2);
     _selectedEntities[0] = int1;
     _selectedEntities[1] = int2;

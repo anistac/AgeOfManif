@@ -14,6 +14,7 @@ public:
     static bool executeCommand(Action action);
     static void setCurrentRegion(Region *reg);
     static Region* getCurrentRegion() { return _reg; }
+    static int getCurrentCamp() { return currentTurn % 2; }
 private:
     inline static std::vector<std::shared_ptr<Command>> commands;
     inline static Region* _reg;

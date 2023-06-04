@@ -9,8 +9,10 @@
 class Manifestant : public Troupe {
  public:
   Manifestant() = default;
-  Manifestant(std::string name, int size, HexCoords coords, Region *reg) : _customName(name), _size(size) {
+  Manifestant(std::string name, int size, HexCoords coords, Region *reg) : _size(size) {
     _name = "Manifestant";
+    _customName = name;
+    _description = "Un manifestant est un manifestant";
     _camp = 0;
     _moral = 100;
     _region = reg;

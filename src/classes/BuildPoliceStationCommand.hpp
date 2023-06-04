@@ -9,6 +9,8 @@ public:
     ~BuildPoliceStationCommand() = default;
     BuildPoliceStationCommand() {
         _name = "Construire Poste de police";
+        _camp = 1;
+
     };
     bool execute(Interactable *init1, Interactable *init2) override;
 };

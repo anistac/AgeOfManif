@@ -12,9 +12,11 @@ class PoliceStation : public Batiment {
 public:
 	PoliceStation() = default;
 
-	PoliceStation(std::string name, int size, HexCoords coords, Region *reg) : _customName(name), _size(size) {
-    _customName = "Station de police";
-    _camp = 0;
+	PoliceStation(std::string name, int size, HexCoords coords, Region *reg) : _size(size) {
+    _name = "Station de police";
+    _customName = name;
+    _description = "La police est la pour vous proteger";
+    _camp = 1;
     _sante = 100.0f;
     _region = reg;
     _positionHex = coords;

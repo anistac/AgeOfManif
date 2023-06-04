@@ -32,9 +32,11 @@ public:
   Region *getRegion() { return _region; }
 protected:
   std::string _name;
-  int _camp;
+  std::string _customName;
+  std::string _description;
   Region *_region;
   float _moral;
+
 };
 
 #endif // !TROUPE_HPP

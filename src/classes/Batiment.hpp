@@ -20,7 +20,8 @@ public:
 
 protected:
   std::string _name;
-  int _camp;
+  std::string _customName;
+  std::string _description;
   float _sante;
   Region *_region;
 };
