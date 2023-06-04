@@ -18,9 +18,9 @@
 #define BTN_MARGIN 10
 
 void ActionManager::update() {
-  _selectedEntities[0] = nullptr;
-  _selectedEntities[1] = nullptr;
   _actions.clear();
+  _selectedEntities[0] = nullptr;
+  _selectedEntities[1] = nullptr; 
   std::vector<std::shared_ptr<Command>> cmds;
   Grid &grid = _reg->getGrid();
   std::vector<Hex *> selectedHexes = grid.getSelectedHexes();
