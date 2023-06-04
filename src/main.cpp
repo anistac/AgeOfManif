@@ -3,7 +3,7 @@
 #include "classes/Hex.hpp"
 #include "classes/InfoGame.hpp"
 #include "classes/Manifestant.hpp"
-#include "classes/Manifester.hpp"
+//#include "classes/Manifester.hpp"
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
 #include "classes/Win.hpp"
@@ -29,6 +29,14 @@ int main() {
       
     sf::Event event;
     while (window.pollEvent(event)) {
+			if (event.type == sf::Event::KeyPressed){
+				if (event.key.code == sf::Keyboard::R)
+				{
+					Region::selectedWin = 0; // Repasse sur le showMain
+				}
+			}
+
+		
       // Fermer la fenêtre si l'utilisateur clique sur la croix en haut à droite
       if (event.type == sf::Event::Closed) {
         window.close();
@@ -51,11 +59,15 @@ int main() {
           menu.handleEvent(event);
           break; 
       }
-    }    
+    }
     window.clear(sf::Color::White);
     switch (Win::selectedWin) {
       case 0:
           menu.makeTick();
+					sf::RectangleShape menuBackground(sf::Vector2f(450, 200));
+					menuBackground.setPosition(400,600);
+					menuBackground.setFillColor(sf::Color::Black);
+					window.draw(menuBackground);
           break;
       case 1:
           region.makeTick();

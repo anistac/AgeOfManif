@@ -28,6 +28,11 @@ public:
   void handleEvent(sf::Event event) override;
   int getTileSize() const { return _tileSize; }
   Grid &getGrid() { return _grid; }
+  int getOpinion() {return _opinion; }
+  int getArgent() { return _argent; }
+  void setOpinion(int op) {_opinion += op; }
+  void setArgent(int ar) {_argent += ar; }
+
   sf::Vector2f getWinSize() const { return sf::Vector2f(_win->getSize()); }
 
 private:
