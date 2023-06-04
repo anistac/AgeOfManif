@@ -15,7 +15,7 @@
 #include <iostream>
 #include <memory>
 #include "InfoGame.hpp"
-#include "Manifester.hpp"
+#include "DemonstrationCommand.hpp"
 
 Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name){
 	ActionManager am(*this);
@@ -55,8 +55,11 @@ Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name
 
 	Invoker invoker;
 	// Manifester manifesterCommand;
-	CommandRegistry::addCmd<std::nullptr_t, Hex>(std::shared_ptr<Command>(std::shared_ptr<Command>(new Manifester())));
+	CommandRegistry::addCmd<std::nullptr_t, Hex>(std::shared_ptr<Command>(std::shared_ptr<Command>(new DemonstrationCommand())));
   CommandRegistry::addCmd<Troupe, Hex>(std::shared_ptr<Command>(new MoveCommand()));
+	//CommandRegistry::addCmd<Hex, std::nullptr_t>(std::shared_ptr<Command>(new BuildPoliceStationCommand()));
+	//CommandRegistry::addCmd<Batiment, std::nullptr_t>(std::shared_ptr<Command>((new DestroyCommand())));
+
   // std::shared_ptr<Command> cmd(manifesterCommand);
 	// BoutonAction bouton1("Action 1", sf::Vector2f(610, 675), sf::Vector2f(50, 50), invoker, cmd);
 	//BoutonAction bouton2("Action 2", font, sf::Vector2f(670, 675), sf::Vector2f(50, 50));
@@ -115,9 +118,7 @@ void Region::handleEvent(sf::Event event) {
   }
   _win->setView(view);
 
-	if (event.type == sf::Event::KeyPressed){
 
-	}
 
 	if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){   
 		// Mettre à jour la position de la souris
@@ -146,7 +147,7 @@ void Region::makeTick() {
   Manifestant manifestant1("Manifestant1", sf::Color::Blue, 200, coords, (*this));
   // _Troupes.push_back(manifestant1);
   // Créer le rectangle blanc Bar haute
-  _win->draw(manifestant1);
+  //_win->draw(manifestant1);
   // for(auto &troupe : _Troupes) {
   //   // std::cout << troupe->getHexCoords().q << std::endl;
   //   // _win->draw((sf::Drawable&)*troupe);

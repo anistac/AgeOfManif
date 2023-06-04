@@ -30,6 +30,10 @@ public:
     return _tileSize;
   }
   Grid &getGrid() { return _grid; }
+  int getOpinion() {return _opinion; }
+  int getArgent() { return _argent; }
+  void setOpinion(int op) {_opinion += op; }
+  void setArgent(int ar) {_argent += ar; }
 
 private:
   InfoGame _barGame;
