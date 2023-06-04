@@ -60,10 +60,6 @@ int main() {
     switch (Win::selectedWin) {
       case 0:
           menu.makeTick();
-					sf::RectangleShape menuBackground(sf::Vector2f(450, 200));
-					menuBackground.setPosition(400,600);
-					menuBackground.setFillColor(sf::Color::Black);
-					window.draw(menuBackground);
           break;
       case 1:
           region.makeTick();

@@ -1,19 +1,28 @@
 #ifndef BATIMENT_HPP
 #define BATIMENT_HPP
 
-//#include "Region.hpp"
+#include "Interactable.hpp"
+#include "Region.hpp"
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/System/String.hpp>
+
 
 #include <string>
- class Region;
 
-class Batiment {
+class Batiment : public Interactable, public sf::Drawable {
 public:
-  Batiment();
+  Batiment() = default;
+  virtual ~Batiment(){};
+  std::string getName() { return _name; }
+  virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override = 0;
+  Region& getRegion(){ return _region; }
+
 private:
-  std::string nom;
-  int camp;
-  float sante;
-  Region &localisation;
+  std::string _name;
+  int _camp;
+  float _sante;
+  Region _region;
 };
 
 #endif // !BATIMENT_HPP

@@ -22,6 +22,7 @@ public:
     hex->addEntity(this);
     this->setHexPosition(hex->getHexCoords());
   }
+  Region& getRegion(){ return _region; }
 protected:
   std::string _name;
   int _camp;
