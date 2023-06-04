@@ -67,13 +67,6 @@ Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name
   CommandRegistry::addCmd<Manifestant, RoundAbout>(std::shared_ptr<Command>(demCmd));
   MoveCommand *mvCmd = new MoveCommand();
   CommandRegistry::addCmd<Manifestant, Hex>(std::shared_ptr<Command>(mvCmd));
-  // std::shared_ptr<Command> cmd(manifesterCommand);
-  // BoutonAction bouton1("Action 1", sf::Vector2f(610, 675), sf::Vector2f(50,
-  // 50), invoker, cmd);
-  // BoutonAction bouton2("Action 2", font, sf::Vector2f(670, 675),
-  // sf::Vector2f(50, 50)); BoutonAction bouton3("Action 3", font,
-  // sf::Vector2f(730, 675), sf::Vector2f(50, 50));
-
   Manifestant *manifestant1 = new Manifestant("Manifestant1", 200, HexCoords(3, 0), (this));
   Manifestant *manifestant2 = new Manifestant("Manifestant2", 100, HexCoords(3, 1), (this));
   RoundAbout *roundabout1 = new RoundAbout("RP1", 200, HexCoords(5,0),(this));

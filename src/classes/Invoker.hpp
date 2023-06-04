@@ -14,10 +14,10 @@ public:
     static bool executeCommand(Action action);
     static void setCurrentRegion(Region *reg);
     static Region* getCurrentRegion() { return _reg; }
-
 private:
     inline static std::vector<std::shared_ptr<Command>> commands;
     inline static Region* _reg;
-    int _remainingActions = 3;
+    inline static int _remainingActions = 3;
+    inline static int currentTurn = 0;
 };
 #endif // INVOKER_HPP

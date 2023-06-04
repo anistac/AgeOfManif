@@ -20,11 +20,20 @@ bool Invoker::executeCommand(Action action) {
     //     return cmd.get() == &command;
     // });
 
-    // if (it != commands.end()) {
+     // if (it != commands.end()) {
     //     // Exécuter la commande trouvée
     //     return (*it)->execute();
     // }
   _reg->getGrid().unselectAll();
-  return action.cmd->execute(action.initiator1, action.initiator2);
+  if(action.cmd->execute(action.initiator1, action.initiator2)) {
+    _remainingActions--;
+    if(_remainingActions == 0) {
+      _remainingActions = 3;
+      currentTurn++;
+      std::cout << "Turn " << currentTurn << std::endl;
+      return true;
+    } 
+  }
+  return false;
     
 }
