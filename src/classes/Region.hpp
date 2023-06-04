@@ -34,6 +34,8 @@ public:
   int getArgent() { return _argent; }
   void setOpinion(int op) {_opinion += op; }
   void setArgent(int ar) {_argent += ar; }
+  void addTroupe(Troupe* troupe) { _Troupes.push_back(troupe); }
+  void addBatiment(Batiment* batiment) { _Batiments.push_back(batiment); }
   void deleteTroupe(Troupe *troupe);
   void deleteBatiment(Batiment *batiment);
 
