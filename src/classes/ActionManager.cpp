@@ -18,6 +18,7 @@
 #define BTN_MARGIN 10
 
 void ActionManager::update() {
+  _actions.clear();
   _selectedEntities[0] = nullptr;
   _selectedEntities[1] = nullptr; 
   std::vector<std::shared_ptr<Command>> cmds;
