@@ -9,9 +9,11 @@
 #include "MoveCommand.hpp"
 #include "DemonstrationCommand.hpp"
 #include "BuildPoliceStationCommand.hpp"
+#include "BuildZADCommand.hpp"
 #include "DestroyCommand.hpp"
 #include "RoundAbout.hpp"
 #include "PoliceStation.hpp"
+#include "ZAD.hpp"
 #include "Win.hpp"
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
@@ -54,6 +56,8 @@ Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name
 
   Invoker::setCurrentRegion(this);
 
+  BuildZADCommand *buiZADCmd = new BuildZADCommand();
+  CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiZADCmd));
   BuildPoliceStationCommand *buiPStCmd = new BuildPoliceStationCommand();
   CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiPStCmd));
   DestroyCommand *desCmd = new DestroyCommand();
