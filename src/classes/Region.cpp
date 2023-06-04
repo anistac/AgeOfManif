@@ -6,8 +6,8 @@
 #include "Grid.hpp"
 #include "InfoGame.hpp"
 #include "Manifestant.hpp"
-#include "Manifester.hpp"
 #include "MoveCommand.hpp"
+#include "DemonstrationCommand.hpp"
 #include "Win.hpp"
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
@@ -54,8 +54,8 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
 
   Invoker::setCurrentRegion(this);
   // Manifester manifesterCommand;
-  CommandRegistry::addCmd<std::nullptr_t, Hex>(
-      std::shared_ptr<Command>(std::shared_ptr<Command>(new Manifester())));
+  DemonstrationCommand *demCmd = new DemonstrationCommand();
+  CommandRegistry::addCmd<Batiment, Troupe>(std::shared_ptr<Command>(demCmd));
   MoveCommand *mvCmd = new MoveCommand();
   CommandRegistry::addCmd<Troupe, Hex>(std::shared_ptr<Command>(mvCmd));
   CommandRegistry::addCmd<Manifestant, Hex>(std::shared_ptr<Command>(mvCmd));
@@ -70,6 +70,7 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
                                               200, HexCoords(3, 0), (this));
   Manifestant *manifestant2 = new Manifestant("Manifestant2", sf::Color::Red,
                                               100, HexCoords(3, 0), (this));
+  RoundAbout *roundabout1 = new RoundAbout("RP1", 200, HexCoords(3,1),(this));
   _Troupes.push_back(manifestant1);
   _Troupes.push_back(manifestant2);
   // Créer le rectangle blanc Bar haute

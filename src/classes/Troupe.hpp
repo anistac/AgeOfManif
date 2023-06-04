@@ -12,8 +12,8 @@
 class Troupe : public Interactable, public sf::Drawable {
 public:
   Troupe() = default;
-  Troupe(std::string name, int camp, Region *region, float moral)
-      : _name(name), _camp(camp), _region(region), _moral(moral){};
+  // Troupe(std::string name, int camp, Region *region, float moral)
+  //     : _name(name), _camp(camp), _region(region), _moral(moral){};
   virtual ~Troupe(){};
   std::string getName() { return _name; }
   virtual void draw(sf::RenderTarget &target,

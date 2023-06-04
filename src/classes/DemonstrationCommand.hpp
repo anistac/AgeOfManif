@@ -5,7 +5,9 @@
 #include "Grid.hpp"
 #include "CommandRegistry.hpp"
 #include "Interactable.hpp"
-#include "Manifestant.hpp"
+#include "Troupe.hpp"
+#include "Batiment.hpp"
+// #include "Manifestant.hpp"
 #include <cstddef>
 #include <iostream>
 #include <memory>
