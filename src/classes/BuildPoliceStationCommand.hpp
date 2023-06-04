@@ -1,5 +1,5 @@
-#ifndef BUILDPOLICESTATION_COMMAND_HPP
-#define BUILDPOLICESTATION_COMMAND_HPP
+#ifndef BUILDROUNDABOUT_COMMAND_HPP
+#define BUILDROUNDABOUT_COMMAND_HPP
 
 #include "Command.hpp"
 #include "Interactable.hpp"
