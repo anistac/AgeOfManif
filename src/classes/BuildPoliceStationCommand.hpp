@@ -10,7 +10,7 @@ public:
     BuildPoliceStationCommand() {
         _name = "Construire Poste de police";
     };
-    bool execute(Interactable *init1) override;
+    bool execute(Interactable *init1, Interactable *init2) override;
 };
 
 #endif // BUILDPOLICESTATION_COMMAND_HPP

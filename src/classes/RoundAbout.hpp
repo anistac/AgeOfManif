@@ -35,7 +35,10 @@ public:
     hex->addEntity((Batiment*) this);
 	}
 
-	~RoundAbout() {};
+	~RoundAbout() {
+		_sprite.setTexture(sf::Texture());
+	};
+
   void updatePosition() override{
     _sprite.setPosition(Hex::axialToScreen(_positionHex, _region->getTileSize()));
   } 
@@ -43,6 +46,8 @@ public:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override{
     target.draw(_sprite, states);
   }
+
+
 
 private:
 std::string _customName;

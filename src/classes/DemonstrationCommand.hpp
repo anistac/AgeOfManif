@@ -25,4 +25,5 @@ public:
     bool execute(Interactable *init1, Interactable *init2) override;
 };
 
+
 #endif // DEMONSTRATIONCOMMAND_HPP

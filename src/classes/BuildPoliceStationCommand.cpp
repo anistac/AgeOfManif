@@ -5,9 +5,11 @@
 
 #endif // !DEBUG
 
-bool BuildPoliceStationCommand::execute(Interactable *init1) {
-    //init1->setHexPosition(init2->getHexCoords());
+bool BuildPoliceStationCommand::execute(Interactable *init1, Interactable *init2) {
+    HexCoords coords = init1->getHexCoords();
+
     //init1->addEntity(Interactable &entity);
     std::cout << "BuildPoliceStationCommand executed" << std::endl;
     return true;
 }
+

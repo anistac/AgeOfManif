@@ -8,7 +8,10 @@
 #include "Manifestant.hpp"
 #include "MoveCommand.hpp"
 #include "DemonstrationCommand.hpp"
+#include "BuildPoliceStationCommand.hpp"
+#include "DestroyCommand.hpp"
 #include "RoundAbout.hpp"
+#include "PoliceStation.hpp"
 #include "Win.hpp"
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
@@ -53,7 +56,12 @@ Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name
   titleText.setFillColor(sf::Color::Black);
 
   Invoker::setCurrentRegion(this);
-  // Manifester manifesterCommand;
+
+  BuildPoliceStationCommand *buiPStCmd = new BuildPoliceStationCommand();
+  CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiPStCmd));
+  DestroyCommand *desCmd = new DestroyCommand();
+  CommandRegistry::addCmd<PoliceStation>(std::shared_ptr<Command>(desCmd));
+  CommandRegistry::addCmd<RoundAbout>(std::shared_ptr<Command>(desCmd));
   DemonstrationCommand *demCmd = new DemonstrationCommand();
   CommandRegistry::addCmd<Manifestant, RoundAbout>(std::shared_ptr<Command>(demCmd));
   MoveCommand *mvCmd = new MoveCommand();
@@ -68,10 +76,12 @@ Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name
   Manifestant *manifestant1 = new Manifestant("Manifestant1", 200, HexCoords(3, 0), (this));
   Manifestant *manifestant2 = new Manifestant("Manifestant2", 100, HexCoords(3, 1), (this));
   RoundAbout *roundabout1 = new RoundAbout("RP1", 200, HexCoords(5,0),(this));
+  PoliceStation *policeStation = new PoliceStation("Station", 200, HexCoords(0,0), (this));
 
   _Troupes.push_back(manifestant1);
   _Troupes.push_back(manifestant2);
   _Batiments.push_back(roundabout1);
+  _Batiments.push_back(policeStation);
 }
 
 void Region::handleEvent(sf::Event event) {
@@ -164,4 +174,16 @@ void Region::makeTick() {
   _barGame.updateInfo(_opinion, _argent);
   _win->draw(_barGame);
   _win->draw(_actionManager);
+}
+
+void Region::deleteTroupe(Troupe *troupe){
+  _Troupes.erase(std::remove(_Troupes.begin(), _Troupes.end(), troupe), _Troupes.end());
+  delete troupe;
+}
+
+void Region::deleteBatiment(Batiment *batiment){
+  _Batiments.erase(std::remove(_Batiments.begin(), _Batiments.end(), batiment), _Batiments.end());
+  delete batiment;
+
+
 }

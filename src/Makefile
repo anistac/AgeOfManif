@@ -177,6 +177,33 @@ classes/BoutonAction.cpp.s:
 	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BoutonAction.cpp.s
 .PHONY : classes/BoutonAction.cpp.s
 
+classes/BuildPoliceStationCommand.o: classes/BuildPoliceStationCommand.cpp.o
+
+.PHONY : classes/BuildPoliceStationCommand.o
+
+# target to build an object file
+classes/BuildPoliceStationCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BuildPoliceStationCommand.cpp.o
+.PHONY : classes/BuildPoliceStationCommand.cpp.o
+
+classes/BuildPoliceStationCommand.i: classes/BuildPoliceStationCommand.cpp.i
+
+.PHONY : classes/BuildPoliceStationCommand.i
+
+# target to preprocess a source file
+classes/BuildPoliceStationCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BuildPoliceStationCommand.cpp.i
+.PHONY : classes/BuildPoliceStationCommand.cpp.i
+
+classes/BuildPoliceStationCommand.s: classes/BuildPoliceStationCommand.cpp.s
+
+.PHONY : classes/BuildPoliceStationCommand.s
+
+# target to generate assembly for a file
+classes/BuildPoliceStationCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BuildPoliceStationCommand.cpp.s
+.PHONY : classes/BuildPoliceStationCommand.cpp.s
+
 classes/DemonstrationCommand.o: classes/DemonstrationCommand.cpp.o
 
 .PHONY : classes/DemonstrationCommand.o
@@ -203,6 +230,33 @@ classes/DemonstrationCommand.s: classes/DemonstrationCommand.cpp.s
 classes/DemonstrationCommand.cpp.s:
 	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/DemonstrationCommand.cpp.s
 .PHONY : classes/DemonstrationCommand.cpp.s
+
+classes/DestroyCommand.o: classes/DestroyCommand.cpp.o
+
+.PHONY : classes/DestroyCommand.o
+
+# target to build an object file
+classes/DestroyCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/DestroyCommand.cpp.o
+.PHONY : classes/DestroyCommand.cpp.o
+
+classes/DestroyCommand.i: classes/DestroyCommand.cpp.i
+
+.PHONY : classes/DestroyCommand.i
+
+# target to preprocess a source file
+classes/DestroyCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/DestroyCommand.cpp.i
+.PHONY : classes/DestroyCommand.cpp.i
+
+classes/DestroyCommand.s: classes/DestroyCommand.cpp.s
+
+.PHONY : classes/DestroyCommand.s
+
+# target to generate assembly for a file
+classes/DestroyCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/DestroyCommand.cpp.s
+.PHONY : classes/DestroyCommand.cpp.s
 
 classes/Grid.o: classes/Grid.cpp.o
 
@@ -435,9 +489,15 @@ help:
 	@echo "... classes/BoutonAction.o"
 	@echo "... classes/BoutonAction.i"
 	@echo "... classes/BoutonAction.s"
+	@echo "... classes/BuildPoliceStationCommand.o"
+	@echo "... classes/BuildPoliceStationCommand.i"
+	@echo "... classes/BuildPoliceStationCommand.s"
 	@echo "... classes/DemonstrationCommand.o"
 	@echo "... classes/DemonstrationCommand.i"
 	@echo "... classes/DemonstrationCommand.s"
+	@echo "... classes/DestroyCommand.o"
+	@echo "... classes/DestroyCommand.i"
+	@echo "... classes/DestroyCommand.s"
 	@echo "... classes/Grid.o"
 	@echo "... classes/Grid.i"
 	@echo "... classes/Grid.s"
