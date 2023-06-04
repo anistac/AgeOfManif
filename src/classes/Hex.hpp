@@ -5,15 +5,16 @@
 #include <SFML/Graphics/ConvexShape.hpp>
 #include <cmath>
 #include <cstddef>
+#include <iostream>
 
 typedef struct HexHash {
-  std::size_t operator()(const HexCoords& coords) const {
+  std::size_t operator()(const HexCoords coords) const {
     return std::hash<int>()(coords.q) ^ std::hash<int>()(coords.r);
   }
 } HexHash;
 
 typedef struct HexEq {
-  bool operator()(const HexCoords& hex1, const HexCoords hex2) const {
+  bool operator()(const HexCoords hex1, const HexCoords hex2) const {
     return (hex1.q == hex2.q && hex1.r == hex2.r);
   }
 } HexEq;
@@ -54,12 +55,12 @@ public:
       this->setPosition(axialToScreen(_positionHex, _size));
     }
     
-    void addEntity(Interactable &entity) {
-      _interactables.push_back(&entity);
+    void addEntity(Interactable *entity) {
+      _interactables.push_back(entity);
     }
 
-    void removeEntity(Interactable &entity) {
-      _interactables.erase(std::remove(_interactables.begin(), _interactables.end(), &entity), _interactables.end());
+    void removeEntity(Interactable *entity) {
+      _interactables.erase(std::remove(_interactables.begin(), _interactables.end(), entity), _interactables.end());
     }
 
     std::vector<Interactable*> getEntities() const {
@@ -67,9 +68,11 @@ public:
     }
 
     void toggleSelectedEntity() {
+      std::cout << "switching between " << _interactables.size() << " entities" << std::endl;
       if(_interactables.size() > 0) {
         _selectedEntity = (_selectedEntity + 1) % _interactables.size();
       }
+      std::cout << "Selected entity: " << _selectedEntity << std::endl;
     }
 
     Interactable* getSelectedEntity() const {

@@ -5,6 +5,7 @@
 // #include "Troupe.hpp"
 
 #include <SFML/Graphics/View.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <memory>
 #include <string>
 #include <vector>
@@ -14,7 +15,6 @@
 #include "Win.hpp"
 #include "BoutonAction.hpp"
 #include "InfoGame.hpp"
-
 
 class Batiment;
 class Troupe;
@@ -35,6 +35,7 @@ public:
   void setOpinion(int op) {_opinion += op; }
   void setArgent(int ar) {_argent += ar; }
 
+  sf::Vector2f getWinSize() const { return sf::Vector2f(_win->getSize()); }
 private:
   InfoGame _barGame;
   std::string _reg_name;

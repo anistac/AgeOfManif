@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 #include "Command.hpp"
-
+#include "ActionType.hpp"
 // Classe Invoker
 class Invoker {
 private:
@@ -12,7 +12,7 @@ private:
 
 public:
     static void addCommand(std::shared_ptr<Command> command);
-    static bool executeCommand(std::shared_ptr<Command> command, Interactable *init1, Interactable *init2);
+    static bool executeCommand(Action action);
 };
 
 #endif // INVOKER_HPP
