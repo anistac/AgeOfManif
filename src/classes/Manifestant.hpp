@@ -27,13 +27,13 @@ class Manifestant : public Troupe {
   Manifestant(std::string name, sf::Color color, int size, HexCoords coords, Region *reg) : _customName(name), _color(color), _size(size) {
     _name = "Manifestant";
     _camp = 0;
-    _moral = 100;
+    _sante = 100;
     _region = reg;
     _positionHex = coords;
     _shape.setPosition(Hex::axialToScreen(_positionHex, _region->getTileSize()));
     _shape.setFillColor(_color);
     _shape.setSize(sf::Vector2f(10, _size));
-    Grid grid = reg->getGrid();
+    Grid &grid = reg->getGrid();
     Hex *hex = grid.getHexFromCoords(coords);
     hex->addEntity((Troupe*) this);
     

@@ -6,7 +6,7 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/System/String.hpp>
-
+#include "HexCoords.hpp"
 
 #include <string>
 
