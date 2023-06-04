@@ -16,13 +16,13 @@ public:
   virtual ~Batiment(){};
   std::string getName() { return _name; }
   virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override = 0;
-  Region& getRegion(){ return _region; }
+  Region *getRegion(){ return _region; }
 
-private:
+protected:
   std::string _name;
   int _camp;
   float _sante;
-  Region _region;
+  Region *_region;
 };
 
 #endif // !BATIMENT_HPP

@@ -1,5 +1,5 @@
-#ifndef ROUNDABOUT_HPP
-#define ROUNDABOUT_HPP
+#ifndef POLICESTATION_HPP
+#define POLICESTATION_HPP
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Color.hpp>
@@ -8,18 +8,18 @@
 
 #include "Interactable.hpp"
 #include "Batiment.hpp"
-class RoundAbout : public Batiment {
+class PoliceStation : public Batiment {
 public:
-	RoundAbout() = default;
+	PoliceStation() = default;
 
-	RoundAbout(std::string name, int size, HexCoords coords, Region *reg) : _customName(name), _size(size) {
-    _customName = "Rond Point";
+	PoliceStation(std::string name, int size, HexCoords coords, Region *reg) : _customName(name), _size(size) {
+    _customName = "Station de police";
     _camp = 0;
     _sante = 100.0f;
     _region = reg;
     _positionHex = coords;
 
-		if(!_texture.loadFromFile("../assets/rond_point.png")) {
+		if(!_texture.loadFromFile("../assets/police.png")) {
 			std::cout << "impossible de charger la texture" << std::endl;
 		};
 		sf::Vector2u imgSize(_texture.getSize());
@@ -27,7 +27,7 @@ public:
 		float imgHeight = (float) (imgSize.y);
 		_sprite.setTexture(_texture);
 		_sprite.setOrigin( imgWidth /2.0f, imgHeight /2.0f);
-		_sprite.setScale(sf::Vector2f(2.5 * _region->getTileSize()  / imgWidth, 2.5 *  _region->getTileSize() /  imgHeight));
+		_sprite.setScale(sf::Vector2f(3 * _region->getTileSize()  / imgWidth, 3 *  _region->getTileSize() /  imgHeight));
     Grid &grid = reg->getGrid();
 		_sprite.setPosition(Hex::axialToScreen(_positionHex, _region->getTileSize()));
 		this->updatePosition();
@@ -35,7 +35,7 @@ public:
     hex->addEntity((Batiment*) this);
 	}
 
-	~RoundAbout() {};
+	~PoliceStation() {};
   void updatePosition() override{
     _sprite.setPosition(Hex::axialToScreen(_positionHex, _region->getTileSize()));
   } 
@@ -50,4 +50,4 @@ int _size;
 sf::Texture _texture;
 sf::Sprite _sprite;
 };
-#endif
+#endif //POLICESTATION_HPP

@@ -8,6 +8,7 @@
 #include "Manifestant.hpp"
 #include "MoveCommand.hpp"
 #include "DemonstrationCommand.hpp"
+#include "RoundAbout.hpp"
 #include "Win.hpp"
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
@@ -17,8 +18,7 @@
 #include <iostream>
 #include <memory>
 
-Region::Region(sf::RenderWindow &win, std::string reg_name)
-    : _reg_name(reg_name) {
+Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name) {
   ActionManager am(this);
   _actionManager = am;
 
@@ -55,9 +55,8 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
   Invoker::setCurrentRegion(this);
   // Manifester manifesterCommand;
   DemonstrationCommand *demCmd = new DemonstrationCommand();
-  CommandRegistry::addCmd<Batiment, Troupe>(std::shared_ptr<Command>(demCmd));
+  CommandRegistry::addCmd<Manifestant, RoundAbout>(std::shared_ptr<Command>(demCmd));
   MoveCommand *mvCmd = new MoveCommand();
-  CommandRegistry::addCmd<Troupe, Hex>(std::shared_ptr<Command>(mvCmd));
   CommandRegistry::addCmd<Manifestant, Hex>(std::shared_ptr<Command>(mvCmd));
   // std::shared_ptr<Command> cmd(manifesterCommand);
   // BoutonAction bouton1("Action 1", sf::Vector2f(610, 675), sf::Vector2f(50,
@@ -66,14 +65,13 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
   // sf::Vector2f(50, 50)); BoutonAction bouton3("Action 3", font,
   // sf::Vector2f(730, 675), sf::Vector2f(50, 50));
 
-  Manifestant *manifestant1 = new Manifestant("Manifestant1", sf::Color::Blue,
-                                              200, HexCoords(3, 0), (this));
-  Manifestant *manifestant2 = new Manifestant("Manifestant2", sf::Color::Red,
-                                              100, HexCoords(3, 0), (this));
-  RoundAbout *roundabout1 = new RoundAbout("RP1", 200, HexCoords(3,1),(this));
+  Manifestant *manifestant1 = new Manifestant("Manifestant1", 200, HexCoords(3, 0), (this));
+  Manifestant *manifestant2 = new Manifestant("Manifestant2", 100, HexCoords(3, 1), (this));
+  RoundAbout *roundabout1 = new RoundAbout("RP1", 200, HexCoords(5,0),(this));
+
   _Troupes.push_back(manifestant1);
   _Troupes.push_back(manifestant2);
-  // Créer le rectangle blanc Bar haute
+  _Batiments.push_back(roundabout1);
 }
 
 void Region::handleEvent(sf::Event event) {
@@ -158,6 +156,10 @@ void Region::makeTick() {
 
   for (auto troupe : _Troupes) {
     _win->draw(*troupe);
+  }
+  
+  for (auto batiment : _Batiments) {
+    _win->draw(*batiment);
   }
   _barGame.updateInfo(_opinion, _argent);
   _win->draw(_barGame);
