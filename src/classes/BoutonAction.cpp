@@ -21,7 +21,7 @@ BoutonAction::BoutonAction(const std::string &texte,
                       position.y + taille.y / 2.0f);
 }
 
-bool BoutonAction::estSurvole(const sf::Vector2f &positionSouris) {
+bool BoutonAction::estSurvole(const sf::Vector2i &positionSouris) {
   sf::FloatRect boutonBounds = m_rectangle.getGlobalBounds();
   m_estSurvole = boutonBounds.contains((positionSouris.x), (positionSouris.y));
   if (m_estSurvole) {
@@ -31,7 +31,7 @@ bool BoutonAction::estSurvole(const sf::Vector2f &positionSouris) {
   }
 }
 
-bool BoutonAction::aEteClique(const sf::Vector2f &positionSouris) {
+bool BoutonAction::aEteClique(const sf::Vector2i &positionSouris) {
 
   sf::FloatRect boutonBounds = m_rectangle.getGlobalBounds();
   m_aEteClique = boutonBounds.contains((positionSouris.x), (positionSouris.y));

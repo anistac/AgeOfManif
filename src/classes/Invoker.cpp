@@ -3,9 +3,11 @@
 #include "Invoker.hpp"
 #include "Command.hpp"
 #include <iostream>
+#include "Region.hpp"
 
-
-std::vector<std::shared_ptr<Command>> Invoker::commands;
+void Invoker::setCurrentRegion(Region *reg) {
+  _reg = reg;
+}
 
 void Invoker::addCommand(std::shared_ptr<Command> command) {
     commands.push_back(command);
@@ -22,6 +24,7 @@ bool Invoker::executeCommand(Action action) {
     //     // Exécuter la commande trouvée
     //     return (*it)->execute();
     // }
+  _reg->getGrid().unselectAll();
   return action.cmd->execute(action.initiator1, action.initiator2);
     
 }

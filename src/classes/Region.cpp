@@ -19,7 +19,7 @@
 
 Region::Region(sf::RenderWindow &win, std::string reg_name)
     : _reg_name(reg_name) {
-  ActionManager am(*this);
+  ActionManager am(this);
   _actionManager = am;
 
   sf::Font font; // Déclaration de la variable font
@@ -27,7 +27,7 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
   unsigned int visibleWidth = 400;
   unsigned int visibleHeight = 300;
   sf::View v = sf::View(sf::FloatRect(0, 0, visibleWidth, visibleHeight));
-
+  v.setViewport(sf::FloatRect(0, 0, 1, 1));
   // sf::Texture WorldTexture;
   if (!WorldTexture.loadFromFile("../assets/Map1.png")) {
     std::cout << "Impossible de charger la map" << std::endl;
@@ -52,7 +52,7 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
   titleText.setPosition(400, 600);
   titleText.setFillColor(sf::Color::Black);
 
-  Invoker invoker;
+  Invoker::setCurrentRegion(this);
   // Manifester manifesterCommand;
   CommandRegistry::addCmd<std::nullptr_t, Hex>(
       std::shared_ptr<Command>(std::shared_ptr<Command>(new Manifester())));
@@ -67,9 +67,9 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
   // sf::Vector2f(730, 675), sf::Vector2f(50, 50));
 
   Manifestant *manifestant1 = new Manifestant("Manifestant1", sf::Color::Blue,
-                                              200, HexCoords(3, 0), (*this));
+                                              200, HexCoords(3, 0), (this));
   Manifestant *manifestant2 = new Manifestant("Manifestant2", sf::Color::Red,
-                                              100, HexCoords(3, 0), (*this));
+                                              100, HexCoords(3, 0), (this));
   _Troupes.push_back(manifestant1);
   _Troupes.push_back(manifestant2);
   // Créer le rectangle blanc Bar haute
@@ -113,7 +113,7 @@ void Region::handleEvent(sf::Event event) {
     if (_actionManager.isInActionManagerBounds(mousePos)) {
       if (event.mouseButton.button == sf::Mouse::Left) {
         for (auto &action : _actionManager.getActions()) {
-          action.aEteClique(worldPos);
+          action.aEteClique(mousePos);
         }
       }
     } else {
@@ -121,14 +121,12 @@ void Region::handleEvent(sf::Event event) {
       std::cout << "hex coords: " << hexCoords.q << ", " << hexCoords.r
                 << std::endl;
       Hex *hex = _grid.getHexFromPixel(worldPos);
-      if(event.mouseButton.button == sf::Mouse::Left){
+      if (event.mouseButton.button == sf::Mouse::Left) {
         _grid.setSelectedHex(hex);
-        _actionManager.update();
-      }
-      else if(event.mouseButton.button == sf::Mouse::Right)
+      } else if (event.mouseButton.button == sf::Mouse::Right)
         _grid.removeSelectedHex(hex);
-        _actionManager.update();
     }
+    _actionManager.update();
   }
 
   _win->setView(view);

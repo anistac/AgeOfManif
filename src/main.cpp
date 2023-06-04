@@ -44,6 +44,10 @@ int main() {
       if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::R) {
         Win::selectedWin = 0; 
       }
+      if(event.type == sf::Event::Resized) {
+        sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
+        window.setView(sf::View(visibleArea));
+      }
       switch(Win::selectedWin) {
         case 0:
           menu.handleEvent(event);

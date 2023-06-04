@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-Grid::Grid(sf::Vector2i size, int tileSize) : _size(size), _tileSize(tileSize),  _hoveredHex(new Hex()) {
+Grid::Grid(sf::Vector2i size, int tileSize) : _size(size), _tileSize(tileSize) {
   sf::Color fillColor = sf::Color::Transparent;
   sf::Color outlineColor = sf::Color(255,255,255,100);
   int outlineThickness = 3;
@@ -48,7 +48,7 @@ void Grid::removeSelectedHex(Hex *hex) {
 
 void Grid::renderGrid(sf::RenderWindow& window) {
   for (auto &hex : _hexes) {
-    if(hex.second == _hoveredHex) {
+    if(*hex.second == _hoveredHex) {
       hex.second->setFillColor(sf::Color(255,255,255,100));
     }
     for(auto &selectedHex : _selectedHexes) {

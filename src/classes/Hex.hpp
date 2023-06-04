@@ -61,6 +61,7 @@ public:
 
     void removeEntity(Interactable *entity) {
       _interactables.erase(std::remove(_interactables.begin(), _interactables.end(), entity), _interactables.end());
+      std::cout << "Removed entity from hex" << std::endl;
     }
 
     std::vector<Interactable*> getEntities() const {

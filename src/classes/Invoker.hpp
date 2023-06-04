@@ -5,14 +5,17 @@
 #include <memory>
 #include "Command.hpp"
 #include "ActionType.hpp"
+// #include "Region.hpp"
+class Region;
 // Classe Invoker
 class Invoker {
-private:
-    static std::vector<std::shared_ptr<Command>> commands ;
-
 public:
     static void addCommand(std::shared_ptr<Command> command);
     static bool executeCommand(Action action);
-};
+    static void setCurrentRegion(Region *reg);
 
+private:
+    inline static std::vector<std::shared_ptr<Command>> commands;
+    inline static Region* _reg;
+};
 #endif // INVOKER_HPP

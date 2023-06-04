@@ -8,16 +8,17 @@
 #include <SFML/System/Vector2.hpp>
 #include <vector>
 class EmptyInitiator;
-//forward declaration
+// forward declaration
 class Region;
-class ActionManager : public sf::Drawable{
+
+class ActionManager : public sf::Drawable {
 
 public:
   ActionManager() : _reg(nullptr){};
-  ActionManager(Region &reg): _reg(&reg), _actions() {}
-  void setCurrentRegion(Region &reg) { _reg = &reg; }
+  ActionManager(Region *reg) : _reg(reg), _actions() {}
+  void setCurrentRegion(Region *reg);
   ~ActionManager() = default;
-  void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+  void draw(sf::RenderTarget &target, sf::RenderStates states) const;
   void update();
   bool isInActionManagerBounds(sf::Vector2i mousePos);
   std::vector<BoutonAction> getActions() const { return _actions; }
@@ -29,4 +30,3 @@ private:
 };
 
 #endif // !ACTION_MANAGER_HPP
-
