@@ -47,10 +47,7 @@ Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name
   std::cout << "grid created" << std::endl;
 
   // Créer le rectangle blanc
-  sf::RectangleShape menuBackground(sf::Vector2f(450, 200));
-  menuBackground.setPosition(400, 600);
-
-  // Créer le texte "Actions :"
+    // Créer le texte "Actions :"
   sf::Text titleText("Actions :", font, 18);
   titleText.setPosition(400, 600);
   titleText.setFillColor(sf::Color::Black);
