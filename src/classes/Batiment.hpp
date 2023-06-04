@@ -3,10 +3,11 @@
 
 //#include "Region.hpp"
 
+#include "Interactable.hpp"
 #include <string>
  class Region;
 
-class Batiment {
+class Batiment : public Interactable{
 public:
   Batiment();
 private:

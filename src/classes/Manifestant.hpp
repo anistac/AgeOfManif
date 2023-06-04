@@ -24,16 +24,16 @@ class Manifestant : public Troupe {
   //   this->update();
   // }
   //
-  Manifestant(std::string name, sf::Color color, int size, HexCoords coords, Region reg) : _customName(name), _color(color), _size(size) {
+  Manifestant(std::string name, sf::Color color, int size, HexCoords coords, Region *reg) : _customName(name), _color(color), _size(size) {
     _name = "Manifestant";
     _camp = 0;
     _moral = 100;
     _region = reg;
     _positionHex = coords;
-    _shape.setPosition(Hex::axialToScreen(_positionHex, _region.getTileSize()));
+    _shape.setPosition(Hex::axialToScreen(_positionHex, _region->getTileSize()));
     _shape.setFillColor(_color);
     _shape.setSize(sf::Vector2f(10, _size));
-    Grid grid = reg.getGrid();
+    Grid grid = reg->getGrid();
     Hex *hex = grid.getHexFromCoords(coords);
     hex->addEntity((Troupe*) this);
     
@@ -41,7 +41,7 @@ class Manifestant : public Troupe {
   
   ~Manifestant() {};
   void updatePosition() override{
-    _shape.setPosition(Hex::axialToScreen(_positionHex, _region.getTileSize()));
+    _shape.setPosition(Hex::axialToScreen(_positionHex, _region->getTileSize()));
   } 
 
   void draw(sf::RenderTarget& target, sf::RenderStates states) const override{
@@ -52,7 +52,6 @@ private:
   std::string _customName;
   sf::Color _color;
   int _size;
-  Region _region;
   sf::RectangleShape _shape;
 };
 

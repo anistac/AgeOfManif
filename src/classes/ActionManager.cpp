@@ -19,7 +19,7 @@
 
 void ActionManager::update() {
   std::vector<std::shared_ptr<Command>> cmds;
-  Grid grid = _reg->getGrid();
+  Grid &grid = _reg->getGrid();
   std::vector<Hex *> selectedHexes = grid.getSelectedHexes();
   // aucun Hex selectionné
 

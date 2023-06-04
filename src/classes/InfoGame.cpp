@@ -19,7 +19,7 @@ void InfoGame::updateInfo(float _opinion, int _argent) {
 
 void InfoGame::draw(sf::RenderTarget& window, sf::RenderStates states) const {
     sf::View currView = window.getView();
-    window.setView(window.getDefaultView());
+    // window.setView(window.getDefaultView());
     window.draw(_rectangleBg, states);
     window.draw(_text, states);
     window.setView(currView);
