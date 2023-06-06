@@ -27,7 +27,9 @@ private:
     std::vector<std::pair<int, int>> mousePositions;
     sf::Sprite _sprite;
     sf::Texture backgroundImage;
-   
+    sf::Sprite _spriterobot;
+    sf::Texture _imagerobot;
+    sf::Text _text;
 
 };
 
