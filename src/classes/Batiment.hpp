@@ -19,9 +19,6 @@ public:
   Region *getRegion(){ return _region; }
 
 protected:
-  std::string _name;
-  std::string _customName;
-  std::string _description;
   float _sante;
   Region *_region;
 };

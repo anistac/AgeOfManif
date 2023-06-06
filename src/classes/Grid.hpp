@@ -25,6 +25,7 @@ public:
   Hex *getHexFromCoords(HexCoords coords) { return _hexes[coords]; }
 
   std::vector<Hex*> getSelectedHexes() { return _selectedHexes; }
+  Hex& getHoveredHex() { return _hoveredHex; }
   void removeSelectedHex(Hex *hex);
   void unselectAll() {
     _selectedHexes.clear();
