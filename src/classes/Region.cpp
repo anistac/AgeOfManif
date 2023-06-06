@@ -8,11 +8,13 @@
 #include "Manifestant.hpp"
 #include "MoveCommand.hpp"
 #include "DemonstrationCommand.hpp"
+#include "DismentleCommand.hpp"
 #include "BuildPoliceStationCommand.hpp"
 #include "BuildZADCommand.hpp"
 #include "DestroyCommand.hpp"
 #include "RoundAbout.hpp"
 #include "PoliceStation.hpp"
+#include "Policier.hpp"
 #include "ZAD.hpp"
 #include "Win.hpp"
 #include <SFML/Graphics/Drawable.hpp>
@@ -56,6 +58,8 @@ Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name
 
   Invoker::setCurrentRegion(this);
 
+  DismentleCommand *disCmd = new DismentleCommand();
+  CommandRegistry::addCmd<Policier, RoundAbout>(std::shared_ptr<Command>(disCmd));
   BuildZADCommand *buiZADCmd = new BuildZADCommand();
   CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiZADCmd));
   BuildPoliceStationCommand *buiPStCmd = new BuildPoliceStationCommand();
@@ -67,15 +71,19 @@ Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name
   CommandRegistry::addCmd<Manifestant, RoundAbout>(std::shared_ptr<Command>(demCmd));
   MoveCommand *mvCmd = new MoveCommand();
   CommandRegistry::addCmd<Manifestant, Hex>(std::shared_ptr<Command>(mvCmd));
+  CommandRegistry::addCmd<Policier, Hex>(std::shared_ptr<Command>(mvCmd));
+
   Manifestant *manifestant1 = new Manifestant("Manifestant1", 200, HexCoords(3, 0), (this));
   Manifestant *manifestant2 = new Manifestant("Manifestant2", 100, HexCoords(3, 1), (this));
   RoundAbout *roundabout1 = new RoundAbout("RP1", 200, HexCoords(5,0),(this));
-  PoliceStation *policeStation = new PoliceStation("Station", 200, HexCoords(0,0), (this));
+  PoliceStation *policeStation = new PoliceStation("Station", 200, HexCoords(1,1), (this));
+  Policier *policier = new Policier("Policier", 200, HexCoords(2,2), (this));
 
   _Troupes.push_back(manifestant1);
   _Troupes.push_back(manifestant2);
   _Batiments.push_back(roundabout1);
   _Batiments.push_back(policeStation);
+  _Troupes.push_back(policier);
 }
 
 void Region::handleEvent(sf::Event event) {
@@ -158,14 +166,15 @@ void Region::makeTick() {
   _win->draw(WorldSprite);
   _grid.renderGrid(*_win);
 
-  for (auto troupe : _Troupes) {
-    _win->draw(*troupe);
-  }
+
   
   for (auto batiment : _Batiments) {
     _win->draw(*batiment);
   }
-  _barGame.updateInfo(_opinion, _argent);
+  for (auto troupe : _Troupes) {
+    _win->draw(*troupe);
+  }
+  _barGame.updateInfo(_opinion, _argentPeuple, _argentGouv);
   _win->draw(_barGame);
   _win->draw(_actionManager);
 }

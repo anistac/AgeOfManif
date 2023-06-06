@@ -8,7 +8,8 @@ class BuildZADCommand : public Command {
 public:
     ~BuildZADCommand() = default;
     BuildZADCommand() {
-        _name = "Construire Rond point";
+        _name = "ZAD";
+        _camp = 0;
     };
     bool execute(Interactable *init1, Interactable *init2) override;
 };

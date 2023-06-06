@@ -9,6 +9,7 @@ Hex::Hex()
     : _size(0), _fillColor(sf::Color::Transparent),
       _outlineColor(sf::Color::Transparent), _outlineThickness(0) {
   _positionHex = HexCoords(-1, -1);
+  _camp = -1;
 }
 
 Hex::Hex(HexCoords coords, float size, sf::Color fillColor,
@@ -21,7 +22,7 @@ Hex::Hex(HexCoords coords, float size, sf::Color fillColor,
   this->setFillColor(_fillColor);
   this->setOutlineColor(_outlineColor);
   this->setOutlineThickness(_outlineThickness);
-
+  _camp = -1;
   this->setPosition(axialToScreen(coords, size));
   update();
 }

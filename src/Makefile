@@ -285,6 +285,33 @@ classes/DestroyCommand.cpp.s:
 	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/DestroyCommand.cpp.s
 .PHONY : classes/DestroyCommand.cpp.s
 
+classes/DismentleCommand.o: classes/DismentleCommand.cpp.o
+
+.PHONY : classes/DismentleCommand.o
+
+# target to build an object file
+classes/DismentleCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/DismentleCommand.cpp.o
+.PHONY : classes/DismentleCommand.cpp.o
+
+classes/DismentleCommand.i: classes/DismentleCommand.cpp.i
+
+.PHONY : classes/DismentleCommand.i
+
+# target to preprocess a source file
+classes/DismentleCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/DismentleCommand.cpp.i
+.PHONY : classes/DismentleCommand.cpp.i
+
+classes/DismentleCommand.s: classes/DismentleCommand.cpp.s
+
+.PHONY : classes/DismentleCommand.s
+
+# target to generate assembly for a file
+classes/DismentleCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/DismentleCommand.cpp.s
+.PHONY : classes/DismentleCommand.cpp.s
+
 classes/Grid.o: classes/Grid.cpp.o
 
 .PHONY : classes/Grid.o
@@ -528,6 +555,9 @@ help:
 	@echo "... classes/DestroyCommand.o"
 	@echo "... classes/DestroyCommand.i"
 	@echo "... classes/DestroyCommand.s"
+	@echo "... classes/DismentleCommand.o"
+	@echo "... classes/DismentleCommand.i"
+	@echo "... classes/DismentleCommand.s"
 	@echo "... classes/Grid.o"
 	@echo "... classes/Grid.i"
 	@echo "... classes/Grid.s"

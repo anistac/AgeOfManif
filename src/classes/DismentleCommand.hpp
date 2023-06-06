@@ -16,11 +16,11 @@ class DismentleCommand : public Command {
 public:
     ~DismentleCommand() = default;
     DismentleCommand() {
-        _name = "DismentleCommand";
+        _name = "Disoudre";
 
         std::cout << "DismentleCommand added" << std::endl;
     };
-    bool execute(Interactable *init1) override;
+    bool execute(Interactable *init1, Interactable *init2) override;
 };
 
 #endif // DISMENTLECOMMAND_HPP
