@@ -177,6 +177,60 @@ classes/BoutonAction.cpp.s:
 	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BoutonAction.cpp.s
 .PHONY : classes/BoutonAction.cpp.s
 
+classes/BuildBarbecueCommand.o: classes/BuildBarbecueCommand.cpp.o
+
+.PHONY : classes/BuildBarbecueCommand.o
+
+# target to build an object file
+classes/BuildBarbecueCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BuildBarbecueCommand.cpp.o
+.PHONY : classes/BuildBarbecueCommand.cpp.o
+
+classes/BuildBarbecueCommand.i: classes/BuildBarbecueCommand.cpp.i
+
+.PHONY : classes/BuildBarbecueCommand.i
+
+# target to preprocess a source file
+classes/BuildBarbecueCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BuildBarbecueCommand.cpp.i
+.PHONY : classes/BuildBarbecueCommand.cpp.i
+
+classes/BuildBarbecueCommand.s: classes/BuildBarbecueCommand.cpp.s
+
+.PHONY : classes/BuildBarbecueCommand.s
+
+# target to generate assembly for a file
+classes/BuildBarbecueCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BuildBarbecueCommand.cpp.s
+.PHONY : classes/BuildBarbecueCommand.cpp.s
+
+classes/BuildMairieCommand.o: classes/BuildMairieCommand.cpp.o
+
+.PHONY : classes/BuildMairieCommand.o
+
+# target to build an object file
+classes/BuildMairieCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BuildMairieCommand.cpp.o
+.PHONY : classes/BuildMairieCommand.cpp.o
+
+classes/BuildMairieCommand.i: classes/BuildMairieCommand.cpp.i
+
+.PHONY : classes/BuildMairieCommand.i
+
+# target to preprocess a source file
+classes/BuildMairieCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BuildMairieCommand.cpp.i
+.PHONY : classes/BuildMairieCommand.cpp.i
+
+classes/BuildMairieCommand.s: classes/BuildMairieCommand.cpp.s
+
+.PHONY : classes/BuildMairieCommand.s
+
+# target to generate assembly for a file
+classes/BuildMairieCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BuildMairieCommand.cpp.s
+.PHONY : classes/BuildMairieCommand.cpp.s
+
 classes/BuildPoliceStationCommand.o: classes/BuildPoliceStationCommand.cpp.o
 
 .PHONY : classes/BuildPoliceStationCommand.o
@@ -203,6 +257,33 @@ classes/BuildPoliceStationCommand.s: classes/BuildPoliceStationCommand.cpp.s
 classes/BuildPoliceStationCommand.cpp.s:
 	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BuildPoliceStationCommand.cpp.s
 .PHONY : classes/BuildPoliceStationCommand.cpp.s
+
+classes/BuildUsineCommand.o: classes/BuildUsineCommand.cpp.o
+
+.PHONY : classes/BuildUsineCommand.o
+
+# target to build an object file
+classes/BuildUsineCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BuildUsineCommand.cpp.o
+.PHONY : classes/BuildUsineCommand.cpp.o
+
+classes/BuildUsineCommand.i: classes/BuildUsineCommand.cpp.i
+
+.PHONY : classes/BuildUsineCommand.i
+
+# target to preprocess a source file
+classes/BuildUsineCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BuildUsineCommand.cpp.i
+.PHONY : classes/BuildUsineCommand.cpp.i
+
+classes/BuildUsineCommand.s: classes/BuildUsineCommand.cpp.s
+
+.PHONY : classes/BuildUsineCommand.s
+
+# target to generate assembly for a file
+classes/BuildUsineCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/BuildUsineCommand.cpp.s
+.PHONY : classes/BuildUsineCommand.cpp.s
 
 classes/BuildZADCommand.o: classes/BuildZADCommand.cpp.o
 
@@ -311,6 +392,33 @@ classes/DismentleCommand.s: classes/DismentleCommand.cpp.s
 classes/DismentleCommand.cpp.s:
 	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/DismentleCommand.cpp.s
 .PHONY : classes/DismentleCommand.cpp.s
+
+classes/GiveInPeopleCommand.o: classes/GiveInPeopleCommand.cpp.o
+
+.PHONY : classes/GiveInPeopleCommand.o
+
+# target to build an object file
+classes/GiveInPeopleCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/GiveInPeopleCommand.cpp.o
+.PHONY : classes/GiveInPeopleCommand.cpp.o
+
+classes/GiveInPeopleCommand.i: classes/GiveInPeopleCommand.cpp.i
+
+.PHONY : classes/GiveInPeopleCommand.i
+
+# target to preprocess a source file
+classes/GiveInPeopleCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/GiveInPeopleCommand.cpp.i
+.PHONY : classes/GiveInPeopleCommand.cpp.i
+
+classes/GiveInPeopleCommand.s: classes/GiveInPeopleCommand.cpp.s
+
+.PHONY : classes/GiveInPeopleCommand.s
+
+# target to generate assembly for a file
+classes/GiveInPeopleCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/GiveInPeopleCommand.cpp.s
+.PHONY : classes/GiveInPeopleCommand.cpp.s
 
 classes/Grid.o: classes/Grid.cpp.o
 
@@ -543,9 +651,18 @@ help:
 	@echo "... classes/BoutonAction.o"
 	@echo "... classes/BoutonAction.i"
 	@echo "... classes/BoutonAction.s"
+	@echo "... classes/BuildBarbecueCommand.o"
+	@echo "... classes/BuildBarbecueCommand.i"
+	@echo "... classes/BuildBarbecueCommand.s"
+	@echo "... classes/BuildMairieCommand.o"
+	@echo "... classes/BuildMairieCommand.i"
+	@echo "... classes/BuildMairieCommand.s"
 	@echo "... classes/BuildPoliceStationCommand.o"
 	@echo "... classes/BuildPoliceStationCommand.i"
 	@echo "... classes/BuildPoliceStationCommand.s"
+	@echo "... classes/BuildUsineCommand.o"
+	@echo "... classes/BuildUsineCommand.i"
+	@echo "... classes/BuildUsineCommand.s"
 	@echo "... classes/BuildZADCommand.o"
 	@echo "... classes/BuildZADCommand.i"
 	@echo "... classes/BuildZADCommand.s"
@@ -558,6 +675,9 @@ help:
 	@echo "... classes/DismentleCommand.o"
 	@echo "... classes/DismentleCommand.i"
 	@echo "... classes/DismentleCommand.s"
+	@echo "... classes/GiveInPeopleCommand.o"
+	@echo "... classes/GiveInPeopleCommand.i"
+	@echo "... classes/GiveInPeopleCommand.s"
 	@echo "... classes/Grid.o"
 	@echo "... classes/Grid.i"
 	@echo "... classes/Grid.s"
