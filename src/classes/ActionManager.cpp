@@ -38,7 +38,7 @@ void ActionManager::update() {
       cmds = CommandRegistry::findAvailableCmds(selectedHexes[0]);
       if(cmds.size() >0 ) {
         for(auto const &cmd : cmds) {
-          if(cmd->getcamp() != Invoker::getCurrentCamp()){
+          if(cmd->getcamp() != -1 &&  cmd->getcamp() != Invoker::getCurrentCamp()){
             std::cout << "on suppr " << cmd->getName() << std::endl;
             unwantedCmds.push_back(cmd);
           }

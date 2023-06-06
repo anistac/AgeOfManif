@@ -1,9 +1,15 @@
 #include "Region.hpp"
 #include "ActionManager.hpp"
 #include "BoutonAction.hpp"
+#include "BuildPoliceStationCommand.hpp"
+#include "BuildZADCommand.hpp"
 #include "Command.hpp"
 #include "CommandRegistry.hpp"
+#include "DemonstrationCommand.hpp"
+#include "DestroyCommand.hpp"
+#include "DismentleCommand.hpp"
 #include "Grid.hpp"
+#include "HoverManager.hpp"
 #include "InfoGame.hpp"
 #include "Manifestant.hpp"
 #include "MoveCommand.hpp"
@@ -24,7 +30,6 @@
 #include "Radicaux.hpp"
 #include "Polititien.hpp"
 #include "ZAD.hpp"
-#include "Win.hpp"
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -33,7 +38,10 @@
 #include <iostream>
 #include <memory>
 
-Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name) {
+Region::Region(sf::RenderWindow &win, std::string reg_name)
+    : _reg_name(reg_name) {
+  HoverManager hm(this);
+  _hoverManager = hm;
   ActionManager am(this);
   _actionManager = am;
 
@@ -59,7 +67,7 @@ Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name
   std::cout << "grid created" << std::endl;
 
   // Créer le rectangle blanc
-    // Créer le texte "Actions :"
+  // Créer le texte "Actions :"
   sf::Text titleText("Actions :", font, 18);
   titleText.setPosition(400, 600);
   titleText.setFillColor(sf::Color::Black);
@@ -67,7 +75,8 @@ Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name
   Invoker::setCurrentRegion(this);
 
   DismentleCommand *disCmd = new DismentleCommand();
-  CommandRegistry::addCmd<Policier, RoundAbout>(std::shared_ptr<Command>(disCmd));
+  CommandRegistry::addCmd<Policier, RoundAbout>(
+      std::shared_ptr<Command>(disCmd));
   BuildZADCommand *buiZADCmd = new BuildZADCommand();
   CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiZADCmd));
   BuildMairieCommand *buiMaiCmd = new BuildMairieCommand();
@@ -82,7 +91,8 @@ Region::Region(sf::RenderWindow &win, std::string reg_name) : _reg_name(reg_name
   CommandRegistry::addCmd<PoliceStation>(std::shared_ptr<Command>(desCmd));
   CommandRegistry::addCmd<RoundAbout>(std::shared_ptr<Command>(desCmd));
   DemonstrationCommand *demCmd = new DemonstrationCommand();
-  CommandRegistry::addCmd<Manifestant, RoundAbout>(std::shared_ptr<Command>(demCmd));
+  CommandRegistry::addCmd<Manifestant, RoundAbout>(
+      std::shared_ptr<Command>(demCmd));
   MoveCommand *mvCmd = new MoveCommand();
   CommandRegistry::addCmd<Manifestant, Hex>(std::shared_ptr<Command>(mvCmd));
   CommandRegistry::addCmd<Policier, Hex>(std::shared_ptr<Command>(mvCmd));
@@ -189,8 +199,6 @@ void Region::makeTick() {
   _win->draw(WorldSprite);
   _grid.renderGrid(*_win);
 
-
-  
   for (auto batiment : _Batiments) {
     _win->draw(*batiment);
   }
@@ -202,14 +210,14 @@ void Region::makeTick() {
   _win->draw(_actionManager);
 }
 
-void Region::deleteTroupe(Troupe *troupe){
-  _Troupes.erase(std::remove(_Troupes.begin(), _Troupes.end(), troupe), _Troupes.end());
+void Region::deleteTroupe(Troupe *troupe) {
+  _Troupes.erase(std::remove(_Troupes.begin(), _Troupes.end(), troupe),
+                 _Troupes.end());
   delete troupe;
 }
 
-void Region::deleteBatiment(Batiment *batiment){
-  _Batiments.erase(std::remove(_Batiments.begin(), _Batiments.end(), batiment), _Batiments.end());
+void Region::deleteBatiment(Batiment *batiment) {
+  _Batiments.erase(std::remove(_Batiments.begin(), _Batiments.end(), batiment),
+                   _Batiments.end());
   delete batiment;
-
-
 }
