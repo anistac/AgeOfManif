@@ -57,11 +57,12 @@ private:
   int _tileSize = 70;
   sf::Texture WorldTexture;
   sf::Sprite WorldSprite;
+  sf::Vector2u _mapSize;
   ActionManager _actionManager;
   HoverManager _hoverManager;
  
   // VIEW
-  // sf::View view;
+  sf::View _view;
   Grid _grid;
 };
 

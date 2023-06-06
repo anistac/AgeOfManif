@@ -23,6 +23,10 @@ Hex::Hex(HexCoords coords, float size, sf::Color fillColor,
   this->setOutlineColor(_outlineColor);
   this->setOutlineThickness(_outlineThickness);
   _camp = -1;
+  _name = "Hex";
+  _customName = "Terre vide";
+  _description = "Une terre vide, rien de plus.";
+
   this->setPosition(axialToScreen(coords, size));
   update();
 }

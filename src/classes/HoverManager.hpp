@@ -2,6 +2,7 @@
 #define HOVER_MANAGER_HPP
 
 #include "BoutonAction.hpp"
+#include "Command.hpp"
 #include "Interactable.hpp"
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -9,6 +10,15 @@
 #include <vector>
 // forward declaration
 class Region;
+
+typedef struct infos {
+  std::string name;
+  std::string description;
+  std::string customName;
+  int camp;
+  Command *currAction;
+} infos;
+
 
 class HoverManager: public sf::Drawable {
 
@@ -22,8 +32,10 @@ public:
   bool isInHiverManagerBounds(sf::Vector2i mousePos);
 
 private:
+  bool _visible;
   Region *_reg;
   Interactable *_selectedEntities;
+  std::vector<infos> _infos;
 };
 
 #endif // !HOVER_MANAGER_HPP

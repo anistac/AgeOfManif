@@ -21,10 +21,14 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/View.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
 #include <cstddef>
 #include <iostream>
 #include <memory>
+
+#define VISIBLE_WIDTH 700
+#define VISIBLE_HEIGHT 600
 
 Region::Region(sf::RenderWindow &win, std::string reg_name)
     : _reg_name(reg_name) {
@@ -35,20 +39,19 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
 
   sf::Font font; // Déclaration de la variable font
   _win = &win;
-  unsigned int visibleWidth = 400;
-  unsigned int visibleHeight = 300;
-  sf::View v = sf::View(sf::FloatRect(0, 0, visibleWidth, visibleHeight));
-  v.setViewport(sf::FloatRect(0, 0, 1, 1));
-  // sf::Texture WorldTexture;
+  _view = sf::View(sf::FloatRect(0, 0, VISIBLE_WIDTH, VISIBLE_HEIGHT));
   if (!WorldTexture.loadFromFile("../assets/Map1.png")) {
     std::cout << "Impossible de charger la map" << std::endl;
   }
   _barGame = InfoGame();
   WorldSprite.setTexture(WorldTexture);
-  sf::Vector2u mapSize(WorldTexture.getSize());
-  unsigned int mapWidth = mapSize.x;
-  unsigned int mapHeight = mapSize.y;
+  _mapSize = WorldSprite.getTexture()->getSize();
+  unsigned int mapWidth = _mapSize.x;
+  unsigned int mapHeight = _mapSize.y;
 
+  _view.setCenter(static_cast<float>(mapWidth) / 2.f,
+                  static_cast<float>(mapHeight) / 2.f);
+  _win->setView(_view);
   std::cout << "map size: " << mapWidth << " x " << mapHeight << std::endl;
 
   _grid = Grid(sf::Vector2i(50, 50), 70);
@@ -57,7 +60,7 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
   // Créer le rectangle blanc
   // Créer le texte "Actions :"
   sf::Text titleText("Actions :", font, 18);
-  titleText.setPosition(400, 600);
+  titleText.setPosition(1000, 1600);
   titleText.setFillColor(sf::Color::Black);
 
   Invoker::setCurrentRegion(this);
@@ -99,24 +102,30 @@ void Region::handleEvent(sf::Event event) {
   // sf::Event event;
   _grid.clearGrid();
   _win->pollEvent(event);
-  sf::View view = _win->getView();
+  sf::View currView = _win->getView();
+  sf::View newView = currView;
   if (event.type == sf::Event::MouseWheelScrolled) {
     if (event.mouseWheelScroll.delta > 0) {
-      std::cout << "zoom in" << std::endl;
-      view.zoom(0.9f); // Zoom in
+      newView.zoom(0.9f);
     } else {
-      view.zoom(1.1f); // Zoom out
+      newView.zoom(1.1f);
     }
   } else if (event.type == sf::Event::KeyPressed) {
     float moveSpeed = 100.0f;
     if (event.key.code == sf::Keyboard::Up) {
-      view.move(0, -moveSpeed);
+      newView.move(0, -moveSpeed);
+      // newViewCenter.y -= moveSpeed;
+      // if(viewCenter.y - _win->getSize().y/2 < 0 || viewCenter.x -
+      // _win->getSize().x < 0) viewCenter.y+=moveSpeed;
     } else if (event.key.code == sf::Keyboard::Down) {
-      view.move(0, moveSpeed);
+      newView.move(0, moveSpeed);
+      // newViewCenter.y += moveSpeed;
     } else if (event.key.code == sf::Keyboard::Left) {
-      view.move(-moveSpeed, 0);
+      newView.move(-moveSpeed, 0);
+      // newViewCenter.x -= moveSpeed;
     } else if (event.key.code == sf::Keyboard::Right) {
-      view.move(moveSpeed, 0);
+      newView.move(moveSpeed, 0);
+      // newViewCenter.x += moveSpeed;
     } else if (event.key.code == sf::Keyboard::R) {
       Region::selectedWin = 0;
       return;
@@ -127,6 +136,7 @@ void Region::handleEvent(sf::Event event) {
     HexCoords hexCoords = Hex::screenToAxial(worldPos, _grid.getTileSize());
     Hex *hex = _grid.getHexFromPixel(worldPos);
     _grid.setHoveredHex(hex);
+    _hoverManager.update();
   } else if (event.type == sf::Event::MouseButtonPressed) {
     sf::Vector2i mousePos = sf::Mouse::getPosition(*_win);
     sf::Vector2f worldPos = _win->mapPixelToCoords(mousePos);
@@ -149,7 +159,16 @@ void Region::handleEvent(sf::Event event) {
     _actionManager.update();
   }
 
-  _win->setView(view);
+  float width = static_cast<float>(_win->getSize().x);
+  float height = static_cast<float>(_win->getSize().y);
+  float zoomFactor = newView.getSize().x / width;
+  if (newView.getCenter().x - (width / 2) * zoomFactor < 0 ||
+      newView.getCenter().y - (height / 2) * zoomFactor < 0 ||
+      newView.getCenter().x + (width / 2) * zoomFactor > _mapSize.x ||
+      newView.getCenter().y + (height / 2) * zoomFactor > _mapSize.y)
+    newView = currView;
+  _view = newView;
+  _win->setView(_view);
 
   if (event.type == sf::Event::KeyPressed) {
   }
@@ -171,7 +190,7 @@ void Region::handleEvent(sf::Event event) {
 }
 
 void Region::makeTick() {
-
+  _win->setView(_view);
   _win->draw(WorldSprite);
   _grid.renderGrid(*_win);
 
@@ -183,6 +202,7 @@ void Region::makeTick() {
   }
   _barGame.updateInfo(_opinion, _argentPeuple, _argentGouv);
   _win->draw(_barGame);
+  _win->draw(_hoverManager);
   _win->draw(_actionManager);
 }
 

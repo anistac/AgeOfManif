@@ -29,8 +29,10 @@ void ActionManager::update() {
   // aucun Hex selectionné
 
   if (selectedHexes.size() == 0) {
+    _visible = false;
     return;
   }
+  _visible = true;
   // un seul Hex sélectionné
   if (selectedHexes.size() == 1) {
     // aucune entité sur l'Hex sélectionné, tout va bien
@@ -106,6 +108,7 @@ bool ActionManager::isInActionManagerBounds(sf::Vector2i mousePos) {
 
 void ActionManager::draw(sf::RenderTarget &target,
                          sf::RenderStates states) const {
+  if(!_visible) return;
   sf::RectangleShape background;
   background.setSize(sf::Vector2f(BAR_WIDTH, BAR_HEIGHT));
   background.setFillColor(sf::Color::White);

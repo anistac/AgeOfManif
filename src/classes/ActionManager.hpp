@@ -24,6 +24,7 @@ public:
   std::vector<BoutonAction> getActions() const { return _actions; }
 
 private:
+  bool _visible;
   Region *_reg;
   std::vector<BoutonAction> _actions;
   Interactable *_selectedEntities[2] = {nullptr, nullptr};
