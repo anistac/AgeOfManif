@@ -14,7 +14,7 @@ class HoverManager: public sf::Drawable {
 
 public:
   HoverManager() : _reg(nullptr){};
-  HoverManager(Region *reg) : _reg(reg){}
+  HoverManager(Region *reg) : _reg(reg){};
   void setCurrentRegion(Region *reg);
   ~HoverManager() = default;
   void draw(sf::RenderTarget &target, sf::RenderStates states) const;

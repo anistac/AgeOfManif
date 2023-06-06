@@ -7,6 +7,7 @@
 #include "ActionManager.hpp"
 #include "BoutonAction.hpp"
 #include "Grid.hpp"
+#include "HoverManager.hpp"
 #include "InfoGame.hpp"
 #include "Win.hpp"
 #include <SFML/Graphics/Texture.hpp>
@@ -57,6 +58,8 @@ private:
   sf::Texture WorldTexture;
   sf::Sprite WorldSprite;
   ActionManager _actionManager;
+  HoverManager _hoverManager;
+ 
   // VIEW
   // sf::View view;
   Grid _grid;
