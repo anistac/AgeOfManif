@@ -23,7 +23,7 @@ public:
 		std::cout << "impossible de charger la texture" << std::endl;
 	};
 	if(!_texturefeu.loadFromFile("../assets/feu_dem.png")) {
-		std::cout << "impossible de charger la texture" << std::endl;
+		std::cout << "impossible de charger la texture feu" << std::endl;
 	};
 	sf::Vector2u imgSize(_texture.getSize());
 	float imgWidth = (float) (imgSize.x);

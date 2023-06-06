@@ -13,10 +13,22 @@
 #include "InfoGame.hpp"
 #include "Manifestant.hpp"
 #include "MoveCommand.hpp"
-#include "PoliceStation.hpp"
-#include "Policier.hpp"
+#include "DemonstrationCommand.hpp"
+#include "DismentleCommand.hpp"
+#include "BuildPoliceStationCommand.hpp"
+#include "BuildMairieCommand.hpp"
+#include "BuildUsineCommand.hpp"
+#include "BuildBarbecueCommand.hpp"
+#include "BuildZADCommand.hpp"
+#include "GiveInPeopleCommand.hpp"
+#include "DestroyCommand.hpp"
 #include "RoundAbout.hpp"
-#include "Win.hpp"
+#include "PoliceStation.hpp"
+#include "Usine.hpp"
+#include "Mairie.hpp"
+#include "Policier.hpp"
+#include "Radicaux.hpp"
+#include "Polititien.hpp"
 #include "ZAD.hpp"
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
@@ -70,6 +82,12 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
       std::shared_ptr<Command>(disCmd));
   BuildZADCommand *buiZADCmd = new BuildZADCommand();
   CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiZADCmd));
+  BuildMairieCommand *buiMaiCmd = new BuildMairieCommand();
+  CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiMaiCmd));
+  BuildUsineCommand *buiUsiCmd = new BuildUsineCommand();
+  CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiUsiCmd));
+  BuildBarbecueCommand *buiBarCmd = new BuildBarbecueCommand();
+  CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiBarCmd));
   BuildPoliceStationCommand *buiPStCmd = new BuildPoliceStationCommand();
   CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiPStCmd));
   DestroyCommand *desCmd = new DestroyCommand();
@@ -81,21 +99,27 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
   MoveCommand *mvCmd = new MoveCommand();
   CommandRegistry::addCmd<Manifestant, Hex>(std::shared_ptr<Command>(mvCmd));
   CommandRegistry::addCmd<Policier, Hex>(std::shared_ptr<Command>(mvCmd));
+  CommandRegistry::addCmd<Radicaux, Hex>(std::shared_ptr<Command>(mvCmd));
+  CommandRegistry::addCmd<Polititien, Hex>(std::shared_ptr<Command>(mvCmd));
+  GiveInPeopleCommand *givCmd = new GiveInPeopleCommand();
+  CommandRegistry::addCmd<Mairie, Radicaux>(std::shared_ptr<Command>(givCmd));
 
-  Manifestant *manifestant1 =
-      new Manifestant("Manifestant1", 200, HexCoords(3, 0), (this));
-  Manifestant *manifestant2 =
-      new Manifestant("Manifestant2", 100, HexCoords(3, 1), (this));
-  RoundAbout *roundabout1 = new RoundAbout("RP1", 200, HexCoords(5, 0), (this));
-  PoliceStation *policeStation =
-      new PoliceStation("Station", 200, HexCoords(1, 1), (this));
-  Policier *policier = new Policier("Policier", 200, HexCoords(2, 2), (this));
+  
+
+  Manifestant *manifestant1 = new Manifestant("Manifestant1", 200, HexCoords(3, 0), (this));
+  Manifestant *manifestant2 = new Manifestant("Manifestant2", 100, HexCoords(3, 1), (this));
+  RoundAbout *roundabout1 = new RoundAbout("RP1", 200, HexCoords(5,0),(this));
+  Usine *usine = new Usine("Usine", 200, HexCoords(2,1),(this));
+  PoliceStation *policeStation = new PoliceStation("Station", 200, HexCoords(1,1), (this));
+  
+  Policier *policier = new Policier("Policier", 200, HexCoords(2,2), (this));
 
   _Troupes.push_back(manifestant1);
   _Troupes.push_back(manifestant2);
   _Batiments.push_back(roundabout1);
   _Batiments.push_back(policeStation);
   _Troupes.push_back(policier);
+  _Batiments.push_back(usine);
 }
 
 void Region::handleEvent(sf::Event event) {
