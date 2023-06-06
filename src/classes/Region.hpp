@@ -42,7 +42,12 @@ public:
   void setBusy(Interactable *entity, int camp) {
     _busyEntities[camp].push_back(entity);
   };
-  void setAllFree(int camp) { _busyEntities[camp].clear(); }
+  void setAllFree(int camp) {
+    for (auto &entity : _busyEntities[camp]) {
+      entity->setCurrAction(nullptr);
+    }
+    _busyEntities[camp].clear();
+  }
   sf::Vector2f getWinSize() const { return sf::Vector2f(_win->getSize()); }
 
 private:

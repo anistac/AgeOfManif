@@ -1,6 +1,6 @@
 #include "HoverManager.hpp"
-#include "Grid.hpp"
 #include "FontManager.hpp"
+#include "Grid.hpp"
 #include "Region.hpp"
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
@@ -42,7 +42,7 @@ void HoverManager::draw(sf::RenderTarget &target,
   background.setPosition(sf::Vector2f(target.getSize().x, target.getSize().y));
   int numOfEntities = _infos.size();
   int i = 0;
- 
+
   sf::View currView = target.getView();
   sf::View newView = target.getDefaultView();
   target.setView(newView);
@@ -55,21 +55,56 @@ void HoverManager::draw(sf::RenderTarget &target,
     card.setFillColor(sf::Color(255, 255, 255, 255));
     card.setOrigin(sf::Vector2f(BAR_WIDTH / numOfEntities, BAR_HEIGHT));
     card.setPosition(
-        sf::Vector2f(target.getSize().x + PADDING - (BAR_WIDTH / numOfEntities) * (numOfEntities -1 - i),
+        sf::Vector2f(target.getSize().x + PADDING -
+                         (BAR_WIDTH / numOfEntities) * (numOfEntities - 1 - i),
                      target.getSize().y + PADDING));
     sf::Text name;
-    name.setFont(FontManager::getInstance().getFont());
-    name.setString(info.name);
-    name.setCharacterSize(12);
-    sf::FloatRect texteBounds = name.getLocalBounds();
-    name.setOrigin(texteBounds.left + texteBounds.width / 2.0f,
-                    texteBounds.top + texteBounds.height / 2.0f);
+    sf::Text description;
+    sf::Text busy;
+    description.setFont(FontManager::getInstance().getFont());
+    description.setCharacterSize(12);
+    description.setString(info.description);
+    description.setFillColor(sf::Color::Black);
 
+    name.setFont(FontManager::getInstance().getFont());
+    name.setCharacterSize(12);
+    name.setString(info.name);
+    name.setOrigin(
+        name.getLocalBounds().left + name.getLocalBounds().width / 2.0f,
+        name.getLocalBounds().top + name.getLocalBounds().height / 2.0f);
     name.setFillColor(sf::Color::Black);
-    name.setPosition(sf::Vector2f(card.getPosition().x,
-                                  card.getPosition().y));
+    name.setPosition(
+        sf::Vector2f(card.getPosition().x - (BAR_WIDTH / numOfEntities) / 2.0f,
+                     card.getPosition().y - BAR_HEIGHT + 2 * PADDING));
+    description.setPosition(card.getPosition().x -
+                                (BAR_WIDTH / numOfEntities) / 2.0f,
+                            card.getPosition().y - BAR_HEIGHT + 2 * PADDING +
+                                name.getLocalBounds().height);
+    description.setOrigin(description.getLocalBounds().left +
+                              description.getLocalBounds().width / 2.0f,
+                          description.getLocalBounds().top +
+                              description.getLocalBounds().height / 2.0f);
+    
+    busy.setFont(FontManager::getInstance().getFont());
+    busy.setCharacterSize(12);
+    if(info.currAction != nullptr) {
+      busy.setString("Busy doing " + info.currAction->getName());
+      busy.setFillColor(sf::Color::Red);
+    } else {
+      busy.setString("Free");
+      busy.setFillColor(sf::Color::Green);
+    }
+    busy.setOrigin(
+        busy.getLocalBounds().left + busy.getLocalBounds().width / 2.0f,
+        busy.getLocalBounds().top + busy.getLocalBounds().height / 2.0f);
+    busy.setPosition(card.getPosition().x -
+                                (BAR_WIDTH / numOfEntities) / 2.0f,
+                            card.getPosition().y - BAR_HEIGHT + 5 * PADDING +
+                                name.getLocalBounds().height + description.getLocalBounds().height);
     target.draw(card);
     target.draw(name);
+    target.draw(description);
+    target.draw(busy);
     i++;
   }
 

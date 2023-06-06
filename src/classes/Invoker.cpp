@@ -33,8 +33,9 @@ bool Invoker::executeCommand(Action action) {
     _remainingActions--;
     if(_remainingActions == 0) {
       _remainingActions = 3;
-      _reg->setAllFree(Invoker::getCurrentCamp());
       currentTurn++;
+
+      _reg->setAllFree(Invoker::getCurrentCamp());
 
       std::cout << "Turn " << currentTurn << std::endl;
       return true;

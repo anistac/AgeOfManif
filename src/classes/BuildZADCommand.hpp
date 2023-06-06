@@ -1,5 +1,5 @@
 #ifndef BUILDZAD_COMMAND_HPP
-#define BUILZAD_COMMAND_HPP
+#define BUILDZAD_COMMAND_HPP
 
 #include "Command.hpp"
 #include "Interactable.hpp"
