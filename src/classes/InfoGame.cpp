@@ -2,11 +2,11 @@
 #include <iostream>
 #include "FontManager.hpp"
 
-void InfoGame::updateInfo(float _opinion, int _argent) {
+void InfoGame::updateInfo(float _opinion, int _argentPeuple, int _argentGouv) {
     _rectangleBg.setSize(sf::Vector2f(900, 40));
     _rectangleBg.setPosition(0, 0);
     _rectangleBg.setFillColor(sf::Color::White);
-    std::string txt = "Opinion: " + std::to_string(_opinion) + " Argent : " + std::to_string(_argent);
+    std::string txt = "Opinion : " + std::to_string(_opinion) + "      Argent du peuple : " + std::to_string(_argentPeuple) + "      Argent du Gouvernement : " + std::to_string(_argentGouv);
     _text.setString(txt);
     _text.setFont(FontManager::getInstance().getFont());
     _text.setCharacterSize(20);

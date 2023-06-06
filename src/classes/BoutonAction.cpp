@@ -12,7 +12,7 @@ BoutonAction::BoutonAction(const std::string &texte,
 
   m_texte.setString(texte);
   m_texte.setFont(FontManager::getInstance().getFont());
-  m_texte.setCharacterSize(20);
+  m_texte.setCharacterSize(16);
   m_texte.setFillColor(sf::Color::White);
   sf::FloatRect texteBounds = m_texte.getLocalBounds();
   m_texte.setOrigin(texteBounds.left + texteBounds.width / 2.0f,

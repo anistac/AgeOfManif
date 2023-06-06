@@ -14,7 +14,7 @@ public:
     updatePosition();
   }
   HexCoords getHexCoords() { return _positionHex; }
-  int &getCamp() { return _camp; }
+  const int getCamp() const { return _camp; }
   Command *getCurrAction() { return _currAction; }
   void setCurrAction(Command *action) { _currAction = action; }
   std::string getName() { return _name; }

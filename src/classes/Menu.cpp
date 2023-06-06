@@ -40,8 +40,19 @@ Menu::Menu(sf::RenderWindow &win){
     }
     _sprite.setTexture(backgroundImage);
 
-    // _win->clear(sf::Color::White);
-    
+    _imagerobot.loadFromFile("../assets/robot.png");
+    if(!_imagerobot.loadFromFile("../assets/robot.png")) {
+        throw std::runtime_error("impossible de charger le robot mskn");
+    }
+    _spriterobot.setTexture(_imagerobot);
+    _spriterobot.setScale(0.7f, 0.7f); // Réduit la taille du sprite à 50%
+    _spriterobot.setPosition(650, 0);
+
+    _text.setFont(FontManager::getInstance().getFont());
+    _text.setString("   Bonjour,\nOu voulez-vous\n   allez?");
+    _text.setPosition(685,15);
+    _text.setCharacterSize(12);
+    _text.setFillColor(sf::Color::Black);   
 
     // Ajouter des éléments à la structure regions : Affichage des nom des régions sur la carte
     regions.push_back({"Ile De France", {400, 210}});
@@ -105,6 +116,8 @@ void Menu::makeTick(){
     sf::View currView = _win->getView();
     _win->setView(_win->getDefaultView());
     _win->draw(_sprite);
+    _win->draw(_spriterobot);
+    _win->draw(_text);
     for (const auto& button : buttons) {
         _win->draw(button);
     }
@@ -126,36 +139,3 @@ void Menu::makeTick(){
     } 
 }
 
-/*
-
-bool BoutonAction::estSurvole(const sf::Vector2f& positionSouris)
-{
-    sf::FloatRect boutonBounds = m_rectangle.getGlobalBounds();
-    m_estSurvole = boutonBounds.contains((positionSouris.x), (positionSouris.y));
-    if (m_estSurvole)
-    {   
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-
-bool BoutonAction::aEteClique(const sf::Vector2f& positionSouris)
-{   
-    
-    sf::FloatRect boutonBounds = m_rectangle.getGlobalBounds();
-    m_aEteClique = boutonBounds.contains((positionSouris.x), (positionSouris.y));
-    if(m_aEteClique) {
-        std::cout << "qlf" << std::endl;
-        return Invoker::executeCommand(cmd);
-
-    }
-    else {
-        m_aEteClique = false;
-        return false;
-    }
-}
-*/

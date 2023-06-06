@@ -29,9 +29,11 @@ public:
   int getTileSize() const { return _tileSize; }
   Grid &getGrid() { return _grid; }
   int getOpinion() { return _opinion; }
-  int getArgent() { return _argent; }
+  int getArgent() { return _argentPeuple; }
+  int getArgentG() { return _argentGouv; }
   void setOpinion(int op) { _opinion += op; }
-  void setArgent(int ar) { _argent += ar; }
+  void setArgent(int ar) { _argentPeuple += ar; }
+  void setArgentG(int ar) { _argentGouv += ar; }
   void addTroupe(Troupe *troupe) { _Troupes.push_back(troupe); }
   void addBatiment(Batiment *batiment) { _Batiments.push_back(batiment); }
   void deleteTroupe(Troupe *troupe);
@@ -48,8 +50,9 @@ private:
   std::vector<Batiment *> _Batiments;
   std::vector<Troupe *> _Troupes;
   std::vector<Interactable *> _busyEntities[2];
-  float _opinion;
-  int _argent = 15600;
+  float _opinion = 50;
+  int _argentPeuple = 15600;
+  int _argentGouv = 100000;
   int _tileSize = 70;
   sf::Texture WorldTexture;
   sf::Sprite WorldSprite;

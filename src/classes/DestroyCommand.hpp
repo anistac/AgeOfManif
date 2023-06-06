@@ -16,7 +16,7 @@ class DestroyCommand : public Command {
 public:
     ~DestroyCommand() = default;
     DestroyCommand() {
-        _name = "Detruire";
+        _name = "Destroy";
         _camp = -1;
     };
     bool execute(Interactable *init1, Interactable *init2) override;

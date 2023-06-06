@@ -19,14 +19,13 @@ int main() {
   sf::RenderWindow window(sf::VideoMode(820, 800), "Age of Manifs");
   //___________________________________________________________________________________________________
   Menu menu(window);
-  Region region(window, "Ile de France");
+  Region region(window, "Vendée");
   std::cout <<"selected win: " << Win::selectedWin << std::endl;  
   
 
 
   while (window.isOpen()) {
-      // Gérer les événements
-      
+    // Gérer les événements     
     sf::Event event;
     while (window.pollEvent(event)) {
 			if (event.type == sf::Event::KeyPressed){

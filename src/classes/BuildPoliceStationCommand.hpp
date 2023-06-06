@@ -8,7 +8,7 @@ class BuildPoliceStationCommand : public Command {
 public:
     ~BuildPoliceStationCommand() = default;
     BuildPoliceStationCommand() {
-        _name = "Construire Poste de police";
+        _name = "Poste\nde\npolice";
         _camp = 1;
 
     };

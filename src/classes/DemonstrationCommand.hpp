@@ -18,7 +18,7 @@ class DemonstrationCommand : public Command {
 public:
     ~DemonstrationCommand() = default;
     DemonstrationCommand() {
-        _name = "DemonstrationCommand";
+        _name = "Manifester";
 
         std::cout << "DemonstrationCommand added" << std::endl;
     };
