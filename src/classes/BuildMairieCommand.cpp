@@ -4,9 +4,8 @@
 #include "Polititien.hpp"
 #include "Hex.hpp"
 #include <iostream>
-#ifndef DEBUG
-
-#endif // !DEBUG
+#ifndef BUILD_MAIRIE_COMMAND_CPP
+#define BUILD_MAIRIE_COMMAND_CPP
 
 bool BuildMairieCommand::execute(Interactable *init1, Interactable *init2) {
     HexCoords coords = init1->getHexCoords();
@@ -24,3 +23,4 @@ bool BuildMairieCommand::execute(Interactable *init1, Interactable *init2) {
     return true;
 }
 
+#endif // !BUILD_MAIRIE_COMMAND_CPP

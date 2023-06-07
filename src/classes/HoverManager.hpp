@@ -19,8 +19,7 @@ typedef struct infos {
   Command *currAction;
 } infos;
 
-
-class HoverManager: public sf::Drawable {
+class HoverManager : public sf::Drawable {
 
 public:
   HoverManager() : _reg(nullptr){};
@@ -34,7 +33,6 @@ public:
 private:
   bool _visible;
   Region *_reg;
-  Interactable *_selectedEntities;
   std::vector<infos> _infos;
 };
 

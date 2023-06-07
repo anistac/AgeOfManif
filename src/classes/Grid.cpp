@@ -8,7 +8,6 @@ Grid::Grid(sf::Vector2i size, int tileSize) : _size(size), _tileSize(tileSize) {
   sf::Color outlineColor = sf::Color(255, 255, 255, 100);
   int outlineThickness = 3;
 
-  // creating grid
   for (int i = 0; i <= _size.x; i++) {
     int q = floor(i / 2);
     for (int j = 0 - q; j <= _size.y - q; j++) {
@@ -21,14 +20,6 @@ Grid::Grid(sf::Vector2i size, int tileSize) : _size(size), _tileSize(tileSize) {
   }
 }
 
-// Grid::~Grid() {
-//   auto it = _hexes.begin();
-//   while (it != _hexes.end()) {
-//     delete[] it->second;
-//   }
-//   _hexes.clear();
-// }
-//
 Hex *Grid::getHexFromPixel(sf::Vector2f pixel) {
   if (auto found = _hexes.find(Hex::screenToAxial(pixel, _tileSize));
       found != _hexes.end()) {

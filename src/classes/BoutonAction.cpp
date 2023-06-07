@@ -36,7 +36,6 @@ bool BoutonAction::aEteClique(const sf::Vector2i &positionSouris) {
   sf::FloatRect boutonBounds = m_rectangle.getGlobalBounds();
   m_aEteClique = boutonBounds.contains((positionSouris.x), (positionSouris.y));
   if (m_aEteClique) {
-    std::cout << "qlf" << std::endl;
     return Invoker::executeCommand(_action);
 
   } else {

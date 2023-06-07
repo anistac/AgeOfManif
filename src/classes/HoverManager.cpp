@@ -19,9 +19,6 @@ void HoverManager::update() {
   }
   _visible = true;
   std::vector<Interactable *> hoverredEntities = hoverredHex.getEntities();
-  // if (hoverredEntities.size() == 0) {
-  //   hoverredEntities.push_back(&hoverredHex);
-  // }
   for (const auto &entity : hoverredEntities) {
     _infos.push_back({entity->getName(), entity->getDescription(),
                       entity->getCustomName(), entity->getCamp(),
@@ -84,10 +81,10 @@ void HoverManager::draw(sf::RenderTarget &target,
                               description.getLocalBounds().width / 2.0f,
                           description.getLocalBounds().top +
                               description.getLocalBounds().height / 2.0f);
-    
+
     busy.setFont(FontManager::getInstance().getFont());
     busy.setCharacterSize(12);
-    if(info.currAction != nullptr) {
+    if (info.currAction != nullptr) {
       busy.setString("Busy doing " + info.currAction->getName());
       busy.setFillColor(sf::Color::Red);
     } else {
@@ -97,10 +94,10 @@ void HoverManager::draw(sf::RenderTarget &target,
     busy.setOrigin(
         busy.getLocalBounds().left + busy.getLocalBounds().width / 2.0f,
         busy.getLocalBounds().top + busy.getLocalBounds().height / 2.0f);
-    busy.setPosition(card.getPosition().x -
-                                (BAR_WIDTH / numOfEntities) / 2.0f,
-                            card.getPosition().y - BAR_HEIGHT + 5 * PADDING +
-                                name.getLocalBounds().height + description.getLocalBounds().height);
+    busy.setPosition(card.getPosition().x - (BAR_WIDTH / numOfEntities) / 2.0f,
+                     card.getPosition().y - BAR_HEIGHT + 5 * PADDING +
+                         name.getLocalBounds().height +
+                         description.getLocalBounds().height);
     target.draw(card);
     target.draw(name);
     target.draw(description);

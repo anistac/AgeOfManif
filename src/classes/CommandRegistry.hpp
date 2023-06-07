@@ -94,6 +94,7 @@ public:
     }
     return cmds;
   }
+
 private:
   inline static std::unordered_multimap<
       std::pair<std::type_index, std::type_index>, std::shared_ptr<Command>,

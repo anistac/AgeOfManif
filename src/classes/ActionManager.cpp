@@ -38,17 +38,17 @@ void ActionManager::update() {
     // aucune entité sur l'Hex sélectionné, tout va bien
     if (selectedHexes[0]->getEntities().size() == 0) {
       cmds = CommandRegistry::findAvailableCmds(selectedHexes[0]);
-      if(cmds.size() >0 ) {
-        for(auto const &cmd : cmds) {
-          if(cmd->getcamp() != -1 &&  cmd->getcamp() != Invoker::getCurrentCamp()){
+      if (cmds.size() > 0) {
+        for (auto const &cmd : cmds) {
+          if (cmd->getcamp() != -1 &&
+              cmd->getcamp() != Invoker::getCurrentCamp()) {
             std::cout << "on suppr " << cmd->getName() << std::endl;
             unwantedCmds.push_back(cmd);
           }
         }
-        for(auto const &cmd : unwantedCmds) {
-            cmds.erase(std::remove(cmds.begin(), cmds.end(), cmd), cmds.end());
+        for (auto const &cmd : unwantedCmds) {
+          cmds.erase(std::remove(cmds.begin(), cmds.end(), cmd), cmds.end());
         }
-
       }
       _selectedEntities[0] = selectedHexes[0];
       _selectedEntities[1] = nullptr;
@@ -72,8 +72,11 @@ void ActionManager::update() {
                              ? selectedHexes[1]
                              : selectedHexes[1]->getSelectedEntity();
 
-    if ((int1->getCamp() >=0 && int1->getCamp() != Invoker::getCurrentCamp()) ||
-        (int2->getCamp() >=0 && int2->getCamp() != Invoker::getCurrentCamp()) || int1->getCurrAction() != nullptr || int2->getCurrAction() != nullptr)
+    if ((int1->getCamp() >= 0 &&
+         int1->getCamp() != Invoker::getCurrentCamp()) ||
+        (int2->getCamp() >= 0 &&
+         int2->getCamp() != Invoker::getCurrentCamp()) ||
+        int1->getCurrAction() != nullptr || int2->getCurrAction() != nullptr)
       return;
     cmds = CommandRegistry::findAvailableCmds(int1, int2);
     _selectedEntities[0] = int1;
@@ -108,8 +111,10 @@ bool ActionManager::isInActionManagerBounds(sf::Vector2i mousePos) {
 
 void ActionManager::draw(sf::RenderTarget &target,
                          sf::RenderStates states) const {
-  if(!_visible) return;
-  if(_actions.size() == 0) return;
+  if (!_visible)
+    return;
+  if (_actions.size() == 0)
+    return;
   sf::RectangleShape background;
   background.setSize(sf::Vector2f(BAR_WIDTH, BAR_HEIGHT));
   background.setFillColor(sf::Color::White);

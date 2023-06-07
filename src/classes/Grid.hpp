@@ -11,7 +11,7 @@ class Grid {
 public:
   Grid(){};
   Grid(sf::Vector2i size, int tileSize);
-  ~Grid() = default ;
+  ~Grid() = default;
   void renderGrid(sf::RenderWindow &window);
   void setSize(sf::Vector2f size);
   Hex *getHexFromPixel(sf::Vector2f pixel);

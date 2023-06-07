@@ -22,8 +22,6 @@ public:
   std::string getDescription() { return _description; }
 
 protected:
-  // sf::Texture _texture;
-  // sf::Vector2f _positionWorld;
   std::string _name;
   std::string _customName;
   std::string _description;

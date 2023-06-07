@@ -9,8 +9,6 @@ bool DestroyCommand::execute(Interactable *init1, Interactable *init2) {
     Hex *hex = batiment->getRegion()->getGrid().getHexFromCoords(init1->getHexCoords());
     hex->removeEntity(init1);
 
-    //batiment->getRegion()->setArgent(1000);
-    //batiment->getRegion()->setOpinion(-2);
     
     batiment->getRegion()->deleteBatiment(batiment);
     std::cout << "DestroyCommand executed" << std::endl;
