@@ -22,9 +22,11 @@ typedef struct HexEq {
 
 class Hex : public Interactable, public sf::Shape {
 public:
-    explicit Hex();
-    explicit Hex(HexCoords coords, float size, sf::Color fillColor, sf::Color outlineColor, int outlineThickness);
-
+    Hex();
+    Hex(HexCoords coords, float size, sf::Color fillColor, sf::Color outlineColor, int outlineThickness);
+    ~Hex() {
+      std::cout << "Hex destroyed" << std::endl;
+    };
     sf::Color getFillColor() const {
         return _fillColor;
     }

@@ -6,7 +6,7 @@
 class Command {
 public:
     // TODO: destructeur à hériter !!
-    ~Command() = default;
+    ~Command() {};
     virtual bool execute(Interactable *init1, Interactable *init2) = 0;
     std::string getName() const { return _name; }
     int getcamp() const { return _camp; }
