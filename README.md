@@ -53,6 +53,8 @@ Argent : - 100
 Rappel : L'unique critère determinant qui mène ou gagne est 'l'opinion' de la population, si l'opinion est à 100% le peuple gagne, mais s'il atteint 0% le gourvernement l'emporte.
 
 #### Conception du code : 
+Le code à été concu de manière très modulaire, le jeu se compose d'une map, d'une grille, d'entités. Les entités peuvent être de 3 types : Batiments, Troupes ou hexagones, et ont une positions (coordonnée axiale) sur la grille. Ceci nous permet que les entités peuvent intéragir deux à deux à l'aide de commande. Les commandes possibles apparaissent en fonction des entités choisies sur la grille, et font varier des différentes ressources du jeu (argent et opinion) ainsi que de pouvoir créer d'autres entités.
+
 #### Points primordiaux pour notre code :
 - Structure modulaire : Le programme est conçu de manière modulaire, avec des classes et des méthodes bien définies, ce qui facilite la compréhension et la maintenance du code. Chaque classe a une responsabilité spécifique et peut être développée et testée indépendamment.
 -  Extensibilité : Le programme est conçu de manière à être extensible, un ppint très important pour nous dans la mesure où le projet peut être bien plus conséquent pour atteindre la qualité et la quantité classique des jeux similaires de nos jours. De nouvelles fonctionnalités peuvent être ajoutées facilement sans avoir à modifier de manière significative le code existant, comme principalement des actions/commandes. Cela permet de répondre aux besoins futurs et de faire évoluer le programme sans compromettre sa stabilité.
@@ -60,6 +62,10 @@ Rappel : L'unique critère determinant qui mène ou gagne est 'l'opinion' de la 
 - Performances : La conception du programme tient compte des aspects de performance. Les algorithmes et les structures de données sont optimisés pour minimiser les temps de traitement et les besoins en mémoire, garantissant ainsi une exécution efficace même avec de grandes quantités de données.
 - Le code suit (au maximum) les conventions de nommage claires, utilise une indentation cohérente et suit les bonnes pratiques de programmation. Cela facilite la lisibilité du code et la collaboration avec d'autres développeurs.
 
+#### Plus en détail :
+Interactable : est une classe abstraite qui englobe toutes les entités avec lesquels le joueurs peut intéragir, que se soit Troupes Batiment ou les Hexagones (Hex).
+Grille : est une classe qui contient la liste des hexagones dans une unordered_map. C'est un stockage clé-valeurs, où la clé est une position avec corrdonné axiale et la valeur est un pointeur vers un hexagone. De cette manière on est capable de récupérer facilement un hexagone en fonction des ses coordonnées axiales. On a aussi mis en place des méthodes permettants de passer de coordonnée de la souris en coordonnée axiale, il est donc très facile de récupérer les hexagones, et donc les entités, avec lesquel le joueur interagit.
+Commande : Dans notre jeu il existe plusieurs types d'actions en fonction du camp, des troupes et des batiments. On a donc du mettre en place une solution pour lister toutes les commandes en fonction des entitées sur lesquels elles s'appliquent : il s'agit du registre de commande. Le registre de commande stock l'intégralité des commandes possibles en fonctions de ses initiateurs dans une unorder_multimap. Il s'agit encore d'un sockage de type clé-valeurs, où la clé est une paire de type d'initiateur/interactable et où la valeur est un pointeur vers la commande. On peut ainsi grace à cette classe statique retrouver facilement les commandes réalisables par le ou les entités selectionnés (hexagone compris).
 
 
 ##### Améliorations : 
