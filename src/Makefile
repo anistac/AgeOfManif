@@ -420,6 +420,33 @@ classes/GiveInPeopleCommand.cpp.s:
 	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/GiveInPeopleCommand.cpp.s
 .PHONY : classes/GiveInPeopleCommand.cpp.s
 
+classes/GoToWorkCommand.o: classes/GoToWorkCommand.cpp.o
+
+.PHONY : classes/GoToWorkCommand.o
+
+# target to build an object file
+classes/GoToWorkCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/GoToWorkCommand.cpp.o
+.PHONY : classes/GoToWorkCommand.cpp.o
+
+classes/GoToWorkCommand.i: classes/GoToWorkCommand.cpp.i
+
+.PHONY : classes/GoToWorkCommand.i
+
+# target to preprocess a source file
+classes/GoToWorkCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/GoToWorkCommand.cpp.i
+.PHONY : classes/GoToWorkCommand.cpp.i
+
+classes/GoToWorkCommand.s: classes/GoToWorkCommand.cpp.s
+
+.PHONY : classes/GoToWorkCommand.s
+
+# target to generate assembly for a file
+classes/GoToWorkCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/classes/GoToWorkCommand.cpp.s
+.PHONY : classes/GoToWorkCommand.cpp.s
+
 classes/Grid.o: classes/Grid.cpp.o
 
 .PHONY : classes/Grid.o
@@ -705,6 +732,9 @@ help:
 	@echo "... classes/GiveInPeopleCommand.o"
 	@echo "... classes/GiveInPeopleCommand.i"
 	@echo "... classes/GiveInPeopleCommand.s"
+	@echo "... classes/GoToWorkCommand.o"
+	@echo "... classes/GoToWorkCommand.i"
+	@echo "... classes/GoToWorkCommand.s"
 	@echo "... classes/Grid.o"
 	@echo "... classes/Grid.i"
 	@echo "... classes/Grid.s"
