@@ -22,6 +22,7 @@
 #include "DestroyCommand.hpp"
 #include "DismentleCommand.hpp"
 #include "GiveInPeopleCommand.hpp"
+#include "GoToWorkCommand.hpp"
 #include "Grid.hpp"
 #include "HoverManager.hpp"
 #include "InfoGame.hpp"
@@ -74,6 +75,9 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
 
   Invoker::setCurrentRegion(this);
 
+std::shared_ptr<GoToWorkCommand> GoTCmd =
+      std::make_shared<GoToWorkCommand>(GoToWorkCommand());
+
   std::shared_ptr<DismentleCommand> disCmd =
       std::make_shared<DismentleCommand>(DismentleCommand());
   std::shared_ptr<BuildZADCommand> buiZADCmd =
@@ -101,8 +105,8 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
   // GiveInPeopleCommand *givCmd = new GiveInPeopleCommand();
   // DestroyCommand *desCmd = new DestroyCommand();
 
-  CommandRegistry::addCmd<Policier, RoundAbout>(
-      std::shared_ptr<Command>(disCmd));
+  CommandRegistry::addCmd<Manifestant, Usine>(std::shared_ptr<Command>(GoTCmd));
+  CommandRegistry::addCmd<Policier, RoundAbout>(std::shared_ptr<Command>(disCmd));
   CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiZADCmd));
   CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiMaiCmd));
   CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiUsiCmd));
