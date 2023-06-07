@@ -10,7 +10,7 @@ class Policier : public Troupe {
  public:
   Policier() = default;
   Policier(std::string name, int size, HexCoords coords, Region *reg) : _size(size) {
-    _name = "Policier";
+    _name = "Policier\n";
     _customName = name;
     _description = "Un policier est un policier";
     _camp = 1;

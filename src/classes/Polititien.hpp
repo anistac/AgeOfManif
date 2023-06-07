@@ -10,7 +10,7 @@ class Polititien : public Troupe {
  public:
   Polititien() = default;
   Polititien(std::string name, int size, HexCoords coords, Region *reg) : _size(size) {
-    _name = "Polititien";
+    _name = "Polititien\n";
     _customName = name;
     _description = "Les Polititiens sont la pour vous convaincre";
     _camp = 1;

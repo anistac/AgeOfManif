@@ -13,7 +13,9 @@ public:
 	RoundAbout() = default;
 
 	RoundAbout(std::string name, int size, HexCoords coords, Region *reg) : _customName(name), _size(size) {
-    _customName = "Rond Point";
+    _name = "Rond Point\n";
+	_customName = name;
+    _description = "Le rond point est une zone de protestation";
     _camp = -1;
     _sante = 100.0f;
     _region = reg;

@@ -15,11 +15,13 @@ public:
 	Mairie() = default;
 
 	Mairie(std::string name, int size, HexCoords coords, Region *reg) : _customName(name), _size(size) {
-		_customName = "ZAD";
-		_camp = 1;
-		_sante = 100.0f;
-		_region = reg;
-		_positionHex = coords;
+	_name = "Mairie\n";
+	_customName = name;
+	_description = "La Mairie cree un polititien";
+	_camp = 1;
+	_sante = 100.0f;
+	_region = reg;
+	_positionHex = coords;
 
 	if(!_texture.loadFromFile("../assets/mairie.png")) {
 		std::cout << "impossible de charger la texture" << std::endl;

@@ -10,7 +10,7 @@ class Radicaux : public Troupe {
  public:
   Radicaux() = default;
   Radicaux(std::string name, int size, HexCoords coords, Region *reg) : _size(size) {
-    _name = "Manifestant";
+    _name = "Radicaux\n";
     _customName = name;
     _description = "Les radicaux sont la pour gagner";
     _camp = 0;
