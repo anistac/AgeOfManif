@@ -20,6 +20,7 @@ bool DemonstrationCommand::execute(Interactable *init1, Interactable *init2) {
     troupe->getRegion()->setOpinion(-10);
     troupe->getRegion()->setArgent(5000);
     batiment->setIsOnFire();
+    troupe->move(batiment->getRegion()->getGrid().getHexFromCoords(batiment->getHexCoords()));
 
     std::cout << "DemonstrationCommand Executé" << std::endl;
     return true; // Renvoyer true si l'exécution s'est bien déroulée
