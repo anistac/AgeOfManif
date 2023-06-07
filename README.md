@@ -28,6 +28,8 @@ Argent : +5000  Opinion : -10%
 Argent : - 5000 Opinion : +5% Troupes : +3 manifestant
 - Construire un barbecue : sélectionner une case vide le la map et actionné le bouton action correspondant
 Argent : -500 Opinion : +10% Troupes : +1 manifestant radical
+- Aller travailler : Sélectionner un de vos manifestants et une usine
+Argent : 3000 Opinion : -1
 
 ##### Gouvernement :
 - Dissoudre une manifestation : sélectionner votre batiment bloqué par une manifestattion puis cliqué une le bouton correspondant pour le débloquer
