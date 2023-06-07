@@ -15,7 +15,9 @@ public:
 	Barbecue() = default;
 
 	Barbecue(std::string name, int size, HexCoords coords, Region *reg) : _customName(name), _size(size) {
-    _customName = "Barbecue";
+    _name = "Barbecue\n";
+	_customName = name;
+    _description = "Le barbecue est la pour generer des\nleaders de la revolte : radicaux";
     _camp = 0;
     _sante = 100.0f;
     _region = reg;

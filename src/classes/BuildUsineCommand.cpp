@@ -11,7 +11,6 @@ bool BuildUsineCommand::execute(Interactable *init1, Interactable *init2) {
     HexCoords coords = init1->getHexCoords();
     Usine *usine = new Usine("Usine", 200, coords, Invoker::getCurrentRegion());
     Hex *hex = dynamic_cast<Hex*>(init1);
-    hex->addEntity(usine);
     Invoker::getCurrentRegion()->addBatiment(usine);
 
     usine->getRegion()->setOpinion(5);

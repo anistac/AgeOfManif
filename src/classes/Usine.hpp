@@ -15,7 +15,9 @@ public:
 	Usine() = default;
 
 	Usine(std::string name, int size, HexCoords coords, Region *reg) : _customName(name), _size(size) {
-    _customName = "Usine";
+    _name = "Usine\n";
+	_customName = name;
+    _description = "L'usine te permet de gagner de l'argent";
     _camp = -1;
     _sante = 100.0f;
     _region = reg;

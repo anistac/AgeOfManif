@@ -10,9 +10,7 @@
 
 bool BuildMairieCommand::execute(Interactable *init1, Interactable *init2) {
     HexCoords coords = init1->getHexCoords();
-    Mairie *mairie = new Mairie("Barbecue", 200, coords, Invoker::getCurrentRegion());
-    Hex *hex = dynamic_cast<Hex*>(init1);
-    hex->addEntity(mairie);
+    Mairie *mairie = new Mairie("Mairie", 200, coords, Invoker::getCurrentRegion());
     Invoker::getCurrentRegion()->addBatiment(mairie);
 
     mairie->getRegion()->setOpinion(10);

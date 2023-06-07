@@ -10,11 +10,12 @@
 
 bool BuildPoliceStationCommand::execute(Interactable *init1, Interactable *init2) {
     HexCoords coords = init1->getHexCoords();
+
     PoliceStation *policeStation = new PoliceStation("Station", 200, coords, Invoker::getCurrentRegion());
-    Hex *hex = dynamic_cast<Hex*>(init1);
-    hex->addEntity(policeStation);
+
     Invoker::getCurrentRegion()->addBatiment(policeStation);
-    policeStation->getRegion()->setOpinion(10);
+
+    policeStation->getRegion()->setOpinion(3);
     policeStation->getRegion()->setArgent(-5000);
 
     Policier *policier = new Policier("Policier poste", 200, coords, policeStation->getRegion());

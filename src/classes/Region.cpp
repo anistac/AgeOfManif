@@ -94,8 +94,7 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
   CommandRegistry::addCmd<PoliceStation>(std::shared_ptr<Command>(desCmd));
   CommandRegistry::addCmd<RoundAbout>(std::shared_ptr<Command>(desCmd));
   DemonstrationCommand *demCmd = new DemonstrationCommand();
-  CommandRegistry::addCmd<Manifestant, RoundAbout>(
-      std::shared_ptr<Command>(demCmd));
+  CommandRegistry::addCmd<Manifestant, RoundAbout>(std::shared_ptr<Command>(demCmd));
   MoveCommand *mvCmd = new MoveCommand();
   CommandRegistry::addCmd<Manifestant, Hex>(std::shared_ptr<Command>(mvCmd));
   CommandRegistry::addCmd<Policier, Hex>(std::shared_ptr<Command>(mvCmd));

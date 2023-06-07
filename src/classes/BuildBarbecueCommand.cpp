@@ -11,8 +11,6 @@
 bool BuildBarbecueCommand::execute(Interactable *init1, Interactable *init2) {
     HexCoords coords = init1->getHexCoords();
     Barbecue *barbeuc = new Barbecue("Barbecue", 200, coords, Invoker::getCurrentRegion());
-    Hex *hex = dynamic_cast<Hex*>(init1);
-    hex->addEntity(barbeuc);
     Invoker::getCurrentRegion()->addBatiment(barbeuc);
 
     barbeuc->getRegion()->setOpinion(10);

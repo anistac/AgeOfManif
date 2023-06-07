@@ -8,14 +8,15 @@
 
 #include "Interactable.hpp"
 #include "Batiment.hpp"
-#include "Invoker.hpp"
 
 class ZAD : public Batiment {
 public:
 	ZAD() = default;
 
-	ZAD(std::string name, int size, HexCoords coords, Region *reg) : _customName(name), _size(size) {
-    _customName = "ZAD";
+	ZAD(std::string name, int size, HexCoords coords, Region *reg) : _size(size) {
+    _name = "ZAD\n";
+	_customName = name;
+    _description = "La ZAD produit des manifestants";
     _camp = 0;
     _sante = 100.0f;
     _region = reg;
@@ -38,7 +39,7 @@ public:
 	}
 
 	~ZAD() {};
-  void updatePosition() override{
+    void updatePosition() override{
     _sprite.setPosition(Hex::axialToScreen(_positionHex, _region->getTileSize()));
   } 
 
