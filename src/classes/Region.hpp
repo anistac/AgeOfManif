@@ -24,7 +24,7 @@ class Region : public Win {
 public:
   Region(){};
   Region(sf::RenderWindow &win, std::string reg_name);
-  ~Region() = default;
+  ~Region();
   void makeTick() override;
   void handleEvent(sf::Event event) override;
   int getTileSize() const { return _tileSize; }

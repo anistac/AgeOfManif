@@ -13,7 +13,6 @@ bool BuildZADCommand::execute(Interactable *init1, Interactable *init2) {
     HexCoords coords = init1->getHexCoords();
 
     ZAD *zad = new ZAD("ZAD", 200, coords, Invoker::getCurrentRegion());
-
     Invoker::getCurrentRegion()->addBatiment(zad);
 
     zad->getRegion()->setOpinion(5);

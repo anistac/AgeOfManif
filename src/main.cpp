@@ -1,5 +1,6 @@
 #include "classes/ActionManager.hpp"
 #include "classes/BoutonAction.hpp"
+#include "classes/CommandRegistry.hpp"
 #include "classes/Hex.hpp"
 #include "classes/InfoGame.hpp"
 #include "classes/Manifestant.hpp"

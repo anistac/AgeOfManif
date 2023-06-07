@@ -1,35 +1,5 @@
 #include "Region.hpp"
-#include "ActionManager.hpp"
-#include "BoutonAction.hpp"
-#include "BuildPoliceStationCommand.hpp"
-#include "BuildZADCommand.hpp"
-#include "Command.hpp"
-#include "CommandRegistry.hpp"
-#include "DemonstrationCommand.hpp"
-#include "DestroyCommand.hpp"
-#include "DismentleCommand.hpp"
-#include "Grid.hpp"
-#include "HoverManager.hpp"
-#include "InfoGame.hpp"
-#include "Manifestant.hpp"
-#include "MoveCommand.hpp"
-#include "DemonstrationCommand.hpp"
-#include "DismentleCommand.hpp"
-#include "BuildPoliceStationCommand.hpp"
-#include "BuildMairieCommand.hpp"
-#include "BuildUsineCommand.hpp"
-#include "BuildBarbecueCommand.hpp"
-#include "BuildZADCommand.hpp"
-#include "GiveInPeopleCommand.hpp"
-#include "DestroyCommand.hpp"
-#include "RoundAbout.hpp"
-#include "PoliceStation.hpp"
-#include "Usine.hpp"
-#include "Mairie.hpp"
-#include "Policier.hpp"
-#include "Radicaux.hpp"
-#include "Polititien.hpp"
-#include "ZAD.hpp"
+
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -38,6 +8,33 @@
 #include <cstddef>
 #include <iostream>
 #include <memory>
+
+#include "ActionManager.hpp"
+#include "BoutonAction.hpp"
+#include "BuildBarbecueCommand.hpp"
+#include "BuildMairieCommand.hpp"
+#include "BuildPoliceStationCommand.hpp"
+#include "BuildUsineCommand.hpp"
+#include "BuildZADCommand.hpp"
+#include "Command.hpp"
+#include "CommandRegistry.hpp"
+#include "DemonstrationCommand.hpp"
+#include "DestroyCommand.hpp"
+#include "DismentleCommand.hpp"
+#include "GiveInPeopleCommand.hpp"
+#include "Grid.hpp"
+#include "HoverManager.hpp"
+#include "InfoGame.hpp"
+#include "Mairie.hpp"
+#include "Manifestant.hpp"
+#include "MoveCommand.hpp"
+#include "PoliceStation.hpp"
+#include "Policier.hpp"
+#include "Polititien.hpp"
+#include "Radicaux.hpp"
+#include "RoundAbout.hpp"
+#include "Usine.hpp"
+#include "ZAD.hpp"
 
 #define VISIBLE_WIDTH 700
 #define VISIBLE_HEIGHT 600
@@ -49,7 +46,7 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
   ActionManager am(this);
   _actionManager = am;
 
-  sf::Font font; // Déclaration de la variable font
+  sf::Font font;  // Déclaration de la variable font
   _win = &win;
   _view = sf::View(sf::FloatRect(0, 0, VISIBLE_WIDTH, VISIBLE_HEIGHT));
   if (!WorldTexture.loadFromFile("../assets/Map1.png")) {
@@ -77,41 +74,62 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
 
   Invoker::setCurrentRegion(this);
 
-  DismentleCommand *disCmd = new DismentleCommand();
+  std::shared_ptr<DismentleCommand> disCmd =
+      std::make_shared<DismentleCommand>(DismentleCommand());
+  std::shared_ptr<BuildZADCommand> buiZADCmd =
+      std::make_shared<BuildZADCommand>(BuildZADCommand());
+  std::shared_ptr<BuildMairieCommand> buiMaiCmd =
+      std::make_shared<BuildMairieCommand>(BuildMairieCommand());
+  std::shared_ptr<BuildUsineCommand> buiUsiCmd =
+      std::make_shared<BuildUsineCommand>(BuildUsineCommand());
+  std::shared_ptr<BuildPoliceStationCommand> buiPStCmd =
+      std::make_shared<BuildPoliceStationCommand>(BuildPoliceStationCommand());
+  std::shared_ptr<DemonstrationCommand> demCmd =
+      std::make_shared<DemonstrationCommand>(DemonstrationCommand());
+  std::shared_ptr<MoveCommand> mvCmd =
+      std::make_shared<MoveCommand>(MoveCommand());
+  std::shared_ptr<GiveInPeopleCommand> givCmd =
+      std::make_shared<GiveInPeopleCommand>(GiveInPeopleCommand());
+  std::shared_ptr<DestroyCommand> desCmd =
+      std::make_shared<DestroyCommand>(DestroyCommand());
+
+  // BuildMairieCommand *buiMaiCmd = new BuildMairieCommand();
+  // BuildUsineCommand *buiUsiCmd = new BuildUsineCommand();
+  // BuildPoliceStationCommand *buiPStCmd = new BuildPoliceStationCommand();
+  // DemonstrationCommand *demCmd = new DemonstrationCommand();
+  // MoveCommand *mvCmd = new MoveCommand();
+  // GiveInPeopleCommand *givCmd = new GiveInPeopleCommand();
+  // DestroyCommand *desCmd = new DestroyCommand();
+
   CommandRegistry::addCmd<Policier, RoundAbout>(
       std::shared_ptr<Command>(disCmd));
-  BuildZADCommand *buiZADCmd = new BuildZADCommand();
   CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiZADCmd));
-  BuildMairieCommand *buiMaiCmd = new BuildMairieCommand();
   CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiMaiCmd));
-  BuildUsineCommand *buiUsiCmd = new BuildUsineCommand();
   CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiUsiCmd));
-  BuildBarbecueCommand *buiBarCmd = new BuildBarbecueCommand();
+  std::shared_ptr<BuildBarbecueCommand> buiBarCmd =
+      std::make_shared<BuildBarbecueCommand>(BuildBarbecueCommand());
   CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiBarCmd));
-  BuildPoliceStationCommand *buiPStCmd = new BuildPoliceStationCommand();
   CommandRegistry::addCmd<Hex>(std::shared_ptr<Command>(buiPStCmd));
-  DestroyCommand *desCmd = new DestroyCommand();
   CommandRegistry::addCmd<PoliceStation>(std::shared_ptr<Command>(desCmd));
   CommandRegistry::addCmd<RoundAbout>(std::shared_ptr<Command>(desCmd));
-  DemonstrationCommand *demCmd = new DemonstrationCommand();
-  CommandRegistry::addCmd<Manifestant, RoundAbout>(std::shared_ptr<Command>(demCmd));
-  MoveCommand *mvCmd = new MoveCommand();
+  CommandRegistry::addCmd<Manifestant, RoundAbout>(
+      std::shared_ptr<Command>(demCmd));
   CommandRegistry::addCmd<Manifestant, Hex>(std::shared_ptr<Command>(mvCmd));
   CommandRegistry::addCmd<Policier, Hex>(std::shared_ptr<Command>(mvCmd));
   CommandRegistry::addCmd<Radicaux, Hex>(std::shared_ptr<Command>(mvCmd));
   CommandRegistry::addCmd<Polititien, Hex>(std::shared_ptr<Command>(mvCmd));
-  GiveInPeopleCommand *givCmd = new GiveInPeopleCommand();
   CommandRegistry::addCmd<Mairie, Radicaux>(std::shared_ptr<Command>(givCmd));
 
-  
+  Manifestant *manifestant1 =
+      new Manifestant("Manifestant1", 200, HexCoords(3, 0), (this));
+  Manifestant *manifestant2 =
+      new Manifestant("Manifestant2", 100, HexCoords(3, 1), (this));
+  RoundAbout *roundabout1 = new RoundAbout("RP1", 200, HexCoords(5, 0), (this));
+  Usine *usine = new Usine("Usine", 200, HexCoords(2, 1), (this));
+  PoliceStation *policeStation =
+      new PoliceStation("Station", 200, HexCoords(1, 1), (this));
 
-  Manifestant *manifestant1 = new Manifestant("Manifestant1", 200, HexCoords(3, 0), (this));
-  Manifestant *manifestant2 = new Manifestant("Manifestant2", 100, HexCoords(3, 1), (this));
-  RoundAbout *roundabout1 = new RoundAbout("RP1", 200, HexCoords(5,0),(this));
-  Usine *usine = new Usine("Usine", 200, HexCoords(2,1),(this));
-  PoliceStation *policeStation = new PoliceStation("Station", 200, HexCoords(1,1), (this));
-  
-  Policier *policier = new Policier("Policier", 200, HexCoords(2,2), (this));
+  Policier *policier = new Policier("Policier", 200, HexCoords(2, 2), (this));
 
   _Troupes.push_back(manifestant1);
   _Troupes.push_back(manifestant2);
@@ -119,6 +137,17 @@ Region::Region(sf::RenderWindow &win, std::string reg_name)
   _Batiments.push_back(policeStation);
   _Troupes.push_back(policier);
   _Batiments.push_back(usine);
+}
+
+Region::~Region() {
+  // for (auto &t : _Troupes) {
+  //   delete t;
+  // }
+  // for (auto &b : _Batiments) {
+  //   delete b;
+  // }
+  //
+  // CommandRegistry::clear();
 }
 
 void Region::handleEvent(sf::Event event) {
@@ -238,5 +267,5 @@ void Region::deleteTroupe(Troupe *troupe) {
 void Region::deleteBatiment(Batiment *batiment) {
   _Batiments.erase(std::remove(_Batiments.begin(), _Batiments.end(), batiment),
                    _Batiments.end());
-  delete batiment;
+  delete[] batiment;
 }
